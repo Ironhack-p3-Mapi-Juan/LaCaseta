@@ -12,11 +12,12 @@ const path         = require('path');
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
-    
+const cors = require('cors');
+const db = process.env.DB_URL    
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/server', {useMongoClient: true})
+  .connect( db, {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -28,11 +29,32 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-// Middleware Setup
+// Middleware Setup Cors
+var whitelist = [
+  'http://localhost:4200',
+];
+var corsOptions = {
+  origin: function(origin, callback){
+      var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+      callback(null, originIsWhitelisted);
+  },
+  credentials: true
+};
+app.use(cors(corsOptions));
+
+// Middleware Setup CookieParser
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'irongenerator',
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore( { mongooseConnection: mongoose.connection })
+}))
+app.use(flash());
+require('./passport')(app);
 
 // Express View engine setup
 
@@ -49,7 +71,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
-hbs.registerHelper('ifUndefined', (value, options) => {
+/* hbs.registerHelper('ifUndefined', (value, options) => {
   if (arguments.length < 2)
       throw new Error("Handlebars Helper ifUndefined needs 1 parameter");
   if (typeof value !== undefined ) {
@@ -57,29 +79,25 @@ hbs.registerHelper('ifUndefined', (value, options) => {
   } else {
       return options.fn(this);
   }
-});
+}); */ //No nos hace falta verdad??
   
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'La Caseta';
 
 
 // Enable authentication using session + passport
-app.use(session({
-  secret: 'irongenerator',
-  resave: true,
-  saveUninitialized: true,
-  store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
-app.use(flash());
-require('./passport')(app);
     
 
 const index = require('./routes/index');
 app.use('/', index);
 
 const authRoutes = require('./routes/auth');
-app.use('/auth', authRoutes);
-      
+app.use('/api/auth', authRoutes);
+
+app.use(function(req, res) {
+  res.sendfile(__dirname + '/public/index.html');
+});
+
 
 module.exports = app;
