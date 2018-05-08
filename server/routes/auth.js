@@ -15,23 +15,36 @@ const logInPromise = (user, req) => new Promise((resolve,reject) => {
 
 /* GET home page */
 router.post('/signup', (req, res, next) => {
-    const {username, password} = req.body;
+    const {name, surname, adress, pc, email, password, pic, dogs, dogBuddy, infoBuddy, rateBuddy, petsBuddy, houseBuddy, zonesBuddy,calendarId } = req.body;
   
-    if (!username || !password) {
-      res.status(400).json({ message: 'Provide username and password' });
+    if (!email || !password) {
+      res.status(400).json({ message: 'Provide email and password' });
       return;
     }
   
-    User.findOne({ username })
+    User.findOne({ email })
     .then( user => {
-        if(user) throw new Error('The username already exists');
+        if(user) throw new Error('The email already exists');
         
         const salt = bcrypt.genSaltSync(10);
         const hashPass = bcrypt.hashSync(password, salt);
 
         const theUser = new User({
-          username,
-          password: hashPass
+          name, 
+          surname, 
+          adress, 
+          pc, 
+          email, 
+          password: hashPass,
+          pic,
+          dogs,
+          dogBuddy, 
+          infoBuddy, 
+          rateBuddy, 
+          petsBuddy, 
+          houseBuddy, 
+          zonesBuddy,
+          calendarId
         });
     
         return theUser.save().then( user => logInPromise(user,req));
@@ -41,16 +54,16 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-    const {username, password} = req.body;
+    const {email, password} = req.body;
   
-    if (!username || !password) {
-      res.status(400).json({ message: 'Provide username and password' });
+    if (!email || !password) {
+      res.status(400).json({ message: 'Provide email and password' });
       return;
     }
 
-    User.findOne({ username })
+    User.findOne({ email })
     .then( user => {
-        if(!user) throw new Error('The username does not exist');
+        if(!user) throw new Error('The email does not exist');
         if(!bcrypt.compareSync(password, user.password)) throw new Error('The password is not correct');
         return logInPromise(user,req);    
     })
