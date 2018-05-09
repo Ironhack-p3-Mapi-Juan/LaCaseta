@@ -1,8 +1,10 @@
 
+require("dotenv").config();
 const express = require('express');
 const router  = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const nodemailer = require("nodemailer");
 
 
 const logInPromise = (user, req) => new Promise((resolve,reject) => {
@@ -28,7 +30,7 @@ router.post('/signup', (req, res, next) => {
         
         const salt = bcrypt.genSaltSync(10);
         const hashPass = bcrypt.hashSync(password, salt);
-
+        const confirmationCode = encodeURIComponent(bcrypt.hashSync(email, salt))
         const theUser = new User({
           name, 
           surname, 
@@ -44,14 +46,44 @@ router.post('/signup', (req, res, next) => {
           petsBuddy, 
           houseBuddy, 
           zonesBuddy,
-          calendarId
+          calendarId,
+          confirmationCode,
         });
     
-        return theUser.save().then( user => logInPromise(user,req));
+        return theUser.save().then( user => {
+          logInPromise(user,req)
+          //Configuración Nodemailer
+          const ActivationURL = `${process.env.HOST}/api/auth/confirm/${confirmationCode}`;
+          console.log("Ruta mail " + ActivationURL);
+          let transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: process.env.emailAdmin,
+              pass: process.env.pssAdmin
+
+            }
+        });
+        transporter.sendMail({
+          from: `"La Caseta de Juanpi" <${process.env.emailAdmin}>`,
+          to: user.email, 
+          subject: 'Activa tu cuenta en la Caseta de Juanpi', 
+          html: `<a href="${ActivationURL}">Activa tu cuenta</a>`
+      })
+      .then(info => console.log(info))
+      .catch(error => console.log(error))
+        });
     })
     .then(user => res.status(200).json(user))
     .catch(e => res.status(500).json({message:e.message}));
 });
+
+router.get("/confirm/:confirmationCode", (req, res, next) => {
+  let confirmationCode = encodeURIComponent(req.params.confirmationCode);
+
+  User.findOneAndUpdate({ confirmationCode }, { isActive: true })
+  .then(user => res.status(200).json(user))
+  .catch(e => res.status(500).json({message:e.message}));
+})
 
 router.post('/login', (req, res, next) => {
     const {email, password} = req.body;

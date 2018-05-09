@@ -2,56 +2,89 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const Dog = require("../models/Dog");
-const loggedIn = require("../../utils/isAuthenticated");
+const loggedin = require("../utils/isAuthenticated");
+const _ = require("lodash");
+const fields = Object.keys(_.omit(Dog.schema.paths, ["__v", "_id"]));
 
 //Crear perros
 
-router.post('/new/dog', loggedin, (req, res, next) => {
-    const user = req.user._id;
-    const { name, age, breed, tips, treatment, picDog } = req.body;
-    const theDog = new Dog({
-        user,
-        name,
-        age,
-        breed,
-        tips,
-        treatment,
-        picDog
+router.post("/new", loggedin, (req, res, next) => {
+  const user = req.user._id;
+  const { name, age, breed, tips, treatment, picDog } = req.body;
+  const theDog = new Dog({
+    user,
+    name,
+    age,
+    breed,
+    tips,
+    treatment,
+    picDog
+  });
+  theDog
+    .save()
+    .then(dog => {
+      return res.status(200).json(dog);
+    })
+    .catch(err => {
+      return res.status(500).json(err);
     });
-     theDog.save().then( dog => {
-         User.findById(user).then( user =>{
-             user.dogs.push(dog._id);
-         })});
-      });
+});
 
 //Mostar perros
 
 router.get("/dogs", loggedin, (req, res, next) => {
-    User.findById(req.user._id)
-      .then(user => {
-        return res.status(200).json(user.dogs);
-      })
-      .catch(err => {
-        return res.status(500).json(err);
-      });
-  });
+  Dog.find({ user: req.user._id })
+    .then(dog => {
+      return res.status(200).json(dog);
+    })
+    .catch(err => {
+      return res.status(500).json(err);
+    });
+});
 
-  //Editar perfil perro
+//Editar perfil perro
 
-  router.get("/edit/dog/:id", loggedin, (req, res, next) => {
-    const { formDog } = req.body;
-
-  Dog.findByIdAndUpdate(req.params.id, { formDog })
-    .then(dogEdit => res.status(200).json(dogEdit))
-    .catch(err => res.status(500).json(err));
+router.put("/edit/:id", loggedin, (req, res, next) => {
+  Dog.findById(req.params.id)
+    .then(dog => {
+      if (req.user._id.toString() == dog.user.toString()) {
+        const updates = _.pick(req.body, fields);
+        Dog.findByIdAndUpdate(req.params.id, updates, { new: true })
+          .then(dogEdit => res.status(200).json(dogEdit))
+          .catch(err => {
+            return res.status(500).json(err);
+          }); 
+      } else {
+        return res
+          .status(500)
+          .json({ err: "No puedes modificar los perros de los demás" });
+      }
+    })
+    .catch(err => {
+      return res.status(500).json(err);
+    });
 });
 
 //Borrar perro
 
-router.get("/delete/dog/:id", loggedin, (req, res, next) => {
+router.get("/delete/:id", loggedin, (req, res, next) => {
+Dog.findById(req.params.id)
+    .then(dog => {
+      if (req.user._id.toString() == dog.user.toString()) {
+        Dog.findByIdAndRemove(req.params.id)
+          .then(dogDelete => res.status(200).json(dogDelete))
+          .catch(err => {
+            return res.status(500).json(err);
+          }); 
+      } else {
+        return res
+          .status(500)
+          .json({ err: "No puedes borrar los perros de los demás" });
+      }
+    })
+    .catch(err => {
+      return res.status(500).json(err);
+    });
+});
 
-    Dog.findByIdAndRemove(req.params.id)
-      .then(dogDelete => res.status(200).json(dogDelete))
-      .catch(err => res.status(500).json(err));
-  });
-  
+module.exports = router;

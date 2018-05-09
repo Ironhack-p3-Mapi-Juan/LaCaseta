@@ -2,32 +2,48 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const Booking = require("../models/Booking");
+const Moment = require('moment');
+const MomentRange = require('moment-range');
+const loggedin = require("../utils/isAuthenticated");
 
-// Mostrar reservas de un usuario
-router.get("/", (req, res, next) => {
-  Booking.find({ user: req.user._id })
-    .populate("user")
-    .then(bookings => res.status(200).json(bookings))
-    .catch(err => res.status(500).json(err));
-});
+const moment = MomentRange.extendMoment(Moment);
 
 // crear reserva
-router.post("/:user/:dog", (req, res, next) => {
+router.post("/:user/:buddy", (req, res, next) => {
+  user= req.params.user
+    buddy= req.params.buddy
+    from= req.body.from
+    to= req.body.to
+    if (!user || !buddy || !from || !to) {
+      return res.status(500).json({ message: "" });
+    }
+    const start = moment(from)
+    const end = moment(to)
+    const dates = moment.range(start, end)
+    console.log(dates)
   const newBooking = new Booking({
-    user: req.params.user,
-    dog: req.params.dog,
-    from: req.body.from,
-    to: req.body.to
+    user,
+    buddy,
+    start: dates.start,
+    end: dates.end
   })
 
-  if (!user || !dog || !from || !to) {
-    return res.status(500).json({ message: "" });
-  }
+  
 
   newBooking.save()
   .then( user => res.status(200).json(user))
   .catch( err => res.status(500).json(err));
 });
+
+// Mostrar reservas de un usuario
+router.get("/", loggedin, (req, res, next) => {
+  Booking.find({ user: req.user._id })
+    .populate("user")
+    .populate("buddy")
+    .then(bookings => res.status(200).json(bookings))
+    .catch(err => res.status(500).json(err));
+});
+
 
 // cambiar estado
 // accepted or rejected
@@ -38,3 +54,5 @@ router.post("/:id", (req, res, next) => {
     .then(booking => res.status(200).json(booking))
     .catch(err => res.status(500).json(err));
 });
+
+module.exports = router;

@@ -18,6 +18,8 @@ const userSchema = new Schema({
   houseBuddy: String,
   zonesBuddy: String,
   calendarId: String,
+  confirmationCode: String,
+  isActive: {type: Boolean, default: false}
 
 
 }, {

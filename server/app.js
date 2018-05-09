@@ -83,6 +83,21 @@ app.use('/', index);
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
+const userRoutes = require('./routes/user');
+app.use('/api/user', userRoutes);
+
+const replyRoutes = require('./routes/reply');
+app.use('/api/reply', replyRoutes);
+
+const calRoutes = require('./routes/calendar');
+app.use('/api/cal', calRoutes);
+
+const bookRoutes = require('./routes/booking');
+app.use('/api/book', bookRoutes);
+
+const dogRoutes = require('./routes/dog');
+app.use('/api/dog', dogRoutes);
+
 app.use(function(req, res) {
   res.sendfile(__dirname + '/public/index.html');
 });
