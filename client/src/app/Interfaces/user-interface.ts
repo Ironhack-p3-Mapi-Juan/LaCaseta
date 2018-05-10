@@ -1,0 +1,16 @@
+export interface User {
+  name:String,
+  surname: String,
+  adress: String,
+  pc: String,
+  email:String,
+  password: String,
+  pic: String,
+  favoriteBuddy: Array<string>,
+  dogBuddy: Boolean, 
+  infoBuddy: String,
+  rateBuddy: Number,
+  petsBuddy: String,
+  houseBuddy: String,
+  zonesBuddy: String,
+}
