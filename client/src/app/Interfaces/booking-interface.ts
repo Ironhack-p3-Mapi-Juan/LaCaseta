@@ -1,4 +1,4 @@
-interface Booking {
+export interface Booking {
   user: string,
   buddy: string,
   status: string,

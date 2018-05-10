@@ -17,7 +17,6 @@ export class SignUpComponent implements OnInit {
     pc: "",
     email:"",
     password: "",
-    pic: "",
     dogBuddy: false, 
     infoBuddy: "",
     rateBuddy: "",
@@ -34,5 +33,8 @@ export class SignUpComponent implements OnInit {
     this.sessionService
       .signup(this.formSignUp)
       .subscribe(() => this.router.navigate(["/home"]));
+  }
+  buddyTrue(){
+    this.formSignUp.dogBuddy ? this.formSignUp.dogBuddy = false : this.formSignUp.dogBuddy = true;
   }
 }
