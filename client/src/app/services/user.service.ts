@@ -9,6 +9,7 @@ import { User } from "../Interfaces/user-interface"
 @Injectable()
 export class UserService {
 user: User
+options: any = {withCredentials: true}
 constructor(private http: Http) { }
 
 //Editar perfil Usuario
@@ -33,6 +34,21 @@ deleteUser() {
     return this.http
       .get(`${environment.BASEURL}/api/user/buddy/${idBudy}`)
       .map(res => res.json());
+  }
+  //Perfil privado del usuario
+  
+  profileUser() {
+    console.log("Hola")
+    return this.http
+      .get(`${environment.BASEURL}/api/user/profile`, this.options)
+      .map(res => {
+        console.log('jjj')
+        return res.json()
+      })
+       .map(user => {
+         console.log(user)
+        return this.user = user
+      });   
   }
 
 }

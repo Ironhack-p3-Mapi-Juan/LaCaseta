@@ -10,6 +10,7 @@ const fields = Object.keys(_.omit(User.schema.paths, ["__v", "_id"]));
 //Mostar perfil user
 
 router.get("/profile", loggedin, (req, res, next) => {
+  console.log("Hola router")
   User.findById(req.user._id)
     .then(user => {
       return res.status(200).json(user);

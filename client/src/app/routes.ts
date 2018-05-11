@@ -2,13 +2,18 @@ import { Routes } from "@angular/router";
 import { SignUpComponent } from "./Componentes/sign-up/sign-up.component";
 import { HomeComponent } from "./Componentes/home/home.component";
 import { ShowCalendarComponent } from "./Componentes/showCalendar/showCalendar.component";
+import { LogInComponent } from "./Componentes/log-in/log-in.component";
+import { ProfileComponent } from "./Componentes/profile/profile.component";
 
 
 export const routes: Routes = [
-  { path: '', redirectTo:'login', pathMatch:'full'},
-  { path: 'signup', component: SignUpComponent},
-  //{ path: 'login', component: AuthLoginComponent},
+  
+  { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent},
-  { path: 'calendar', component: ShowCalendarComponent}
+  { path: 'calendar', component: ShowCalendarComponent},
+  { path: 'signup', component: SignUpComponent},
+  { path: 'login', component: LogInComponent},
+  { path: 'profile', component: ProfileComponent},
+  { path: '**', redirectTo:'', pathMatch:'full'}
   
 ]
