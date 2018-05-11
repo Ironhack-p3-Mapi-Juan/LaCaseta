@@ -28,6 +28,15 @@ export class ShowCalendarComponent implements OnInit {
     this.createCalendar();
   }
 
+  drawCalendar() {
+    this.createCalendar();
+    this.addBookings();
+  }
+
+  addBookings() {
+
+  }
+
   createCalendar() {
     this.monthName = moment(this.date).format("MMMM");
     this.year = moment(this.date).format("YYYY");
@@ -97,11 +106,16 @@ export class ShowCalendarComponent implements OnInit {
 
   previousMonth() {
     this.date.subtract(1, "month");
-    this.createCalendar();
+    this.drawCalendar();
   }
 
   nextMonth() {
     this.date.add(1, "month");
-    this.createCalendar();
+    this.drawCalendar();
+  }
+
+  setToday() {
+    this.date = moment();
+    this.drawCalendar();
   }
 }
