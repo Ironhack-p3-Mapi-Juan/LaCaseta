@@ -6,10 +6,12 @@ import { ProfileComponent } from "./Componentes/profile/profile.component";
 
 
 export const routes: Routes = [
-  { path: '', redirectTo:'signup', pathMatch:'full'},
+  
+  { path: '', component: HomeComponent},
+  { path: 'home', component: HomeComponent},
   { path: 'signup', component: SignUpComponent},
   { path: 'login', component: LogInComponent},
-  { path: 'home', component: HomeComponent},
-  { path: 'profile', component: ProfileComponent}
+  { path: 'profile', component: ProfileComponent},
+  { path: '**', redirectTo:'', pathMatch:'full'}
   
 ]

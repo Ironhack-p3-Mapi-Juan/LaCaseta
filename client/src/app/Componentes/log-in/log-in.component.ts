@@ -18,7 +18,7 @@ export class LogInComponent implements OnInit {
   }
   login() {
     this.sessionService
-      .login(this.formLogIn.email, this.formLogIn.password)
+      .login(this.formLogIn)
       .subscribe(() => this.router.navigate(["/home"]));
   }
 

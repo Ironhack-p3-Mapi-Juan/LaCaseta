@@ -1,3 +1,4 @@
-<p>
-  profile works!
-</p>
+<app-nav-bar></app-nav-bar>
+<div *ngIf = "userService.user">
+  <h1>{{userService.user.name}}</h1>
+</div>
