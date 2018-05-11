@@ -1,3 +1,38 @@
-<p>
-  showCalendar works!
-</p>
+<div class="calendar">
+  <div class="calendar-header">
+    <button (click)="previousMonth()">
+      < </button>
+
+        {{monthName}} {{year}}
+
+        <button (click)="nextMonth()"> > </button>
+  </div>
+  <div class="day-names">
+    <div class="week-day">
+      L
+    </div>
+    <div class="week-day">
+      M
+    </div>
+    <div class="week-day">
+      X
+    </div>
+    <div class="week-day">
+      J
+    </div>
+    <div class="week-day">
+      V
+    </div>
+    <div class="week-day">
+      S
+    </div>
+    <div class="week-day">
+      D
+    </div>
+  </div>
+  <div class="week" *ngFor="let week of calendar">
+    <div class="week-day" *ngFor="let d of week">
+      {{d}}
+    </div>
+  </div>
+</div>

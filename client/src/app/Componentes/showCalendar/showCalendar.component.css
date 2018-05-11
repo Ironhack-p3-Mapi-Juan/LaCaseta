@@ -1,0 +1,14 @@
+.week {
+  width: 100%;
+}
+
+.week-day {
+  display: inline-block;
+  width: 12%;
+  text-align: center;
+  padding: 10px;
+}
+
+.day-names .week-day {
+  width: 12%;
+}
