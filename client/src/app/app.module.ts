@@ -14,6 +14,9 @@ import { SignUpComponent } from './Componentes/sign-up/sign-up.component';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { SessionService } from './services/session.service';
+import { LogInComponent } from './Componentes/log-in/log-in.component';
+import { NavBarComponent } from './Componentes/nav-bar/nav-bar.component';
+import { ProfileComponent } from './Componentes/profile/profile.component';
 
 
 @NgModule({
@@ -21,7 +24,11 @@ import { SessionService } from './services/session.service';
     AppComponent,
     ShowCalendarComponent,
     HomeComponent,
-    SignUpComponent
+    SignUpComponent,
+    LogInComponent,
+    NavBarComponent,
+    ProfileComponent
+
   ],
   imports: [
     BrowserModule,

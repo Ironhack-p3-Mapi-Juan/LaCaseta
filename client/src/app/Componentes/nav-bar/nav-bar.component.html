@@ -1,0 +1,56 @@
+<!-- <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+  
+  <a [routerLink]="['/home/']">
+    <i class="fas fa-paw"></i>
+  </a>
+  <div *ngIf="sessionService.user">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <img src="{{user.pic}}" alt="">
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/profile/']">
+              <i class="fas fa-user"></i>Perfil</a>
+            <a class="dropdown-item" [routerLink]="['/favorit/']">
+              <i class="fas fa-heart"></i>Favoritos</a>
+              <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()">
+              <i class="far fa-sign-out"></i>Salir</a>
+          </div>
+      </ul>
+    </div>
+    
+  </div>
+  <div *ngIf="!sessionService.user">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/signup/']">Registrarse
+          
+        </a>
+        <a class="nav-link"[routerLink]="['/login/']">Acceder
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</nav> -->
+<nav class="navbar fixed-top navbar-light bg-light">
+    <a [routerLink]="['/home/']">
+      <i class="fas fa-paw"></i> La Caseta de Juanpi
+    </a>
+  <div *ngIf="sessionService.user">
+    <a class="navbar-brand" [routerLink]="['/profile/']"><i class="fas fa-user"></i>Perfil</a>
+    <a class="navbar-brand" [routerLink]="['/user/favorit/']"><i class="fas fa-heart"></i>Favoritos</a>
+    <a class="navbar-brand" (click)="logout()"><i class="far fa-sign-out"></i>Salir</a>
+    </div>
+    <div *ngIf="!sessionService.user">
+        <a class="navbar-brand" [routerLink]="['/signup/']"><i class="fas fa-user"></i>Registrarse</a>
+        <a class="navbar-brand"[routerLink]="['/login/']"><i class="fas fa-heart"></i>Acceder</a>
+        </div>
+
+  </nav>

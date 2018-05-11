@@ -1,5 +1,5 @@
-<h1>Sign Up</h1>
 <div class="container">
+    <h1>Registrarse: </h1>
   <form>
     <div class="form-group">
       <label for="formGroupExampleInput">Nombre *</label>
@@ -47,17 +47,18 @@
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput">Indica que tipo de casa vas a ofrecer: *</label>
-        <input type="number" [(ngModel)]="formSignUp.houseBuddy" class="form-control" id="formGroupExampleInput" placeholder="Piso, chalet, loft..."
+        <input type="text" [(ngModel)]="formSignUp.houseBuddy" class="form-control" id="formGroupExampleInput" placeholder="Piso, chalet, loft..."
           name="houseBuddy">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput">Indica si tienes zonas exteriores: *</label>
-        <input type="number" [(ngModel)]="formSignUp.zonesBuddy" class="form-control" id="formGroupExampleInput" placeholder="Balcón, patio, jardín..."
+        <input type="text" [(ngModel)]="formSignUp.zonesBuddy" class="form-control" id="formGroupExampleInput" placeholder="Balcón, patio, jardín..."
           name="zonesBuddy">
       </div>
 
     </div>
-    <button (click)="signup()" type="button" class="btn btn-outline-info btn-lg btn-block">Sing Up</button>
+    <button (click)="signup()" type="button" class="btn btn-outline-info btn-lg btn-block">Listo!</button>
     * Campos obligatorios
+    <p>Ya tienes una cuenta? Accede  <a [routerLink]="['/login/']"> aquí. </a></p>
   </form>
 </div>

@@ -33,8 +33,8 @@ export class SessionService {
       .catch(this.handleError);
   }
 
-  login(username, password) {
-    return this.http.post(`${environment.BASEURL}/api/auth/login`, {username,password}, this.options)
+  login(email, password) {
+    return this.http.post(`${environment.BASEURL}/api/auth/login`, {email,password}, this.options)
       .map(res => res.json())
       .map(user => this.handleUser(user))
       .catch(this.handleError);

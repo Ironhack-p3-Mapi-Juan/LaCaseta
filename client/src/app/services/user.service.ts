@@ -34,5 +34,12 @@ deleteUser() {
       .get(`${environment.BASEURL}/api/user/buddy/${idBudy}`)
       .map(res => res.json());
   }
+  //Perfil privado del usuario
+  
+  profileUser(idUser) {
+    return this.http
+      .get(`${environment.BASEURL}/api/user/profile`)
+      .map(res => res.json());
+  }
 
 }
