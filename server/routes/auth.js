@@ -17,7 +17,7 @@ const logInPromise = (user, req) => new Promise((resolve,reject) => {
 
 /* GET home page */
 router.post('/signup', (req, res, next) => {
-    const {name, surname, adress, pc, email, password, pic, dogs, dogBuddy, infoBuddy, rateBuddy, petsBuddy, houseBuddy, zonesBuddy,calendarId } = req.body;
+    const {name, surname, adress, city, country, pc, email, password, pic, dogs, dogBuddy, infoBuddy, rateBuddy, petsBuddy, houseBuddy, zonesBuddy,calendarId } = req.body;
   
     if (!email || !password) {
       res.status(400).json({ message: 'Provide email and password' });
@@ -34,7 +34,9 @@ router.post('/signup', (req, res, next) => {
         const theUser = new User({
           name, 
           surname, 
-          adress, 
+          adress,
+          city,
+          country, 
           pc, 
           email, 
           password: hashPass,
@@ -51,29 +53,30 @@ router.post('/signup', (req, res, next) => {
         });
     
         return theUser.save().then( user => {
-          logInPromise(user,req)
-          //Configuración Nodemailer
-          const ActivationURL = `${process.env.HOST}/api/auth/confirm/${confirmationCode}`;
-          console.log("Ruta mail " + ActivationURL);
-          let transporter = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-              user: process.env.emailAdmin,
-              pass: process.env.pssAdmin
-
-            }
-        });
-        transporter.sendMail({
-          from: `"La Caseta de Juanpi" <${process.env.emailAdmin}>`,
-          to: user.email, 
-          subject: 'Activa tu cuenta en la Caseta de Juanpi', 
-          html: `<a href="${ActivationURL}">Activa tu cuenta</a>`
-      })
+            console.log(user);
+            //Configuración Nodemailer
+            const ActivationURL = `${process.env.HOST}/api/auth/confirm/${confirmationCode}`;
+            console.log("Ruta mail " + ActivationURL);
+            let transporter = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                    user: process.env.emailAdmin,
+                    pass: process.env.pssAdmin
+                    
+                }
+            });
+            transporter.sendMail({
+                from: `"La Caseta de Juanpi" <${process.env.emailAdmin}>`,
+                to: user.email, 
+                subject: 'Activa tu cuenta en la Caseta de Juanpi', 
+                html: `<a href="${ActivationURL}">Activa tu cuenta</a>`
+            })
+            logInPromise(user,req)
+            return res.status(200).json(user);
+        })
       .then(info => console.log(info))
       .catch(error => console.log(error))
-        });
     })
-    .then(user => res.status(200).json(user))
     .catch(e => res.status(500).json({message:e.message}));
 });
 

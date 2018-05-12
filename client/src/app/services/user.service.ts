@@ -47,7 +47,8 @@ deleteUser() {
       })
        .map(user => {
          console.log(user)
-        return this.user = user
+       this.user = user
+        return user
       });   
   }
 

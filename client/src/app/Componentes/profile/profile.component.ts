@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { SessionService } from '../../services/session.service';
+import { User } from '../../Interfaces/user-interface';
+
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +11,7 @@ import { SessionService } from '../../services/session.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  
+  user: User;
   constructor(public router: Router, public userService: UserService, public sessionService: SessionService) { }
 
   ngOnInit() {
@@ -18,8 +20,10 @@ export class ProfileComponent implements OnInit {
   profile() {
     this.userService
       .profileUser()
-      .subscribe(u => {
-        console.log(u)
+      .subscribe(user => {
+        this.user =  user;
+        console.log("Esto es un user: " + user.name)
+
          this.router.navigate(["/profile"])
       });
   }
@@ -27,5 +31,10 @@ export class ProfileComponent implements OnInit {
     this.userService
       .editUser()
       .subscribe(() => this.router.navigate(["/profile/edit"]));
+  }
+  delete(){
+    this.userService
+    .deleteUser()
+    .subscribe(() => this.router.navigate(["/home"]))
   }
 }

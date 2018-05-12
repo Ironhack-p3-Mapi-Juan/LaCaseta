@@ -6,6 +6,8 @@ const userSchema = new Schema({
   surname: {type: String, default: "Residencia Canina"},
   adress: {type: String, required: true},
   pc: {type: String, required: true},
+  city: String,
+  country: String,
   email:{type: String, required: true},
   password: String,
   pic: {type: String, default:"../public/images/imgdefault.jpg"}, 
