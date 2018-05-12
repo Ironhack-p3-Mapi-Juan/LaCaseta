@@ -39,10 +39,7 @@ export class SignUpComponent implements OnInit {
   signup() {
     this.sessionService
       .signup(this.formSignUp)
-      .subscribe(user => {
-        console.log(user);
-        this.router.navigate(["/home"])
-      });
+      .subscribe(() => this.router.navigate(["/home"]));
   }
 
 

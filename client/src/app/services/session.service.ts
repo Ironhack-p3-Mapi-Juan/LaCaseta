@@ -9,60 +9,47 @@ import { environment } from '../../environments/environment';
 export class SessionService {
 
   user:any;
-  userEvent: EventEmitter<any> = new EventEmitter();
+  //userEvent: EventEmitter<any> = new EventEmitter();
   options: any = { withCredentials:true };
 
-  constructor(private http: Http) {
-     this.isLoggedIn().subscribe();
-    if(this.user){
-    console.log(this.user)
-    }else{
-      console.log(this.user)
-    } 
+  constructor(public http: Http) {
+    this.isLoggedIn().subscribe();
   }
 
   handleError(e) {
-    console.log("Esto es e: " + e)
     return Observable.throw(e.json().message);
   }
 
   handleUser(user?:object){
     this.user = user;
-    this.userEvent.emit(this.user);
+    //this.userEvent.emit(this.user);
     return this.user;
   }
 
   signup(user) {
     return this.http.post(`${environment.BASEURL}/api/auth/signup`, user, this.options)
-      .map(res =>{ 
-        console.log("Esto es res" + res)
-        return res.json()
-      })
-      .map(user => this.handleUser(user))
+      .map(res => res.json())
+      .map(user => this.user = user)
       .catch(this.handleError);
   }
 
-  login(user) {
-  
+  login(user) {  
     return this.http.post(`${environment.BASEURL}/api/auth/login`, user, this.options)
-      .map(res => {
-        return res.json()})
-        .map(user => {
-          this.user = user
-        })
-        .catch(this.handleError);
+      .map(res => res.json())
+      .map(user => this.user = user)
+      .catch(this.handleError);
   }
 
   logout() {
     return this.http.get(`${environment.BASEURL}/api/auth/logout`,this.options)
-      .map(() => this.handleUser())
+      .map(() => this.user = null)
       .catch(this.handleError);
   }
 
   isLoggedIn() {
     return this.http.get(`${environment.BASEURL}/api/auth/loggedin`, this.options)
       .map(res => res.json())
-      .map(user => this.handleUser(user))
+      .map(user => (this.user = user))
       .catch(this.handleError);
   }
 

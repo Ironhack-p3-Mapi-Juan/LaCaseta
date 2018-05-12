@@ -35,6 +35,11 @@ export class ShowCalendarComponent implements OnInit {
     this.drawCalendar();
   }
 
+  drawCalendar() {
+    this.createCalendar();
+    this.addBookings();
+  }
+
   addBookings() {
     this.bookings = this.bookingService.getBookings().subscribe();
   }
@@ -153,10 +158,5 @@ export class ShowCalendarComponent implements OnInit {
   setToday() {
     this.date = moment();
     this.drawCalendar();
-  }
-
-  drawCalendar() {
-    this.createCalendar();
-    this.addBookings();
   }
 }
