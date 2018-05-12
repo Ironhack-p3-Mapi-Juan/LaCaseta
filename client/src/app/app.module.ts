@@ -1,23 +1,25 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, ApplicationRef } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { routes } from "./routes";
-import { AppComponent } from "./app.component";
-import { SessionService } from "./services/session.service";
-import { UserService } from "./services/user.service";
-import { CalendarService } from "./services/calendar.service";
-import { BookingService } from "./services/booking.service";
-import { DogService } from "./services/dog.service";
-import { HttpModule } from "@angular/http";
-import { FormsModule } from "@angular/forms";
-import { HomeComponent } from "./Componentes/home/home.component";
-import { SignUpComponent } from "./Componentes/sign-up/sign-up.component";
-import { LogInComponent } from "./Componentes/log-in/log-in.component";
-import { NavBarComponent } from "./Componentes/nav-bar/nav-bar.component";
-import { ProfileComponent } from "./Componentes/profile/profile.component";
-import { ShowCalendarComponent } from "./Componentes/showCalendar/showCalendar.component";
-import { CommonModule } from '@angular/common';
-import { AgmCoreModule } from '@agm/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { routes } from './routes'
+
+import { AppComponent } from './app.component';
+import { CalendarService } from './services/calendar.service';
+import { BookingService } from './services/booking.service';
+import { ShowCalendarComponent } from './Componentes/showCalendar/showCalendar.component';
+import { UserService } from './services/user.service';
+import { DogService } from './services/dog.service';
+import { HomeComponent } from './Componentes/home/home.component';
+import { SignUpComponent } from './Componentes/sign-up/sign-up.component';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { SessionService } from './services/session.service';
+import { LogInComponent } from './Componentes/log-in/log-in.component';
+import { NavBarComponent } from './Componentes/nav-bar/nav-bar.component';
+import { ProfileComponent } from './Componentes/profile/profile.component';
+import { EditUserComponent } from './Componentes/edit-user/edit-user.component';
+import { FileSelectDirective } from "ng2-file-upload";
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,10 @@ import { AgmCoreModule } from '@agm/core';
     SignUpComponent,
     LogInComponent,
     NavBarComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditUserComponent,
+    FileSelectDirective
+
   ],
   imports: [
     BrowserModule,

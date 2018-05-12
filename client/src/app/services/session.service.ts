@@ -12,8 +12,18 @@ export class SessionService {
   //userEvent: EventEmitter<any> = new EventEmitter();
   options: any = { withCredentials:true };
 
+<<<<<<< HEAD
   constructor(public http: Http) {
     this.isLoggedIn().subscribe();
+=======
+  constructor(private http: Http) {
+    /*  this.isLoggedIn().subscribe();
+    if(this.user){
+    console.log(this.user)
+    }else{
+      console.log(this.user)
+    }  */
+>>>>>>> 74f382738db3a4cc9e377ba82df07c9f42b4c1bd
   }
 
   handleError(e) {
@@ -49,7 +59,14 @@ export class SessionService {
   isLoggedIn() {
     return this.http.get(`${environment.BASEURL}/api/auth/loggedin`, this.options)
       .map(res => res.json())
+<<<<<<< HEAD
       .map(user => (this.user = user))
+=======
+      .map(user => {
+        console.log (user)
+        return this.handleUser(user)
+      })
+>>>>>>> 74f382738db3a4cc9e377ba82df07c9f42b4c1bd
       .catch(this.handleError);
   }
 

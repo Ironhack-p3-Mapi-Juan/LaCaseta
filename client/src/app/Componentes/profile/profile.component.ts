@@ -27,9 +27,7 @@ export class ProfileComponent implements OnInit {
     });
   }
   edit() {
-    this.userService
-      .editUser()
-      .subscribe(() => this.router.navigate(["/profile/edit"]));
+        this.router.navigate(["/edit"])
   }
   delete() {
     this.userService

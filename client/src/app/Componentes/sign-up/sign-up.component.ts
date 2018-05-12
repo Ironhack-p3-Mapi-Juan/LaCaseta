@@ -1,6 +1,8 @@
+import { environment } from '../../../environments/environment';
 import { Component, OnInit } from "@angular/core";
 import { SessionService } from "../../services/session.service";
 import { Router } from "@angular/router";
+
 
 
 
@@ -10,9 +12,10 @@ import { Router } from "@angular/router";
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-
+  
+  
   error: string;
-
+  
   formSignUp = {
     name: "",
     surname: "",
@@ -29,12 +32,12 @@ export class SignUpComponent implements OnInit {
     houseBuddy: "",
     zonesBuddy: "",
   }
-
+  
   constructor(public sessionService: SessionService, public router: Router) { }
-
+  
   ngOnInit() {
   }
-
+  
   // V E R S I O N   O R I G I N A L
   signup() {
     this.sessionService

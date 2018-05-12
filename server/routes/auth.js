@@ -17,8 +17,8 @@ const logInPromise = (user, req) => new Promise((resolve,reject) => {
 
 /* GET home page */
 router.post('/signup', (req, res, next) => {
-    const {name, surname, adress, city, country, pc, email, password, pic, dogs, dogBuddy, infoBuddy, rateBuddy, petsBuddy, houseBuddy, zonesBuddy,calendarId } = req.body;
-  
+    const {name, surname, adress, city, country, pc, email, password, dogs, dogBuddy, infoBuddy, rateBuddy, petsBuddy, houseBuddy, zonesBuddy,calendarId } = req.body;
+    const pic = req.file.url;
     if (!email || !password) {
       res.status(400).json({ message: 'Provide email and password' });
       return;
