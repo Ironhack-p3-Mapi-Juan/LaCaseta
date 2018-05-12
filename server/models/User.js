@@ -10,7 +10,7 @@ const userSchema = new Schema({
   country: String,
   email:{type: String, required: true},
   password: String,
-  pic: {type: String, default:"../public/images/imgdefault.jpg"}, 
+  pic: {type: String, default:"https://res.cloudinary.com/dg6pkjuui/image/upload/v1526138842/imgdefault.jpg"}, 
   favoriteBuddy: [{type: Schema.Types.ObjectId, ref: "User"}],
   dogBuddy: {type: Boolean, default: false},
   infoBuddy: String,

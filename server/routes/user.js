@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
@@ -6,6 +7,7 @@ const loggedin = require("../utils/isAuthenticated");
 const isBuddy = require ("../utils/isBuddy")
 const _ = require ("lodash")
 const fields = Object.keys(_.omit(User.schema.paths, ["__v", "_id"]));
+const upload = require("../config/coludinary")
 
 //Mostar perfil user
 
@@ -34,11 +36,13 @@ router.get("/favorit", loggedin, (req, res, next) => {
 
 //Editar perfil usuario
 
-router.put("/edit", loggedin, (req, res, next) => {
-    const updates = _.pick(req.body, fields);
-
-  User.findByIdAndUpdate(req.user._id, updates, {new: true})
-    .then(userEdit => res.status(200).json(userEdit))
+router.put("/edit", [loggedin, upload.single ("file")], (req, res, next) => {
+    let update = req.body;
+    update['pic'] = req.file.url;
+  User.findByIdAndUpdate(req.user._id, {$set: update}, {new: true})
+    .then(userEdit => {
+      res.status(200).json(userEdit)
+    })
     .catch(err => res.status(500).json(err));
 });
 
@@ -61,6 +65,14 @@ router.get("/buddy/:id", loggedin, (req, res, next) =>{
     .catch(err => {
       return res.status(500).json(err);
     });
+});
+
+
+router.get("/get-user", loggedin, (req, res, next) => {
+  User.findById(req.session.passport.user)
+  .then(user => {
+    res.status(200).json(user)
+  })
 });
 
 module.exports = router;

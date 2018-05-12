@@ -22,7 +22,7 @@ export class NavBarComponent implements OnInit {
       .profileUser()
       .subscribe( user =>{
         this.user = user;
-        console.log("EN NAVBAR" + this.user)
+        console.log(this.user)
          
         });
   }

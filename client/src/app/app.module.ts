@@ -17,6 +17,8 @@ import { SessionService } from './services/session.service';
 import { LogInComponent } from './Componentes/log-in/log-in.component';
 import { NavBarComponent } from './Componentes/nav-bar/nav-bar.component';
 import { ProfileComponent } from './Componentes/profile/profile.component';
+import { EditUserComponent } from './Componentes/edit-user/edit-user.component';
+import { FileSelectDirective } from "ng2-file-upload";
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { ProfileComponent } from './Componentes/profile/profile.component';
     SignUpComponent,
     LogInComponent,
     NavBarComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditUserComponent,
+    FileSelectDirective
 
   ],
   imports: [

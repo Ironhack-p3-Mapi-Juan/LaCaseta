@@ -4,6 +4,7 @@ import { HomeComponent } from "./Componentes/home/home.component";
 import { ShowCalendarComponent } from "./Componentes/showCalendar/showCalendar.component";
 import { LogInComponent } from "./Componentes/log-in/log-in.component";
 import { ProfileComponent } from "./Componentes/profile/profile.component";
+import { EditUserComponent } from "./Componentes/edit-user/edit-user.component";
 
 
 export const routes: Routes = [
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: 'signup', component: SignUpComponent},
   { path: 'login', component: LogInComponent},
   { path: 'profile', component: ProfileComponent},
+  { path: 'edit', component: EditUserComponent},
   { path: '**', redirectTo:'', pathMatch:'full'}
   
 ]

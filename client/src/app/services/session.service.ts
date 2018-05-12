@@ -13,12 +13,12 @@ export class SessionService {
   options: any = { withCredentials:true };
 
   constructor(private http: Http) {
-     this.isLoggedIn().subscribe();
+    /*  this.isLoggedIn().subscribe();
     if(this.user){
     console.log(this.user)
     }else{
       console.log(this.user)
-    } 
+    }  */
   }
 
   handleError(e) {
@@ -62,7 +62,10 @@ export class SessionService {
   isLoggedIn() {
     return this.http.get(`${environment.BASEURL}/api/auth/loggedin`, this.options)
       .map(res => res.json())
-      .map(user => this.handleUser(user))
+      .map(user => {
+        console.log (user)
+        return this.handleUser(user)
+      })
       .catch(this.handleError);
   }
 

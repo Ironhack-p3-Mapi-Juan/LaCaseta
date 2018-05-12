@@ -8,15 +8,25 @@ import { User } from "../Interfaces/user-interface"
 
 @Injectable()
 export class UserService {
-user: User
+user: User;
 options: any = {withCredentials: true}
 constructor(private http: Http) { }
 
+
+//Obtener Usuario
+
+getUser() {
+  return this.http
+      .get(`${environment.BASEURL}/api/user/get-user`, this.options)
+      .map(res => res.json());
+}
+
 //Editar perfil Usuario
 
-editUser() {
+editUser(user) {
+  console.log(user)
     return this.http
-      .get(`${environment.BASEURL}/api/user/edit`)
+      .put(`${environment.BASEURL}/api/user/edit`, user, this.options)
       .map(res => res.json());
   }
 
@@ -24,7 +34,7 @@ editUser() {
 
 deleteUser() {
     return this.http
-      .get(`${environment.BASEURL}/api/user/delete`)
+      .get(`${environment.BASEURL}/api/user/delete`, this.options)
       .map(res => res.json());
   }
 

@@ -30,11 +30,12 @@
   <button (click)="delete()" type="button" class="btn btn-outline-danger">Eliminar mi perfil</button>
 
   <div *ngIf = "user.dogBuddy">
+    <p>Algo sobre mi:</p> 
     <p>{{user.infoBuddy}}</p>
-    <p>{{user.petsBuddy}}</p>
-    <p>{{user.rateBuddy}}</p>
-    <p>{{user.hauseBuddy}}</p>
-    <p>{{user.zonesBuddy}}</p>
+    <p>Mascotas residentes: {{user.petsBuddy}}</p>
+    <p>Precio por noche: {{user.rateBuddy}}€</p>
+    <p>Alojamiento: {{user.houseBuddy}}</p>
+    <p>Zonas exteriories: {{user.zonesBuddy}}</p>
   </div>
 </div>
 
