@@ -13,8 +13,8 @@ export class SessionService {
   options: any = { withCredentials:true };
 
   constructor(private http: Http) {
-    /* this.isLoggedIn().subscribe();
-    if(this.user){
+    this.isLoggedIn().subscribe();
+   /*  if(this.user){
     console.log(this.user)
     }else{
       console.log(this.user)

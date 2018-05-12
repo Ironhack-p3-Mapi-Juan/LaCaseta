@@ -10,21 +10,23 @@ export class BookingService {
   constructor(private http: Http) {}
 
   getBookings() {
-    this.http
+    return this.http
       .get(`${environment.BASEURL}/api/book/`)
       .map(res => res.json())
-      .map(bookings => this.bookings = bookings);
+      .map(bookings => (this.bookings = bookings));
   }
 
   createBooking(info, idBuddy) {
-    this.http.post(`${environment.BASEURL}/api/book/${idBuddy}`, info)
-    .map( res => res.json() )
-    .map( bookings => this.bookings = bookings);
+    return this.http
+      .post(`${environment.BASEURL}/api/book/${idBuddy}`, info)
+      .map(res => res.json())
+      .map(bookings => (this.bookings = bookings));
   }
 
   changeStatus(status, idBook) {
-    this.http.post(`${environment.BASEURL}/api/book/status/${idBook}`, status)
-    .map( res => res.json() )
-    .map( bookings => this.bookings = bookings );
+    return this.http
+      .post(`${environment.BASEURL}/api/book/status/${idBook}`, status)
+      .map(res => res.json())
+      .map(bookings => (this.bookings = bookings));
   }
 }

@@ -12,8 +12,8 @@ const bookingSchema = new Schema(
       required: true
     },
     totalPrice: {type: Number, min: 0, default: 0},
-    start: date,
-    end: date
+    start: String,
+    end: String
   },
   {
     timestamps: {
