@@ -30,7 +30,10 @@ export class NavBarComponent implements OnInit {
   logout(){
     this.sessionService
     .logout()
-    .subscribe(() => this.router.navigate(["/home"]))
+    .subscribe(() => {
+      this.user = null;
+      this.router.navigate(["/home"])
+    })
   }
 
 }

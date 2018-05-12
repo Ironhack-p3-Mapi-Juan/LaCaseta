@@ -13,15 +13,16 @@ export class SessionService {
   options: any = { withCredentials:true };
 
   constructor(private http: Http) {
-    this.isLoggedIn().subscribe();
-   /*  if(this.user){
+     this.isLoggedIn().subscribe();
+    if(this.user){
     console.log(this.user)
     }else{
       console.log(this.user)
-    } */
+    } 
   }
 
   handleError(e) {
+    console.log("Esto es e: " + e)
     return Observable.throw(e.json().message);
   }
 
@@ -33,7 +34,10 @@ export class SessionService {
 
   signup(user) {
     return this.http.post(`${environment.BASEURL}/api/auth/signup`, user, this.options)
-      .map(res => res.json())
+      .map(res =>{ 
+        console.log("Esto es res" + res)
+        return res.json()
+      })
       .map(user => this.handleUser(user))
       .catch(this.handleError);
   }
