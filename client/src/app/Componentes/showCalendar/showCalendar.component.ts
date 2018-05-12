@@ -11,7 +11,7 @@ import { SessionService } from "../../services/session.service";
   styleUrls: ["./showCalendar.component.css"]
 })
 export class ShowCalendarComponent implements OnInit {
-  calendar: Array<any>;
+  calendar: Array<Array<any>>;
   monthDays: number;
   firstDayMonth: number;
   firstDaySecondWeek: number;
@@ -60,6 +60,7 @@ export class ShowCalendarComponent implements OnInit {
             this.calendar[i][j].year <= parseInt(moment(e.end).format("YYYY"))
           ) {
             this.calendar[i][j].booked = true;
+            this.calendar[i][j].idBook = e._id;
           }
         });
       }
@@ -88,7 +89,8 @@ export class ShowCalendarComponent implements OnInit {
           day: day,
           month: moment(this.date).format("M"),
           year: moment(this.date).format("YYYY"),
-          booked: false
+          booked: false,
+          idBook: ""
         });
         day++;
       }
@@ -102,7 +104,8 @@ export class ShowCalendarComponent implements OnInit {
         day: this.firstDaySecondWeek + i,
         month: moment(this.date).format("M"),
         year: moment(this.date).format("YYYY"),
-        booked: false
+        booked: false,
+        idBook: ""
       });
     }
 
@@ -114,7 +117,8 @@ export class ShowCalendarComponent implements OnInit {
           day: this.firstDayThirdWeek + i,
           month: moment(this.date).format("M"),
           year: moment(this.date).format("YYYY"),
-          booked: false
+          booked: false,
+          idBook: ""
         });
       }
     }
@@ -127,7 +131,8 @@ export class ShowCalendarComponent implements OnInit {
           day: this.firstDayFourthWeek + i,
           month: moment(this.date).format("M"),
           year: moment(this.date).format("YYYY"),
-          booked: false
+          booked: false,
+          idBook: ""
         });
       }
     }
@@ -146,7 +151,8 @@ export class ShowCalendarComponent implements OnInit {
             day: this.firstDayFifthWeek + i,
             month: moment(this.date).format("M"),
             year: moment(this.date).format("YYYY"),
-            booked: false
+            booked: false,
+            idBook: ""
           });
         }
       }
@@ -166,7 +172,8 @@ export class ShowCalendarComponent implements OnInit {
             day: this.firstDaySixthWeek + i,
             month: moment(this.date).format("M"),
             year: moment(this.date).format("YYYY"),
-            booked: false
+            booked: false,
+            idBook: ""
           });
         }
       }

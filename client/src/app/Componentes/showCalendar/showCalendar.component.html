@@ -35,7 +35,8 @@
     </div>
     <div class="week" *ngFor="let week of calendar">
       <div class="week-day" *ngFor="let d of week" [ngClass]="{booked: d.booked}">
-        {{d.day}}
+        <span *ngIf="d.idBook"><a [routerLink]="['/home', d.idBook]">{{d.day}}</a></span>
+        <span *ngIf="!d.idBook">{{d.day}}</span>
       </div>
     </div>
   </div>

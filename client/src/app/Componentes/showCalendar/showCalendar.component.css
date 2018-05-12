@@ -16,3 +16,7 @@
 .booked {
   background: #17a2b8;
 }
+
+.booked a {
+  color: white;
+}

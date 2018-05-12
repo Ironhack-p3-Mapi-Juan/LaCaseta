@@ -21,6 +21,12 @@ export class BookingService {
       .map(res => res.json());
   }
 
+  getBuddyBooking(idBook) {
+    return this.http
+      .get(`${environment.BASEURL}/api/book/buddy/${idBook}`, this.options)
+      .map(res => res.json());
+  }
+
   createBooking(info, idBuddy) {
     return this.http
       .post(`${environment.BASEURL}/api/book/${idBuddy}`, info, this.options)
