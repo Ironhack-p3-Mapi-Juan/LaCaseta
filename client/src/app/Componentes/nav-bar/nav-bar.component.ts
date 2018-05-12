@@ -15,18 +15,13 @@ export class NavBarComponent implements OnInit {
   constructor(
     public sessionService: SessionService,
     public router: Router,
-    //public userService: UserService
+    public userService: UserService
   ) { }
 
   ngOnInit() {
     this.profile();
   }
   profile() {
-<<<<<<< HEAD
-    /* this.userService.profileUser().subscribe(user => {
-      this.user = user;
-    }); */
-=======
     this.userService
       .profileUser()
       .subscribe( user =>{
@@ -34,7 +29,6 @@ export class NavBarComponent implements OnInit {
         console.log(this.user)
          
         });
->>>>>>> 74f382738db3a4cc9e377ba82df07c9f42b4c1bd
   }
 
   logout() {

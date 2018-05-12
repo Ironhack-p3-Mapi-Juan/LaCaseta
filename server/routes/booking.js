@@ -5,6 +5,7 @@ const Booking = require("../models/Booking");
 const Moment = require("moment");
 const MomentRange = require("moment-range");
 const loggedin = require("../utils/isAuthenticated");
+const isBuddy = require("../utils/isBuddy");
 
 const moment = MomentRange.extendMoment(Moment);
 
@@ -39,6 +40,14 @@ router.get("/", loggedin, (req, res, next) => {
   Booking.find({ user: req.user._id })
     .populate("user")
     .populate("buddy")
+    .then(bookings => res.status(200).json(bookings))
+    .catch(err => res.status(500).json(err));
+});
+
+// mostrar reservas recibidas por un canguro
+router.get("/buddy", isBuddy, (req, res, next) => {
+  Booking.find({ buddy: req.user._id })
+    .populate("user")
     .then(bookings => res.status(200).json(bookings))
     .catch(err => res.status(500).json(err));
 });

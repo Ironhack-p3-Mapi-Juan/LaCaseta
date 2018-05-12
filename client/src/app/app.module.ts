@@ -19,6 +19,8 @@ import { NavBarComponent } from './Componentes/nav-bar/nav-bar.component';
 import { ProfileComponent } from './Componentes/profile/profile.component';
 import { EditUserComponent } from './Componentes/edit-user/edit-user.component';
 import { FileSelectDirective } from "ng2-file-upload";
+import { CommonModule } from '@angular/common';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({

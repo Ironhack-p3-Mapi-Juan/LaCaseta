@@ -12,3 +12,7 @@
 .day-names .week-day {
   width: 12%;
 }
+
+.booked {
+  background: #17a2b8;
+}

@@ -22,26 +22,48 @@ export class ShowCalendarComponent implements OnInit {
   date: any;
   monthName: string;
   year: string;
-  bookings: any;
+  a: any;
 
   constructor(
     public calendarService: CalendarService,
     public bookingService: BookingService,
     public sessionService: SessionService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.date = moment();
     this.drawCalendar();
   }
 
+  ngOnInit() {}
+
   drawCalendar() {
-    this.createCalendar();
-    this.addBookings();
+    this.bookingService.getBuddyBookings().subscribe(
+      data => {
+        this.createCalendar();
+        this.updateCalendar(data);
+      },
+      error => console.log(error)
+    );
   }
 
-  addBookings() {
-    this.bookings = this.bookingService.getBookings().subscribe();
+  updateCalendar(bookings) {
+    for (let i = 0; i < this.calendar.length; i++) {
+      for (let j = 0; j < this.calendar[i].length; j++) {
+        bookings.forEach(e => {
+          if (
+            this.calendar[i][j].day >= parseInt(moment(e.start).format("D")) &&
+            this.calendar[i][j].day <= parseInt(moment(e.end).format("D")) &&
+            this.calendar[i][j].month >=
+              parseInt(moment(e.start).format("M")) &&
+            this.calendar[i][j].month <= parseInt(moment(e.end).format("M")) &&
+            this.calendar[i][j].year >=
+              parseInt(moment(e.start).format("YYYY")) &&
+            this.calendar[i][j].year <= parseInt(moment(e.end).format("YYYY"))
+          ) {
+            this.calendar[i][j].booked = true;
+          }
+        });
+      }
+    }
   }
 
   createCalendar() {
@@ -65,7 +87,8 @@ export class ShowCalendarComponent implements OnInit {
         this.calendar[0].push({
           day: day,
           month: moment(this.date).format("M"),
-          year: moment(this.date).format("YYYY")
+          year: moment(this.date).format("YYYY"),
+          booked: false
         });
         day++;
       }
@@ -78,7 +101,8 @@ export class ShowCalendarComponent implements OnInit {
       this.calendar[1].push({
         day: this.firstDaySecondWeek + i,
         month: moment(this.date).format("M"),
-        year: moment(this.date).format("YYYY")
+        year: moment(this.date).format("YYYY"),
+        booked: false
       });
     }
 
@@ -89,7 +113,8 @@ export class ShowCalendarComponent implements OnInit {
         this.calendar[2].push({
           day: this.firstDayThirdWeek + i,
           month: moment(this.date).format("M"),
-          year: moment(this.date).format("YYYY")
+          year: moment(this.date).format("YYYY"),
+          booked: false
         });
       }
     }
@@ -101,7 +126,8 @@ export class ShowCalendarComponent implements OnInit {
         this.calendar[3].push({
           day: this.firstDayFourthWeek + i,
           month: moment(this.date).format("M"),
-          year: moment(this.date).format("YYYY")
+          year: moment(this.date).format("YYYY"),
+          booked: false
         });
       }
     }
@@ -119,7 +145,8 @@ export class ShowCalendarComponent implements OnInit {
           this.calendar[4].push({
             day: this.firstDayFifthWeek + i,
             month: moment(this.date).format("M"),
-            year: moment(this.date).format("YYYY")
+            year: moment(this.date).format("YYYY"),
+            booked: false
           });
         }
       }
@@ -138,7 +165,8 @@ export class ShowCalendarComponent implements OnInit {
           this.calendar[5].push({
             day: this.firstDaySixthWeek + i,
             month: moment(this.date).format("M"),
-            year: moment(this.date).format("YYYY")
+            year: moment(this.date).format("YYYY"),
+            booked: false
           });
         }
       }
