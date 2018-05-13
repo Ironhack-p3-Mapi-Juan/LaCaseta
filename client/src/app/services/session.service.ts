@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 export class SessionService {
 
   user:any;
-  //userEvent: EventEmitter<any> = new EventEmitter();
+  userEvent: EventEmitter<any> = new EventEmitter();
   options: any = { withCredentials:true };
 
   constructor(private http: Http) {
@@ -27,7 +27,7 @@ export class SessionService {
 
   handleUser(user?:object){
     this.user = user;
-    //this.userEvent.emit(this.user);
+    this.userEvent.emit(this.user);
     return this.user;
   }
 

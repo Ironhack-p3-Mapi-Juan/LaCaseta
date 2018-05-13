@@ -31,6 +31,7 @@ export class SignUpComponent implements OnInit {
     petsBuddy: "",
     houseBuddy: "",
     zonesBuddy: "",
+    calendarID: ""
   }
   
   constructor(public sessionService: SessionService, public router: Router) { }
@@ -40,6 +41,7 @@ export class SignUpComponent implements OnInit {
   
   // V E R S I O N   O R I G I N A L
   signup() {
+    
     this.sessionService
       .signup(this.formSignUp)
       .subscribe(() => this.router.navigate(["/home"]));

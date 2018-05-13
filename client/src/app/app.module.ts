@@ -22,6 +22,8 @@ import { FileSelectDirective } from "ng2-file-upload";
 import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { BookListComponent } from './Componentes/bookList/bookList.component';
+import { MyDogsComponent } from './Componentes/my-dogs/my-dogs.component';
+import { NewDogComponent } from './Componentes/new-dog/new-dog.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { BookListComponent } from './Componentes/bookList/bookList.component';
     ProfileComponent,
     EditUserComponent,
     BookListComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    MyDogsComponent,
+    NewDogComponent
 
   ],
   imports: [
