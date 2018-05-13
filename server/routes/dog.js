@@ -9,11 +9,11 @@ const upload = require("../config/coludinary")
 
 //Crear perros
 
-router.post("/new", [loggedin, upload.single("file")], (req, res, next) => {
-  console.log(req.file);
-  update['picDog'] = req.file.url;
+router.post("/new", [loggedin,  upload.single("file")], (req, res, next) => {
   const user = req.user._id;
   const { name, age, breed, tips, treatment } = req.body;
+  // update['picDog'] = req.file.url;
+  const picDog = req.file.url;
   const theDog = new Dog({
     user,
     name,

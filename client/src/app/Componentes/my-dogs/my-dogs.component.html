@@ -1,30 +1,30 @@
 <app-nav-bar></app-nav-bar>
 <div class="container">
-    <button [routerLink]="['/newDogs']" type="button" class="btn btn-outline-success">Añadir perros</button>
-    <div *ngIf="dogArray">
+  <button [routerLink]="['/newDogs']" type="button" class="btn btn-outline-success">Añadir perros</button>
+  <div *ngIf="dogArray">
     <div class="colum">
-      <div *ngFor = "let dog of dogArray">
-          <div class="col md-6">
-            <div class="dog-img">
-              <img src="{{dog.picDog}}" alt="Foto de usuarios de {{user.name}}">
-            </div>
-            <div class="dog-info">
-                <h2>{{dog.name}}</h2>
-                <p>Edad: {{dog.age}}</p>
-                <p>Raza: {{dog.breed}}</p>
-                <h5>Algo sobre {{dog.name}}:</h5>
-                <p>{{dog.tips}}</p>
-                <h6>Mis tratamientos:</h6>
-                <p>{{dog.treatment}}</p>
-            </div>
-            </div>
+      <div *ngFor="let dog of dogArray">
+        <div class="col md-6">
+          <div class="dog-img">
+            <img src="{{dog.picDog}}" alt="Foto de usuarios de {{sessionService.user.name}}">
+          </div>
+          <div class="dog-info">
+            <h2>{{dog.name}}</h2>
+            <p>Edad: {{dog.age}}</p>
+            <p>Raza: {{dog.breed}}</p>
+            <h5>Algo sobre {{dog.name}}:</h5>
+            <p>{{dog.tips}}</p>
+            <h6>Mis tratamientos:</h6>
+            <p>{{dog.treatment}}</p>
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-    <div *ngIf="!dogArray">
-      <h4>Todavía no has añadido ningún perro a tu lista!</h4>
-    </div>
   </div>
+  <div *ngIf="!dogArray">
+    <h4>Todavía no has añadido ningún perro a tu lista!</h4>
+  </div>
+</div>
 
 <!--       <h1>Ironhack Cinema</h1>
 <div class="container">
@@ -34,7 +34,7 @@
   <img [src]="m.poster" alt="{{m.title}}"/>
 </div>
 </div> -->
-      <!-- <div class="col md-6">
+<!-- <div class="col md-6">
         <h1>{{user.name}} {{user.surname}}</h1>
         <div class="user-img">
           <img src="{{user.pic}}" alt="Foto de usuarios de {{user.name}}">

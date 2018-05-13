@@ -21,6 +21,7 @@ export class MyDogsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.myDogs();
   }
   myDogs() {
     this.dogService.listDogs().subscribe(dogArray => {
