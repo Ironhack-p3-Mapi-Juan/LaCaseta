@@ -16,19 +16,16 @@ export class NavBarComponent implements OnInit {
     public sessionService: SessionService,
     public router: Router,
     public userService: UserService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.profile();
   }
   profile() {
-    this.userService
-      .profileUser()
-      .subscribe( user =>{
-        this.user = user;
-        console.log(this.user)
-         
-        });
+    this.userService.profileUser().subscribe(user => {
+      this.user = user;
+      console.log(this.user);
+    });
   }
 
   logout() {

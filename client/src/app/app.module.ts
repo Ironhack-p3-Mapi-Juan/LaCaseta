@@ -21,6 +21,7 @@ import { EditUserComponent } from './Componentes/edit-user/edit-user.component';
 import { FileSelectDirective } from "ng2-file-upload";
 import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
+import { BookListComponent } from './Componentes/bookList/bookList.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { AgmCoreModule } from '@agm/core';
     NavBarComponent,
     ProfileComponent,
     EditUserComponent,
+    BookListComponent,
     FileSelectDirective
 
   ],

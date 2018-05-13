@@ -33,7 +33,8 @@ export class BookingService {
       .map(res => res.json());
   }
 
-  changeStatus(status, idBook) {
+  changeStatus(newStatus, idBook) {
+    const status = { status: newStatus };
     return this.http
       .post(
         `${environment.BASEURL}/api/book/status/${idBook}`,

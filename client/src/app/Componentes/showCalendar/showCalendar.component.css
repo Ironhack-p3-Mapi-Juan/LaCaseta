@@ -4,19 +4,30 @@
 
 .week-day {
   display: inline-block;
-  width: 12%;
+  width: 13.5%;
   text-align: center;
-  padding: 10px;
+  padding: 20px;
 }
 
-.day-names .week-day {
-  width: 12%;
+.day-names {
+  border-bottom: 1px solid #6c757d;
+  font-weight: bold;
 }
 
-.booked {
+.accepted {
+  background: #28a745;
+}
+
+.rejected {
+  background: #6c757d;
+}
+
+.pending {
   background: #17a2b8;
 }
 
-.booked a {
+.accepted a,
+.rejected a,
+.pending a {
   color: white;
 }

@@ -22,7 +22,6 @@ export class ShowCalendarComponent implements OnInit {
   date: any;
   monthName: string;
   year: string;
-  a: any;
 
   constructor(
     public calendarService: CalendarService,
@@ -46,8 +45,8 @@ export class ShowCalendarComponent implements OnInit {
   }
 
   updateCalendar(bookings) {
-    for (let i = 0; i < this.calendar.length; i++) {
-      for (let j = 0; j < this.calendar[i].length; j++) {
+    for (let i = 0; i < (this.calendar ? this.calendar.length : 0); i++) {
+      for (let j = 0; j < (this.calendar[i] ? this.calendar[i].length : 0); j++) {
         bookings.forEach(e => {
           if (
             this.calendar[i][j].day >= parseInt(moment(e.start).format("D")) &&
@@ -59,8 +58,8 @@ export class ShowCalendarComponent implements OnInit {
               parseInt(moment(e.start).format("YYYY")) &&
             this.calendar[i][j].year <= parseInt(moment(e.end).format("YYYY"))
           ) {
-            this.calendar[i][j].booked = true;
             this.calendar[i][j].idBook = e._id;
+            this.calendar[i][j].status = e.status;
           }
         });
       }
@@ -89,14 +88,18 @@ export class ShowCalendarComponent implements OnInit {
           day: day,
           month: moment(this.date).format("M"),
           year: moment(this.date).format("YYYY"),
-          booked: false,
           idBook: ""
         });
         day++;
       }
     }
 
-    this.firstDaySecondWeek = this.calendar[0][6].day + 1;
+    // add weeks
+    for(let i = 1; i <= 5; i++) {
+      this.addWeek(i);
+    }
+
+    /* this.firstDaySecondWeek = this.calendar[0][6].day + 1;
     // Second week
     this.calendar[1] = [];
     for (let i = 0; i < 7; i++) {
@@ -104,10 +107,11 @@ export class ShowCalendarComponent implements OnInit {
         day: this.firstDaySecondWeek + i,
         month: moment(this.date).format("M"),
         year: moment(this.date).format("YYYY"),
-        booked: false,
         idBook: ""
       });
     }
+
+    // addWeek(position)
 
     this.firstDayThirdWeek = this.calendar[1][6].day + 1;
     if (this.firstDayThirdWeek <= this.monthDays) {
@@ -117,7 +121,6 @@ export class ShowCalendarComponent implements OnInit {
           day: this.firstDayThirdWeek + i,
           month: moment(this.date).format("M"),
           year: moment(this.date).format("YYYY"),
-          booked: false,
           idBook: ""
         });
       }
@@ -131,7 +134,6 @@ export class ShowCalendarComponent implements OnInit {
           day: this.firstDayFourthWeek + i,
           month: moment(this.date).format("M"),
           year: moment(this.date).format("YYYY"),
-          booked: false,
           idBook: ""
         });
       }
@@ -151,7 +153,6 @@ export class ShowCalendarComponent implements OnInit {
             day: this.firstDayFifthWeek + i,
             month: moment(this.date).format("M"),
             year: moment(this.date).format("YYYY"),
-            booked: false,
             idBook: ""
           });
         }
@@ -172,7 +173,30 @@ export class ShowCalendarComponent implements OnInit {
             day: this.firstDaySixthWeek + i,
             month: moment(this.date).format("M"),
             year: moment(this.date).format("YYYY"),
-            booked: false,
+            idBook: ""
+          });
+        }
+      }
+    } */
+  }
+
+  addWeek(position) {
+    let firstDayWeek;
+
+    for (let d = 6; d >= 0; d--) {
+      if (this.calendar[position-1][d]) {
+        firstDayWeek = this.calendar[position-1][d].day + 1;
+        break;
+      }
+    }
+    if (firstDayWeek <= this.monthDays) {
+      this.calendar[position] = [];
+      for (let i = 0; i < 7; i++) {
+        if (firstDayWeek + i <= this.monthDays) {
+          this.calendar[position].push({
+            day: firstDayWeek + i,
+            month: moment(this.date).format("M"),
+            year: moment(this.date).format("YYYY"),
             idBook: ""
           });
         }

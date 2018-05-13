@@ -2,13 +2,12 @@
 <div class="container">
   <div class="calendar">
     <div class="calendar-header text-center">
-      <button (click)="previousMonth()" class="btn btn-outline-info">
-        < </button>
+      <button (click)="previousMonth()" class="btn btn-outline-info"><i class="fas fa-arrow-left"></i></button>
 
           {{monthName}} {{year}}
 
-          <button (click)="nextMonth()" class="btn btn-outline-info"> > </button>
-          <button (click)="setToday()" class="btn btn-outline-info">Hoy</button>
+          <button (click)="nextMonth()" class="btn btn-outline-info"><i class="fas fa-arrow-right"></i></button>
+          <button (click)="setToday()" class="btn btn-outline-dark"><i class="far fa-calendar"></i>&nbsp;Hoy</button>
     </div>
     <div class="day-names">
       <div class="week-day">
@@ -34,8 +33,10 @@
       </div>
     </div>
     <div class="week" *ngFor="let week of calendar">
-      <div class="week-day" *ngFor="let d of week" [ngClass]="{booked: d.booked}">
-        <span *ngIf="d.idBook"><a [routerLink]="['/home', d.idBook]">{{d.day}}</a></span>
+      <div class="week-day" *ngFor="let d of week" [ngClass]="{pending:d.status=='Pending', accepted:d.status=='Accepted', rejected:d.status=='Rejected'}">
+        <span *ngIf="d.idBook">
+          <a [routerLink]="['/book', d.idBook]">{{d.day}}</a>
+        </span>
         <span *ngIf="!d.idBook">{{d.day}}</span>
       </div>
     </div>

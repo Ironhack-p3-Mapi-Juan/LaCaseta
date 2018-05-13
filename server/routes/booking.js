@@ -54,11 +54,11 @@ router.get("/buddy", isBuddy, (req, res, next) => {
 
 // mostrar una reserva recibida por un canguro
 router.get("/buddy/:idBook", isBuddy, (req, res, next) => {
-  Booking.findById( req.params.idBook)
-  .populate("user")
-  .then(booking => res.status(200).json(booking))
-  .catch(err => res.status(500).json(err));
-})
+  Booking.findById(req.params.idBook)
+    .populate("user")
+    .then(booking => res.status(200).json(booking))
+    .catch(err => res.status(500).json(err));
+});
 
 // cambiar estado
 // accepted or rejected

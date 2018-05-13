@@ -8,7 +8,8 @@ import { BookingService } from '../../services/booking.service';
 })
 export class CreateBookComponent implements OnInit {
 
-  constructor(public bookingService: BookingService) { }
+  constructor(public bookingService: BookingService) { 
+  }
 
   ngOnInit() {
   }

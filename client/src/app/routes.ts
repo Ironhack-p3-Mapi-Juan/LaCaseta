@@ -5,6 +5,7 @@ import { ShowCalendarComponent } from "./Componentes/showCalendar/showCalendar.c
 import { LogInComponent } from "./Componentes/log-in/log-in.component";
 import { ProfileComponent } from "./Componentes/profile/profile.component";
 import { EditUserComponent } from "./Componentes/edit-user/edit-user.component";
+import { BookListComponent } from "./Componentes/bookList/bookList.component";
 
 
 export const routes: Routes = [
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'profile', component: ProfileComponent},
   { path: 'calendar', component: ShowCalendarComponent},
   { path: 'edit', component: EditUserComponent},
+  { path: 'booking', component: BookListComponent},
   { path: '**', redirectTo:'', pathMatch:'full'}
   
 ]
