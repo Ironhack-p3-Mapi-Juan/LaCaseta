@@ -8,11 +8,22 @@ import { SessionService } from "../../services/session.service";
 })
 export class HomeComponent implements OnInit {
   title: string = "La Caseta de Juanpi";
-  lat: number = 37.195984;
-  lng: number = -3.621656;
-  zoom: number = 13;
+  lat: number;
+  lng: number;
+  zoom: number = 14;
 
-  constructor(public sessionService: SessionService) {}
+  constructor(public sessionService: SessionService) {
+    this.getPosition();
+  }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  getPosition() {
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition( (position) => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+      })
+    }
+  }
 }
