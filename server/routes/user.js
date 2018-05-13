@@ -67,7 +67,7 @@ router.get("/buddy/:id", loggedin, (req, res, next) =>{
     });
 });
 
-
+// Obtener usuario (made in Papu)
 router.get("/get-user", loggedin, (req, res, next) => {
   User.findById(req.session.passport.user)
   .then(user => {

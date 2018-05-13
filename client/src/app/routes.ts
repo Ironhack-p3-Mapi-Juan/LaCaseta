@@ -6,6 +6,8 @@ import { LogInComponent } from "./Componentes/log-in/log-in.component";
 import { ProfileComponent } from "./Componentes/profile/profile.component";
 import { EditUserComponent } from "./Componentes/edit-user/edit-user.component";
 import { BookListComponent } from "./Componentes/bookList/bookList.component";
+import { MyDogsComponent } from "./Componentes/my-dogs/my-dogs.component";
+import { NewDogComponent } from "./Componentes/new-dog/new-dog.component";
 
 
 export const routes: Routes = [
@@ -18,6 +20,8 @@ export const routes: Routes = [
   { path: 'calendar', component: ShowCalendarComponent},
   { path: 'edit', component: EditUserComponent},
   { path: 'booking', component: BookListComponent},
+  { path: 'dogs', component: MyDogsComponent},
+  { path: 'newDogs', component: NewDogComponent},
   { path: '**', redirectTo:'', pathMatch:'full'}
   
 ]

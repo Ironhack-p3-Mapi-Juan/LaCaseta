@@ -1,36 +1,59 @@
 <app-nav-bar></app-nav-bar>
-<div *ngIf = "user">
-<div *ngIf = "user.dogBuddy">
-    <nav aria-label="Page navigation example">
+<div *ngIf="user">
+  <div *ngIf="user.dogBuddy">
+    <div class="options container">
+      <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-start">
-          <li class="page-item"><a class="page-link" [routerLink]="['/calendar/']">Calendario</a></li>
-          <li class="page-item"><a class="page-link" [routerLink]="['/booking/']">Gestionar reservas</a></li>
-          
+          <li class="page-item">
+            <a class="page-link" [routerLink]="['/calendar/']">Calendario</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" [routerLink]="['/booking/']">Gestionar reservas</a>
+          </li>
+
         </ul>
       </nav>
-</div>
-<div *ngIf = "!user.dogBuddy">
+    </div>
+  </div>
+  <div *ngIf="!user.dogBuddy">
+    <div class="options container">
     <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-start">
-          <li class="page-item"><a class="page-link" [routerLink]="['/dogs/']">Mis perros</a></li>
-          <li class="page-item"><a class="page-link" [routerLink]="['/booking/']">Mis reservas</a></li>
-          
-        </ul>
-      </nav>
-</div>
+      <ul class="pagination justify-content-start">
+          <li class="page-item">
+            <a class="page-link" [routerLink]="['/dogs/']">Mis perros</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" [routerLink]="['/booking/']">Mis reservas</a>
+          </li>
+      </ul>
+    </nav>
+    </div>
+  </div>
 
 
 
-  <h1>{{user.name}} {{user.surname}}</h1>
-  <img src ="{{user.pic}}" alt ="Foto de usuarios de {{user.name}}">
-  <p>{{user.adress}}</p>
-  <p>{{user.pc}}</p>
-  <p>{{user.city}}, {{user.country}}</p>
-  <button (click)="edit()" type="button" class="btn btn-outline-success">Editar mi perfil</button>
-  <button (click)="delete()" type="button" class="btn btn-outline-danger">Eliminar mi perfil</button>
+  <div class="container">
+    <div class="row">
+      <div class="col md-6">
+        <h1>{{user.name}} {{user.surname}}</h1>
+        <div class="user-img">
+          <img src="{{user.pic}}" alt="Foto de usuarios de {{user.name}}">
+        </div>
+      </div>
+      <div class="user-info col md-6">
+        <p>{{user.adress}}</p>
+        <p>{{user.pc}}</p>
+        <p>{{user.city}}, {{user.country}}</p>
+        <div class="user-buttos">
+          <button (click)="edit()" type="button" class="btn btn-outline-success">Editar mi perfil</button>
+          <button (click)="delete()" type="button" class="btn btn-outline-danger">Eliminar mi perfil</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div *ngIf = "user.dogBuddy">
-    <p>Algo sobre mi:</p> 
+  <div *ngIf="user.dogBuddy">
+    <p>Algo sobre mi:</p>
     <p>{{user.infoBuddy}}</p>
     <p>Mascotas residentes: {{user.petsBuddy}}</p>
     <p>Precio por noche: {{user.rateBuddy}}€</p>
@@ -38,5 +61,3 @@
     <p>Zonas exteriories: {{user.zonesBuddy}}</p>
   </div>
 </div>
-
-

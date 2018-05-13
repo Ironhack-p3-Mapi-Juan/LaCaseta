@@ -24,6 +24,8 @@ import { AgmCoreModule } from '@agm/core';
 import { BookListComponent } from './Componentes/bookList/bookList.component';
 import { environment } from '../environments/environment';
 import { BuddyBookingsPipe } from './pipes/buddyBookings.pipe';
+import { MyDogsComponent } from './Componentes/my-dogs/my-dogs.component';
+import { NewDogComponent } from './Componentes/new-dog/new-dog.component';
 
 
 @NgModule({
@@ -38,7 +40,10 @@ import { BuddyBookingsPipe } from './pipes/buddyBookings.pipe';
     EditUserComponent,
     BookListComponent,
     FileSelectDirective,
-    BuddyBookingsPipe
+    BuddyBookingsPipe,
+    MyDogsComponent,
+    NewDogComponent
+
   ],
   imports: [
     BrowserModule,

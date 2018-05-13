@@ -12,13 +12,22 @@ import { Dog } from "../Interfaces/dog-interface";
 @Injectable()
 export class DogService {
 dog: Dog
+options: any = {withCredentials: true}
 constructor(private http: Http) { }
+
+//Obtener Perro
+
+getDog() {
+  return this.http
+      .get(`${environment.BASEURL}/api/dog/get-dog`, this.options)
+      .map(res => res.json());
+}
 
 //Crear perros
 
-newDog() {
+newDog(dog) {
     return this.http
-      .get(`${environment.BASEURL}/api/dog/new`)
+      .post(`${environment.BASEURL}/api/dog/new`, dog, this.options)
       .map(res => res.json());
   }
   
@@ -44,6 +53,14 @@ newDog() {
     return this.http
       .get(`${environment.BASEURL}/api/dog/delete/${idDog}`)
       .map(res => res.json());
+  }
+
+  //APIDog
+
+  breedDog(){
+    return this.http
+    .get(`https://dog.ceo/api/breeds/list/all`)
+    .map(res => res.json());
   }
 
 }

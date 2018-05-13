@@ -5,12 +5,15 @@ const Dog = require("../models/Dog");
 const loggedin = require("../utils/isAuthenticated");
 const _ = require("lodash");
 const fields = Object.keys(_.omit(Dog.schema.paths, ["__v", "_id"]));
+const upload = require("../config/coludinary")
 
 //Crear perros
 
-router.post("/new", loggedin, (req, res, next) => {
+router.post("/new", [loggedin, upload.single("file")], (req, res, next) => {
+  console.log(req.file);
+  update['picDog'] = req.file.url;
   const user = req.user._id;
-  const { name, age, breed, tips, treatment, picDog } = req.body;
+  const { name, age, breed, tips, treatment } = req.body;
   const theDog = new Dog({
     user,
     name,
@@ -85,6 +88,13 @@ Dog.findById(req.params.id)
     .catch(err => {
       return res.status(500).json(err);
     });
+});
+//Obtener perro 
+router.get("/get-dog", loggedin, (req, res, next) => {
+  Dog.findById(req.session.passport.dog)
+  .then(dog => {
+    res.status(200).json(dog)
+  })
 });
 
 module.exports = router;

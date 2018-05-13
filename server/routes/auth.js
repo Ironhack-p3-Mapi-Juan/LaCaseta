@@ -14,82 +14,61 @@ const logInPromise = (user, req) =>
   });
 
 /* GET home page */
-router.post("/signup", (req, res, next) => {
-    
-    const {
-        name,
-        surname,
-        adress,
-        city,
-        country,
-        pc,
-        email,
-        password,
-        dogs,
-        dogBuddy,
-        infoBuddy,
-        rateBuddy,
-        petsBuddy,
-        houseBuddy,
-        zonesBuddy,
-        calendarId
-    } = req.body;
+router.post('/signup', (req, res, next) => {
+    const {name, surname, adress, city, country, pc, email, password, dogs, dogBuddy, infoBuddy, rateBuddy, petsBuddy, houseBuddy, zonesBuddy,calendarId } = req.body;
     if (!email || !password) {
         res.status(400).json({ message: "Provide email and password" });
         return;
     }
-
-  User.findOne({ email })
-    .then(user => {
-      if (user) throw new Error("The email already exists");
-
-      const salt = bcrypt.genSaltSync(10);
-      const hashPass = bcrypt.hashSync(password, salt);
-      const confirmationCode = encodeURIComponent(bcrypt.hashSync(email, salt));
-      const theUser = new User({
-        name,
-        surname,
-        adress,
-        city,
-        country,
-        pc,
-        email,
-        password: hashPass,
-        dogs,
-        dogBuddy,
-        infoBuddy,
-        rateBuddy,
-        petsBuddy,
-        houseBuddy,
-        zonesBuddy,
-        calendarId,
-        confirmationCode
-      });
-
-      return theUser
-        .save()
-        .then(user => {
-          console.log(user);
-          //Configuración Nodemailer
-          const ActivationURL = `${
-            process.env.HOST
-          }/api/auth/confirm/${confirmationCode}`;
-          console.log("Ruta mail " + ActivationURL);
-          let transporter = nodemailer.createTransport({
-            service: "Gmail",
-            auth: {
-              user: process.env.emailAdmin,
-              pass: process.env.pssAdmin
-            }
-          });
-          transporter.sendMail({
-            from: `"La Caseta de Juanpi" <${process.env.emailAdmin}>`,
-            to: user.email,
-            subject: "Activa tu cuenta en la Caseta de Juanpi",
-            html: `<a href="${ActivationURL}">Activa tu cuenta</a>`
-          });
-          logInPromise(user, req);
-          return res.status(200).json(user);
+  
+    User.findOne({ email })
+    .then( user => {
+        if(user) throw new Error('The email already exists');
+        
+        const salt = bcrypt.genSaltSync(10);
+        const hashPass = bcrypt.hashSync(password, salt);
+        const confirmationCode = encodeURIComponent(bcrypt.hashSync(email, salt))
+        const theUser = new User({
+          name, 
+          surname, 
+          adress,
+          city,
+          country, 
+          pc, 
+          email, 
+          password: hashPass,
+          dogs,
+          dogBuddy, 
+          infoBuddy, 
+          rateBuddy, 
+          petsBuddy, 
+          houseBuddy, 
+          zonesBuddy,
+          calendarId,
+          confirmationCode,
+        });
+    
+        return theUser.save().then( user => {
+            console.log(user);
+            //Configuración Nodemailer
+            const ActivationURL = `${process.env.HOST}/api/auth/confirm/${confirmationCode}`;
+            console.log("Ruta mail " + ActivationURL);
+            let transporter = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                    user: process.env.emailAdmin,
+                    pass: process.env.pssAdmin
+                    
+                }
+            });
+            transporter.sendMail({
+                from: `"La Caseta de Juanpi" <${process.env.emailAdmin}>`,
+                to: user.email, 
+                subject: 'Activa tu cuenta en la Caseta de Juanpi', 
+                html: `<a href="${ActivationURL}">Activa tu cuenta</a>`
+            })
+            logInPromise(user,req)
+            return res.status(200).json(user);
         })
         .then(info => console.log(info))
         .catch(error => console.log(error));
