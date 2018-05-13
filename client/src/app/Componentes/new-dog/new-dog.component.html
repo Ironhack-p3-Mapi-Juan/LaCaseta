@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>Añadir Perro: </h1>
+  <form>
+    <p>Añade una foto de tu perro:</p>
+    <fieldset>
+      <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+    </fieldset>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Nombre: *</label>
+      <input type="text" [(ngModel)]="formDog.name" class="form-control" id="formGroupExampleInput" placeholder="Nombre" name="name">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Edad: *</label>
+      <input type="number" [(ngModel)]="formDog.age" class="form-control" id="formGroupExampleInput" placeholder="Edad" name="age">
+    </div>
+    <div class="form-group">
+      <label for="inputState">Raza: *</label>
+      <select id="inputState" class="form-control" [(ngModel)]="formDog.breed" name="breed">
+        
+          <option *ngFor = "let b of breedsArray">{{b | uppercase}}</option>
+          <option>SHAR PEI</option>
+          <option>OTROS</option>
+          <option>MESTIZO</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Cuéntanos algo sobre tu perro!</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="formDog.tips" name="tips" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Si tu perro necesita mediciación indícalo aquí:</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="formDog.treatment" name="treatment" rows="3"></textarea>
+    </div>
+
+<button (click)="newDog()" type="button" class="btn btn-outline-success btn-lg btn-block">Listo!</button>
+* Campos obligatorios
+</form>
+</div>

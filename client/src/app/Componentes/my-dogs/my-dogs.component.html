@@ -1,0 +1,64 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <button [routerLink]="['/newDogs']" type="button" class="btn btn-outline-success">Añadir perros</button>
+    <div *ngIf="dogArray">
+    <div class="colum">
+      <div *ngFor = "let dog of dogArray">
+          <div class="col md-6">
+            <div class="dog-img">
+              <img src="{{dog.picDog}}" alt="Foto de usuarios de {{user.name}}">
+            </div>
+            <div class="dog-info">
+                <h2>{{dog.name}}</h2>
+                <p>Edad: {{dog.age}}</p>
+                <p>Raza: {{dog.breed}}</p>
+                <h5>Algo sobre {{dog.name}}:</h5>
+                <p>{{dog.tips}}</p>
+                <h6>Mis tratamientos:</h6>
+                <p>{{dog.treatment}}</p>
+            </div>
+            </div>
+      </div>
+    </div>
+    </div>
+    <div *ngIf="!dogArray">
+      <h4>Todavía no has añadido ningún perro a tu lista!</h4>
+    </div>
+  </div>
+
+<!--       <h1>Ironhack Cinema</h1>
+<div class="container">
+<div *ngFor ="let m of moviesArray">
+  <h2><a [routerLink]="['/movie',m.id]">{{m.title}}</a></h2>
+  <h3>ROOM: {{m.room}}</h3>
+  <img [src]="m.poster" alt="{{m.title}}"/>
+</div>
+</div> -->
+      <!-- <div class="col md-6">
+        <h1>{{user.name}} {{user.surname}}</h1>
+        <div class="user-img">
+          <img src="{{user.pic}}" alt="Foto de usuarios de {{user.name}}">
+        </div>
+      </div>
+      <div class="user-info col md-6">
+        <p>{{user.adress}}</p>
+        <p>{{user.pc}}</p>
+        <p>{{user.city}}, {{user.country}}</p>
+        <div class="user-buttos">
+          <button (click)="edit()" type="button" class="btn btn-outline-success">Editar mi perfil</button>
+          <button (click)="delete()" type="button" class="btn btn-outline-danger">Eliminar mi perfil</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="user.dogBuddy">
+    <p>Algo sobre mi:</p>
+    <p>{{user.infoBuddy}}</p>
+    <p>Mascotas residentes: {{user.petsBuddy}}</p>
+    <p>Precio por noche: {{user.rateBuddy}}€</p>
+    <p>Alojamiento: {{user.houseBuddy}}</p>
+    <p>Zonas exteriories: {{user.zonesBuddy}}</p>
+  </div>
+</div>
+ -->
