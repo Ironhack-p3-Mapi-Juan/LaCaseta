@@ -22,6 +22,8 @@ import { FileSelectDirective } from "ng2-file-upload";
 import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { BookListComponent } from './Componentes/bookList/bookList.component';
+import { environment } from '../environments/environment';
+import { BuddyBookingsPipe } from './pipes/buddyBookings.pipe';
 
 
 @NgModule({
@@ -35,8 +37,8 @@ import { BookListComponent } from './Componentes/bookList/bookList.component';
     ProfileComponent,
     EditUserComponent,
     BookListComponent,
-    FileSelectDirective
-
+    FileSelectDirective,
+    BuddyBookingsPipe
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,7 @@ import { BookListComponent } from './Componentes/bookList/bookList.component';
     CommonModule,
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAO4pN5ZBXS8kShPqE1Xf3c9_P9rS28pNw'
+      apiKey: environment.APIKEY
     })
   ],
   providers: [

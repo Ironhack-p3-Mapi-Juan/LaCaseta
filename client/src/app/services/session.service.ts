@@ -55,7 +55,6 @@ export class SessionService {
     return this.http.get(`${environment.BASEURL}/api/auth/loggedin`, this.options)
       .map(res => res.json())
       .map(user => {
-        console.log (user)
         return this.handleUser(user)
       })
       .catch(this.handleError);

@@ -24,7 +24,6 @@ export class NavBarComponent implements OnInit {
   profile() {
     this.userService.profileUser().subscribe(user => {
       this.user = user;
-      console.log(this.user);
     });
   }
 

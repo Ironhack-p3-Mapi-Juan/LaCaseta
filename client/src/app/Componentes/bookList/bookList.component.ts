@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { BookingService } from "../../services/booking.service";
 import { Router } from "@angular/router";
+import { SessionService } from "../../services/session.service";
 
 @Component({
   selector: "app-bookList",
@@ -9,9 +10,12 @@ import { Router } from "@angular/router";
 })
 export class BookListComponent implements OnInit {
   bookings: any;
+  buddyBookings: any;
+  search: any;
 
-  constructor(public bookingService: BookingService, public router: Router) {
-    bookingService.getBookings().subscribe(data => (this.bookings = data));
+  constructor(public bookingService: BookingService, public router: Router, public sessionService: SessionService) {
+    bookingService.getBookings().subscribe(data => this.bookings = data);
+    bookingService.getBuddyBookings().subscribe(data => this.buddyBookings = data);
   }
 
   ngOnInit() {}
@@ -23,7 +27,19 @@ export class BookListComponent implements OnInit {
     });
   }
 
+  accept(id) {
+    this.bookingService.changeStatus("Accepted", id).subscribe( () => {
+      this.reload();
+      this.router.navigate(["/booking"]);
+    })
+  }
+
   reload() {
-    this.bookingService.getBookings().subscribe(data => (this.bookings = data));
+    this.bookingService.getBookings().subscribe(data => this.bookings = data);
+    this.bookingService.getBuddyBookings().subscribe(data => this.buddyBookings = data);
+  }
+
+  status(val) {
+    this.search = val;
   }
 }

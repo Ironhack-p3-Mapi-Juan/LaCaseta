@@ -1,12 +1,36 @@
 <app-nav-bar></app-nav-bar>
-<div *ngIf="bookings">
-  <div *ngFor="let b of bookings">
-    <h2>Reserva:</h2>
-    <img [src]="b.buddy.pic" [alt]="b.buddy.name">
-    <p>Canguro: {{b.buddy.name}}</p>
-    <p>Fecha: {{b.start | date:"dd/MM/yyyy"}} - {{b.end | date:"dd/MM/yyyy"}}</p>
+<div *ngIf="sessionService.user">
+  <div *ngIf="!sessionService.user.dogBuddy">
+    <div *ngIf="bookings">
+      <div *ngFor="let b of bookings">
+        <h2>Reserva:</h2>
+        <img [src]="b.buddy.pic" [alt]="b.buddy.name">
+        <p>Canguro: {{b.buddy.name}}</p>
+        <p>Fecha: {{b.start | date:"dd/MM/yyyy"}} - {{b.end | date:"dd/MM/yyyy"}}</p>
 
-    <button class="btn btn-outline-dark">Chatear</button>
-    <button *ngIf="b.status!='Rejected'" (click)="cancel(b._id)" class="btn btn-outline-danger">Cancelar</button>
+        <button class="btn btn-outline-dark">Chatear</button>
+        <button *ngIf="b.status!='Rejected'" (click)="cancel(b._id)" class="btn btn-outline-danger">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="sessionService.user.dogBuddy">
+    <div *ngIf="buddyBookings">
+      <div class="buttons">
+        <button (click)="status(pending.value)" #pending value="Pending" class="btn btn-dark">Pendientes</button>
+        <button (click)="status(accepted.value)" #accepted value="Accepted" class="btn btn-dark">Aceptadas</button>
+        <button (click)="status(rejected.value)" #rejected value="Rejected" class="btn btn-dark">Rechazadas</button>
+      </div>
+      <div *ngFor="let b of buddyBookings | buddyBookings:'status':search;">
+        <h2>Reserva:</h2>
+        <img [src]="b.user.pic" [alt]="b.user.name">
+        <p>Usuario: {{b.user.name}}</p>
+        <p>Fecha: {{b.start | date:"dd/MM/yyyy"}} - {{b.end | date:"dd/MM/yyyy"}}</p>
+
+        <button class="btn btn-outline-dark">Chatear</button>
+        <button *ngIf="b.status=='Pending'" (click)="accept(b._id)" class="btn btn-outline-success">Aceptar</button>
+        <button *ngIf="b.status=='Pending'" (click)="cancel(b._id)" class="btn btn-outline-danger">Rechazar</button>
+      </div>
+    </div>
   </div>
 </div>

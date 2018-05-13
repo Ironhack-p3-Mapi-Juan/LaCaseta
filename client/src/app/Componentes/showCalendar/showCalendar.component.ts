@@ -60,6 +60,7 @@ export class ShowCalendarComponent implements OnInit {
           ) {
             this.calendar[i][j].idBook = e._id;
             this.calendar[i][j].status = e.status;
+            this.calendar[i][j].book = e;
           }
         });
       }

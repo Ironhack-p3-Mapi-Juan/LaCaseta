@@ -35,7 +35,10 @@
     <div class="week" *ngFor="let week of calendar">
       <div class="week-day" *ngFor="let d of week" [ngClass]="{pending:d.status=='Pending', accepted:d.status=='Accepted', rejected:d.status=='Rejected'}">
         <span *ngIf="d.idBook">
-          <a [routerLink]="['/book', d.idBook]">{{d.day}}</a>
+          <a [routerLink]="['/book', d.idBook]">
+            <p>{{d.day}}</p>
+            <p>{{d.book.user.name}} {{d.book.user.surname}}</p>
+          </a>
         </span>
         <span *ngIf="!d.idBook">{{d.day}}</span>
       </div>
