@@ -1,0 +1,20 @@
+<app-nav-bar></app-nav-bar>
+ <div *ngIf="buddy">
+        <div class="container">
+                <div class="row">
+                  <div class="col md-6">
+                    <h1>{{buddy.name}} {{buddy.surname}}</h1>
+                    <div class="buddy-img">
+                      <img src="{{buddy.pic}}" alt="Foto de usuarios de {{buddy.name}}">
+                    </div>
+                  </div>
+                  <div class="buddy-info col md-6">
+                    <p>{{buddy.adress}}</p>
+                    <p>{{buddy.pc}}</p>
+                    <p>{{buddy.city}}, {{buddy.country}}</p>
+    
+                  </div>
+                </div>
+              </div>
+            
+</div> 
