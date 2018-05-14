@@ -13,7 +13,6 @@ import { NewDogComponent } from "./Componentes/new-dog/new-dog.component";
 export const routes: Routes = [
   
   { path: '', component: HomeComponent},
-  { path: 'home', component: HomeComponent},
   { path: 'signup', component: SignUpComponent},
   { path: 'login', component: LogInComponent},
   { path: 'profile', component: ProfileComponent},

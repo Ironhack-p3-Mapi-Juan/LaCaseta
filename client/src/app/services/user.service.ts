@@ -9,6 +9,7 @@ import { User } from "../Interfaces/user-interface";
 @Injectable()
 export class UserService {
 user: User;
+buddies: any;
 options: any = {withCredentials: true}
 constructor(private http: Http) { }
 
@@ -53,5 +54,10 @@ editUser(user) {
       .get(`${environment.BASEURL}/api/user/profile`, this.options)
       .map(res => res.json())
       .map(user => (this.user = user));
+  }
+  getBuddies(pc){
+    return this.http
+      .post(`${environment.BASEURL}/api`, { pc }, this.options)
+      .map(res => res.json())
   }
 }

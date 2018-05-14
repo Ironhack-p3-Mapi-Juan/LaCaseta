@@ -5,6 +5,12 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 
+const googleMapsClient = require("@google/maps").createClient({
+  key: process.env.MAPSAPI,
+  Promise: Promise
+});
+
+
 const logInPromise = (user, req) =>
   new Promise((resolve, reject) => {
     req.login(user, err => {
@@ -13,21 +19,35 @@ const logInPromise = (user, req) =>
     });
   });
 
-/* GET home page */
-router.post('/signup', (req, res, next) => {
+  /* GET home page */
+  router.post('/signup', (req, res, next) => {
     const {name, surname, adress, city, country, pc, email, password, dogs, dogBuddy, infoBuddy, rateBuddy, petsBuddy, houseBuddy, zonesBuddy,calendarId } = req.body;
     if (!email || !password) {
-        res.status(400).json({ message: "Provide email and password" });
-        return;
+      res.status(400).json({ message: "Provide email and password" });
+      return;
     }
-  
+    
     User.findOne({ email })
     .then( user => {
-        if(user) throw new Error('The email already exists');
+      if(user) throw new Error('The email already exists');
+      const salt = bcrypt.genSaltSync(10);
+      const hashPass = bcrypt.hashSync(password, salt);
+      const confirmationCode = encodeURIComponent(bcrypt.hashSync(email, salt))
+      const geo = adress + " " + city + " " + pc
+        googleMapsClient
+      .geocode({ "address": geo })
+      .asPromise()
+      .then(data => {
+        lat = data.json.results[0].geometry.viewport.northeast.lat;
+        lng = data.json.results[0].geometry.viewport.northeast.lng;
+        console.log(data);
+
+        const location = {
+          type: "Point",
+          coordinates: [lat, lng]
+        };
+
         
-        const salt = bcrypt.genSaltSync(10);
-        const hashPass = bcrypt.hashSync(password, salt);
-        const confirmationCode = encodeURIComponent(bcrypt.hashSync(email, salt))
         const theUser = new User({
           name, 
           surname, 
@@ -46,33 +66,35 @@ router.post('/signup', (req, res, next) => {
           zonesBuddy,
           calendarId,
           confirmationCode,
+          location
         });
-    
+        
         return theUser.save().then( user => {
-            console.log(user);
-            //Configuración Nodemailer
-            const ActivationURL = `${process.env.HOST}/api/auth/confirm/${confirmationCode}`;
-            console.log("Ruta mail " + ActivationURL);
-            let transporter = nodemailer.createTransport({
-                service: 'Gmail',
-                auth: {
-                    user: process.env.emailAdmin,
-                    pass: process.env.pssAdmin
-                    
-                }
-            });
-            transporter.sendMail({
-                from: `"La Caseta de Juanpi" <${process.env.emailAdmin}>`,
-                to: user.email, 
-                subject: 'Activa tu cuenta en la Caseta de Juanpi', 
-                html: `<a href="${ActivationURL}">Activa tu cuenta</a>`
-            })
-            logInPromise(user,req)
-            return res.status(200).json(user);
+          console.log(user);
+          //Configuración Nodemailer
+          const ActivationURL = `${process.env.HOST}/api/auth/confirm/${confirmationCode}`;
+          console.log("Ruta mail " + ActivationURL);
+          let transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: process.env.emailAdmin,
+              pass: process.env.pssAdmin
+              
+            }
+          });
+          transporter.sendMail({
+            from: `"La Caseta de Juanpi" <${process.env.emailAdmin}>`,
+            to: user.email, 
+            subject: 'Activa tu cuenta en la Caseta de Juanpi', 
+            html: `<a href="${ActivationURL}">Activa tu cuenta</a>`
+          })
+          logInPromise(user,req)
+          return res.status(200).json(user);
         })
         .then(info => console.log(info))
         .catch(error => console.log(error));
-    })
+      })
+    })        
     .catch(e => res.status(500).json({ message: e.message }));
 });
 

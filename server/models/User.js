@@ -20,8 +20,11 @@ const userSchema = new Schema({
   zonesBuddy: String,
   calendarId: String,
   confirmationCode: String,
-  isActive: {type: Boolean, default: false}
-
+  isActive: {type: Boolean, default: false},
+  location: {
+    type: { type: String },
+    coordinates: [Number]
+  }
 
 }, {
   timestamps: {

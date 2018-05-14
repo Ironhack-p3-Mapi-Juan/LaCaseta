@@ -1,7 +1,16 @@
-<app-nav-bar></app-nav-bar>
+<div *ngIf="!buddies">
+  <h1>{{ title }}</h1>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" [(ngModel)]="pc" type="search" placeholder="Search" aria-label="Search" name="pc">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchBuddy()">Buscar</button>
+  </form>
+</div>
 
-<h1>{{ title }}</h1>
-
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-  <agm-marker [latitude]="lat" [longitude]="lng" ></agm-marker>
-</agm-map>
+<div *ngIf="buddies">
+  <app-nav-bar></app-nav-bar>
+  <div class="mapa">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+      <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng"></agm-marker>
+    </agm-map>
+  </div>
+</div>

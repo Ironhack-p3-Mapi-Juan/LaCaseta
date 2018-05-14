@@ -78,7 +78,7 @@ app.locals.title = 'La Caseta de Juanpi';
     
 
 const index = require('./routes/index');
-app.use('/', index);
+app.use('/api', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
