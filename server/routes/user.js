@@ -4,15 +4,15 @@ const router = express.Router();
 const User = require("../models/User");
 const Booking = require("../models/Booking");
 const loggedin = require("../utils/isAuthenticated");
-const isBuddy = require ("../utils/isBuddy")
-const _ = require ("lodash")
+const isBuddy = require("../utils/isBuddy");
+const _ = require("lodash");
 const fields = Object.keys(_.omit(User.schema.paths, ["__v", "_id"]));
-const upload = require("../config/coludinary")
+const upload = require("../config/coludinary");
 
 //Mostar perfil user
 
 router.get("/profile", loggedin, (req, res, next) => {
-  console.log("Hola router")
+  console.log("Hola router");
   User.findById(req.user._id)
     .then(user => {
       return res.status(200).json(user);
@@ -36,12 +36,13 @@ router.get("/favorit", loggedin, (req, res, next) => {
 
 //Editar perfil usuario
 
-router.put("/edit", [loggedin, upload.single ("file")], (req, res, next) => {
-    let update = req.body;
-    update['pic'] = req.file.url;
-  User.findByIdAndUpdate(req.user._id, {$set: update}, {new: true})
+router.put("/edit", [loggedin, upload.single("file")], (req, res, next) => {
+  let update = req.body;
+  update = req.file.url;
+  console.log(req.file);
+  User.findByIdAndUpdate(req.user._id, { pic: update }, { new: true })
     .then(userEdit => {
-      res.status(200).json(userEdit)
+      res.status(200).json(userEdit);
     })
     .catch(err => res.status(500).json(err));
 });
@@ -49,7 +50,6 @@ router.put("/edit", [loggedin, upload.single ("file")], (req, res, next) => {
 //Borrar su perfil
 
 router.get("/delete", loggedin, (req, res, next) => {
-
   User.findByIdAndRemove(req.user._id)
     .then(userDelete => res.status(200).json(userDelete))
     .catch(err => res.status(500).json(err));
@@ -57,8 +57,8 @@ router.get("/delete", loggedin, (req, res, next) => {
 
 //Perfil público del canguro
 
-router.get("/buddy/:id", loggedin, (req, res, next) =>{
-    User.findOne({_id: req.params.id, dogBuddy: true })
+router.get("/buddy/:id", loggedin, (req, res, next) => {
+  User.findOne({ _id: req.params.id, dogBuddy: true })
     .then(userBuddy => {
       return res.status(200).json(userBuddy);
     })
@@ -69,10 +69,9 @@ router.get("/buddy/:id", loggedin, (req, res, next) =>{
 
 // Obtener usuario (made in Papu)
 router.get("/get-user", loggedin, (req, res, next) => {
-  User.findById(req.session.passport.user)
-  .then(user => {
-    res.status(200).json(user)
-  })
+  User.findById(req.session.passport.user).then(user => {
+    res.status(200).json(user);
+  });
 });
 
 module.exports = router;

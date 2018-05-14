@@ -1,3 +1,4 @@
+
 import { Injectable, EventEmitter } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import "rxjs/add/operator/map";
@@ -15,9 +16,9 @@ export class DogService {
 
   //Obtener Perro
 
-  getDog() {
+  getDog(idDog) {
     return this.http
-      .get(`${environment.BASEURL}/api/dog/get-dog`, this.options)
+      .get(`${environment.BASEURL}/api/dog/get-dog/${idDog}`, this.options)
       .map(res => res.json());
   }
 
@@ -39,9 +40,9 @@ export class DogService {
 
   //Editar perro
 
-  editDog() {
+  editDog(idDog) {
     return this.http
-      .get(`${environment.BASEURL}/api/dog/edit`)
+      .get(`${environment.BASEURL}/api/dog/edit/${idDog}`, this.options)
       .map(res => res.json());
   }
 
@@ -49,9 +50,10 @@ export class DogService {
 
   deleteDog(idDog) {
     return this.http
-      .get(`${environment.BASEURL}/api/dog/delete/${idDog}`)
+      .get(`${environment.BASEURL}/api/dog/delete/${idDog}`, this.options)
       .map(res => res.json());
   }
+
 
   //APIDog
 

@@ -6,7 +6,7 @@ import { UserService } from "../../services/user.service";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
   title: string = "La Caseta de Juanpi";
@@ -18,19 +18,12 @@ export class HomeComponent implements OnInit {
   markers: Array<any> = [];
 
   constructor(public sessionService: SessionService, public router: Router, public userService: UserService) {
-    this.getPosition();
   }
 
   ngOnInit() { }
 
-  getPosition() {
-    /* if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition( (position) => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-      }) 
-    }*/
-  }
+  
+
   //Buscador
 
   searchBuddy(){

@@ -47,24 +47,27 @@ router.get("/dogs", loggedin, (req, res, next) => {
 
 //Editar perfil perro
 
-router.put("/edit/:id", loggedin, (req, res, next) => {
+router.put("/edit/:id", [loggedin, upload.single("file")], (req, res, next) => {
+  let update = req.body;
+  update = req.file.url;
   Dog.findById(req.params.id)
     .then(dog => {
       if (req.user._id.toString() == dog.user.toString()) {
         const updates = _.pick(req.body, fields);
-        Dog.findByIdAndUpdate(req.params.id, updates, { new: true })
+        Dog.findByIdAndUpdate(req.params.id, { picDog: update }, { new: true })
           .then(dogEdit => res.status(200).json(dogEdit))
           .catch(err => {
             return res.status(500).json(err);
           }); 
       } else {
         return res
-          .status(500)
+          .status(403)
           .json({ err: "No puedes modificar los perros de los demás" });
       }
     })
     .catch(err => {
-      return res.status(500).json(err);
+      console.log("Yo salto")
+      return res.status(404).json(err);
     });
 });
 
@@ -81,20 +84,23 @@ Dog.findById(req.params.id)
           }); 
       } else {
         return res
-          .status(500)
+          .status(403)
           .json({ err: "No puedes borrar los perros de los demás" });
       }
     })
     .catch(err => {
-      return res.status(500).json(err);
+      return res.status(404).json(err);
     });
 });
 //Obtener perro 
-router.get("/get-dog", loggedin, (req, res, next) => {
-  Dog.findById(req.session.passport.dog)
+router.get("/get-dog/:id", loggedin, (req, res, next) => {
+  Dog.findById(req.params.id)
   .then(dog => {
     res.status(200).json(dog)
   })
+  .catch(err => {
+    return res.status(404).json(err);
+  });
 });
 
 module.exports = router;

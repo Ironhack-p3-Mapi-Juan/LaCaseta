@@ -26,6 +26,8 @@ import { environment } from '../environments/environment';
 import { BuddyBookingsPipe } from './pipes/buddyBookings.pipe';
 import { MyDogsComponent } from './Componentes/my-dogs/my-dogs.component';
 import { NewDogComponent } from './Componentes/new-dog/new-dog.component';
+import { PublicBudyComponent } from './Componentes/public-budy/public-budy.component';
+import { EditDogComponent } from './Componentes/edit-dog/edit-dog.component';
 
 
 
@@ -43,7 +45,9 @@ import { NewDogComponent } from './Componentes/new-dog/new-dog.component';
     FileSelectDirective,
     BuddyBookingsPipe,
     MyDogsComponent,
-    NewDogComponent
+    NewDogComponent,
+    PublicBudyComponent,
+    EditDogComponent
 
   ],
   imports: [

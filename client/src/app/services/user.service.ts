@@ -43,7 +43,7 @@ editUser(user) {
 
   publicBuddy(idBudy) {
     return this.http
-      .get(`${environment.BASEURL}/api/user/buddy/${idBudy}`)
+      .get(`${environment.BASEURL}/api/user/buddy/${idBudy}`, this.options)
       .map(res => res.json())
       .map(user => this.user = user);
   }
