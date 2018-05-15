@@ -17,7 +17,7 @@ const db = process.env.DB_URL
 
 mongoose.Promise = Promise;
 mongoose
-  .connect( db, {useMongoClient: true})
+  .connect(db)
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {

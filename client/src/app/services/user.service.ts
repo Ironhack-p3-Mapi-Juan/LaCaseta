@@ -55,9 +55,10 @@ editUser(user) {
       .map(res => res.json())
       .map(user => (this.user = user));
   }
-  getBuddies(pc){
+  getBuddies(pc, startDay, endDay){
     return this.http
-      .post(`${environment.BASEURL}/api`, { pc }, this.options)
-      .map(res => res.json())
+      .post(`${environment.BASEURL}/api`, { pc, startDay, endDay }, this.options)
+      .map(res => {
+        return res.json()})
   }
 }

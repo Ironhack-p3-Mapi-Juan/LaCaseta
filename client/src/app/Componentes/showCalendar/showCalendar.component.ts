@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-showCalendar",
   templateUrl: "./showCalendar.component.html",
-  styleUrls: ["./showCalendar.component.css"]
+  styleUrls: ["./showCalendar.component.scss"]
 })
 export class ShowCalendarComponent implements OnInit {
   calendar: Array<Array<any>>;

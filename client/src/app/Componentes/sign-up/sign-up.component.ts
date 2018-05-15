@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
   
@@ -44,7 +44,7 @@ export class SignUpComponent implements OnInit {
     
     this.sessionService
       .signup(this.formSignUp)
-      .subscribe(() => this.router.navigate(["/home"]));
+      .subscribe(() => this.router.navigate(["/profile"]));
   }
 
 
