@@ -23,9 +23,23 @@ export class CalendarService {
       .map(cal => (this.calendar = cal));
   }
 
-  closeDays(days, idCalendar) {
+  closeDay(closed) {
     return this.http
-      .post(`${environment.BASEURL}/api/cal/closed/${idCalendar}`, days, this.options)
+      .post(`${environment.BASEURL}/api/cal/closed`, { closed }, this.options)
+      .map(res => res.json())
+      .map(cal => (this.calendar = cal));
+  }
+
+  enableDay(day) {
+    return this.http
+      .post(`${environment.BASEURL}/api/cal/enable`, { day }, this.options)
+      .map(res => res.json())
+      .map(cal => (this.calendar = cal));
+  }
+
+  getClosedDays() {
+    return this.http
+      .get(`${environment.BASEURL}/api/cal/closedDays`, this.options)
       .map(res => res.json())
       .map(cal => (this.calendar = cal));
   }

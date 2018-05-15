@@ -4,6 +4,8 @@ import * as moment from "moment";
 import "moment/locale/es";
 import { BookingService } from "../../services/booking.service";
 import { SessionService } from "../../services/session.service";
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-showCalendar",
@@ -22,11 +24,14 @@ export class ShowCalendarComponent implements OnInit {
   date: any;
   monthName: string;
   year: string;
+  closedDays: Array<any>;
 
   constructor(
     public calendarService: CalendarService,
     public bookingService: BookingService,
-    public sessionService: SessionService
+    public sessionService: SessionService,
+    private modalService: NgbModal,
+    public router: Router
   ) {
     this.date = moment();
     this.drawCalendar();
@@ -45,26 +50,44 @@ export class ShowCalendarComponent implements OnInit {
   }
 
   updateCalendar(bookings) {
-    for (let i = 0; i < (this.calendar ? this.calendar.length : 0); i++) {
-      for (let j = 0; j < (this.calendar[i] ? this.calendar[i].length : 0); j++) {
-        bookings.forEach(e => {
-          if (
-            this.calendar[i][j].day >= parseInt(moment(e.start).format("D")) &&
-            this.calendar[i][j].day <= parseInt(moment(e.end).format("D")) &&
-            this.calendar[i][j].month >=
-              parseInt(moment(e.start).format("M")) &&
-            this.calendar[i][j].month <= parseInt(moment(e.end).format("M")) &&
-            this.calendar[i][j].year >=
-              parseInt(moment(e.start).format("YYYY")) &&
-            this.calendar[i][j].year <= parseInt(moment(e.end).format("YYYY"))
-          ) {
-            this.calendar[i][j].idBook = e._id;
-            this.calendar[i][j].status = e.status;
-            this.calendar[i][j].book = e;
+    this.calendarService.getClosedDays().subscribe(closedDays => {
+      for (let i = 0; i < (this.calendar ? this.calendar.length : 0); i++) {
+        for (
+          let j = 0;
+          j < (this.calendar[i] ? this.calendar[i].length : 0);
+          j++
+        ) {
+          bookings.forEach(e => {
+            if (
+              this.calendar[i][j].day >=
+                parseInt(moment(e.start).format("D")) &&
+              this.calendar[i][j].day <= parseInt(moment(e.end).format("D")) &&
+              this.calendar[i][j].month >=
+                parseInt(moment(e.start).format("M")) &&
+              this.calendar[i][j].month <=
+                parseInt(moment(e.end).format("M")) &&
+              this.calendar[i][j].year >=
+                parseInt(moment(e.start).format("YYYY")) &&
+              this.calendar[i][j].year <= parseInt(moment(e.end).format("YYYY"))
+            ) {
+              this.calendar[i][j].idBook = e._id;
+              this.calendar[i][j].status = e.status;
+              this.calendar[i][j].book = e;
+            }
+          });
+
+          const dayString =
+            this.calendar[i][j].year +
+            "/" +
+            this.calendar[i][j].month +
+            "/" +
+            this.calendar[i][j].day;
+          if (closedDays.indexOf(dayString) !== -1) {
+            this.calendar[i][j].closed = true;
           }
-        });
+        }
       }
-    }
+    });
   }
 
   createCalendar() {
@@ -96,97 +119,17 @@ export class ShowCalendarComponent implements OnInit {
     }
 
     // add weeks
-    for(let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 5; i++) {
       this.addWeek(i);
     }
-
-    /* this.firstDaySecondWeek = this.calendar[0][6].day + 1;
-    // Second week
-    this.calendar[1] = [];
-    for (let i = 0; i < 7; i++) {
-      this.calendar[1].push({
-        day: this.firstDaySecondWeek + i,
-        month: moment(this.date).format("M"),
-        year: moment(this.date).format("YYYY"),
-        idBook: ""
-      });
-    }
-
-    // addWeek(position)
-
-    this.firstDayThirdWeek = this.calendar[1][6].day + 1;
-    if (this.firstDayThirdWeek <= this.monthDays) {
-      this.calendar[2] = [];
-      for (let i = 0; i < 7; i++) {
-        this.calendar[2].push({
-          day: this.firstDayThirdWeek + i,
-          month: moment(this.date).format("M"),
-          year: moment(this.date).format("YYYY"),
-          idBook: ""
-        });
-      }
-    }
-
-    this.firstDayFourthWeek = this.calendar[2][6].day + 1;
-    if (this.firstDayFourthWeek <= this.monthDays) {
-      this.calendar[3] = [];
-      for (let i = 0; i < 7; i++) {
-        this.calendar[3].push({
-          day: this.firstDayFourthWeek + i,
-          month: moment(this.date).format("M"),
-          year: moment(this.date).format("YYYY"),
-          idBook: ""
-        });
-      }
-    }
-
-    for (let d = 6; d >= 0; d--) {
-      if (this.calendar[3][d]) {
-        this.firstDayFifthWeek = this.calendar[3][d].day + 1;
-        break;
-      }
-    }
-    if (this.firstDayFifthWeek <= this.monthDays) {
-      this.calendar[4] = [];
-      for (let i = 0; i < 7; i++) {
-        if (this.firstDayFifthWeek + i <= this.monthDays) {
-          this.calendar[4].push({
-            day: this.firstDayFifthWeek + i,
-            month: moment(this.date).format("M"),
-            year: moment(this.date).format("YYYY"),
-            idBook: ""
-          });
-        }
-      }
-    }
-
-    for (let d = 6; d >= 0; d--) {
-      if (this.calendar[4][d]) {
-        this.firstDaySixthWeek = this.calendar[4][d].day + 1;
-        break;
-      }
-    }
-    if (this.firstDaySixthWeek <= this.monthDays) {
-      this.calendar[5] = [];
-      for (let i = 0; i < 7; i++) {
-        if (this.firstDaySixthWeek + i <= this.monthDays) {
-          this.calendar[5].push({
-            day: this.firstDaySixthWeek + i,
-            month: moment(this.date).format("M"),
-            year: moment(this.date).format("YYYY"),
-            idBook: ""
-          });
-        }
-      }
-    } */
   }
 
   addWeek(position) {
     let firstDayWeek;
 
     for (let d = 6; d >= 0; d--) {
-      if (this.calendar[position-1][d]) {
-        firstDayWeek = this.calendar[position-1][d].day + 1;
+      if (this.calendar[position - 1][d]) {
+        firstDayWeek = this.calendar[position - 1][d].day + 1;
         break;
       }
     }
@@ -218,5 +161,41 @@ export class ShowCalendarComponent implements OnInit {
   setToday() {
     this.date = moment();
     this.drawCalendar();
+  }
+
+  showContentModal(modal) {
+    this.modalService.open(modal).result.then();
+  }
+
+  closeDayModal(modal) {
+    this.modalService.open(modal).result.then();
+  }
+
+  enableDay(day) {
+    const date = day.year + "/" + day.month + "/" + day.day;
+    this.calendarService.enableDay(date).subscribe(() => this.drawCalendar());
+  }
+
+  closeDay(day) {
+    const date = day.year + "/" + day.month + "/" + day.day;
+    this.calendarService.closeDay(date).subscribe(() => this.drawCalendar());
+  }
+
+  accept(id) {
+    this.bookingService.changeStatus("Accepted", id).subscribe(() => {
+      this.drawCalendar();
+    });
+  }
+
+  reject(id) {
+    this.bookingService.changeStatus("Rejected", id).subscribe(() => {
+      this.drawCalendar();
+    });
+  }
+
+  getClosedDays() {
+    this.calendarService
+      .getClosedDays()
+      .subscribe(data => (this.closedDays = data));
   }
 }

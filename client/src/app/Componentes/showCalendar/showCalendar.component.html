@@ -2,12 +2,17 @@
 <div class="container">
   <div class="calendar">
     <div class="calendar-header text-center">
-      <button (click)="previousMonth()" class="btn btn-outline-info"><i class="fas fa-arrow-left"></i></button>
+      <button (click)="previousMonth()" class="btn btn-outline-info">
+        <i class="fas fa-arrow-left"></i>
+      </button>
 
-          {{monthName}} {{year}}
+      {{monthName}} {{year}}
 
-          <button (click)="nextMonth()" class="btn btn-outline-info"><i class="fas fa-arrow-right"></i></button>
-          <button (click)="setToday()" class="btn btn-outline-dark"><i class="far fa-calendar"></i>&nbsp;Hoy</button>
+      <button (click)="nextMonth()" class="btn btn-outline-info">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <button (click)="setToday()" class="btn btn-outline-dark">
+        <i class="far fa-calendar"></i>&nbsp;Hoy</button>
     </div>
     <div class="day-names">
       <div class="week-day">
@@ -33,14 +38,57 @@
       </div>
     </div>
     <div class="week" *ngFor="let week of calendar">
-      <div class="week-day" *ngFor="let d of week" [ngClass]="{pending:d.status=='Pending', accepted:d.status=='Accepted', rejected:d.status=='Rejected'}">
-        <span *ngIf="d.idBook">
-          <a [routerLink]="['/book', d.idBook]">
-            <p>{{d.day}}</p>
-            <p>{{d.book.user.name}} {{d.book.user.surname}}</p>
-          </a>
-        </span>
-        <span *ngIf="!d.idBook">{{d.day}}</span>
+      <div class="week-day" *ngFor="let day of week" [ngClass]="{pending:day.status=='Pending', accepted:day.status=='Accepted', rejected:day.status=='Rejected', closed:day.closed}">
+        <div *ngIf="day.day">
+          <span *ngIf="day.idBook">
+            <ng-template #showBook let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title">Datos de la Reserva</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Nombre: {{day.book.user.name}} {{day.book.user.surname}}</p>
+                <p>Fechas: {{day.book.start | date:"dd/MM/yyyy"}} - {{day.book.end | date:"dd/MM/yyyy"}}</p>
+                <button *ngIf="day.status == 'Pending'" class="btn btn-success" (click)="accept(day.book._id); d('Cross click')">Aceptar</button>
+                <button *ngIf="day.status == 'Pending'" class="btn btn-danger" (click)="reject(day.book._id); d('Cross click')">Rechazar</button>
+                <button class="btn btn-dark" (click)="d('Cross click')">Chatear</button>
+              </div>
+            </ng-template>
+            <button type="button" class="btn btn-info" (click)="showContentModal(showBook)">
+              <p>
+                {{day.day}}
+              </p>
+              <p>
+                Ver reserva
+              </p>
+              <!--<p>{{d.book.user.name}} {{d.book.user.surname}}</p>-->
+            </button>
+          </span>
+          <span *ngIf="!day.idBook">
+            <ng-template #optionsDay let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title">Administrar días</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <button class="btn btn-success" *ngIf="day.closed" (click)="enableDay(day); d('Cross click')"> Habilitar día </button>
+                <button class="btn btn-danger" *ngIf="!day.closed" (click)="closeDay(day); d('Cross click')">Cerrar día</button>
+              </div>
+            </ng-template>
+            <button type="button" class="btn btn-outline-secondary" (click)="closeDayModal(optionsDay)">
+              <p>
+                {{day.day}}
+              </p>
+              <p>
+                Opciones
+              </p>
+            </button>
+          </span>
+        </div>
       </div>
     </div>
   </div>

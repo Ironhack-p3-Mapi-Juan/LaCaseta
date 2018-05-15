@@ -26,6 +26,8 @@ import { environment } from '../environments/environment';
 import { BuddyBookingsPipe } from './pipes/buddyBookings.pipe';
 import { MyDogsComponent } from './Componentes/my-dogs/my-dogs.component';
 import { NewDogComponent } from './Componentes/new-dog/new-dog.component';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
 
 
@@ -54,14 +56,17 @@ import { NewDogComponent } from './Componentes/new-dog/new-dog.component';
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: environment.APIKEY
-    })
+    }),
+    NgbModule
   ],
   providers: [
     SessionService,
     CalendarService,
     BookingService,
     UserService,
-    DogService
+    DogService,
+    NgbModal,
+    NgbModalStack
   ],
   bootstrap: [AppComponent]
 })

@@ -14,16 +14,24 @@
   font-weight: bold;
 }
 
-.accepted {
+.accepted .btn-info {
   background: #28a745;
 }
 
-.rejected {
+.rejected .btn-info {
+  background: #dc3545;
+}
+
+.pending .btn-info {
+  background: #17a2b8;
+}
+
+.closed .btn-outline-secondary{
   background: #6c757d;
 }
 
-.pending {
-  background: #17a2b8;
+.closed a {
+  color: #343a40;
 }
 
 .accepted a,
