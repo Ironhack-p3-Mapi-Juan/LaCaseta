@@ -4,6 +4,7 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
+const Calendar = require ("../models/Calendar.js")
 
 const googleMapsClient = require("@google/maps").createClient({
   key: process.env.MAPSAPI,
@@ -70,6 +71,14 @@ const logInPromise = (user, req) =>
         });
         
         return theUser.save().then( user => {
+          if (user.dogBuddy){
+            const calendar = new Calendar({
+              user: user._id,
+              bookings: [],
+              closedDay:[]
+            })
+            calendar.save().then()
+          }
           console.log(user);
           //Configuración Nodemailer
           const ActivationURL = `${process.env.HOST}/api/auth/confirm/${confirmationCode}`;
