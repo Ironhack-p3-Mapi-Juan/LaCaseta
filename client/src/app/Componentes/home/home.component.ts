@@ -3,6 +3,7 @@ import { SessionService } from "../../services/session.service";
 import { Router } from "@angular/router";
 import { UserService } from "../../services/user.service";
 
+
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -14,10 +15,12 @@ export class HomeComponent implements OnInit {
   lng: number;
   zoom: number = 14;
   pc: string;
+  backgroundImg: any;
   buddies: any;
   markers: Array<any> = [];
 
   constructor(public sessionService: SessionService, public router: Router, public userService: UserService) {
+    /* this.backgroundImg = `url(./${backLaCaseta})` */
   }
 
   ngOnInit() { }

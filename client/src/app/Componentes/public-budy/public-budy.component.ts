@@ -6,7 +6,7 @@ import { SessionService } from '../../services/session.service';
 @Component({
   selector: 'app-public-budy',
   templateUrl: './public-budy.component.html',
-  styleUrls: ['./public-budy.component.css']
+  styleUrls: ['./public-budy.component.scss']
 })
 export class PublicBudyComponent implements OnInit {
 idBuddy: string

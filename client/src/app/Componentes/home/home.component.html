@@ -1,4 +1,4 @@
-<div *ngIf="!buddies">
+<div *ngIf="!buddies" id="home">
   <h1>{{ title }}</h1>
   <form class="form-inline">
     <input class="form-control mr-sm-2" [(ngModel)]="pc" type="search" placeholder="Search" aria-label="Search" name="pc">
@@ -7,7 +7,6 @@
 </div>
 
 <div *ngIf="buddies">
-  <app-nav-bar></app-nav-bar>
   <div class="container">
     <div class="row">
       <div class="mapa col-md-6">
@@ -22,8 +21,8 @@
             </form>
         <div class="row card-group">
         <div *ngFor="let b of buddies" class="col-md-6">
-            <div class="card mb-3" style="width: 15rem;">
-              <div class= "img-size text-center" [routerLink]="['/publicBuddy', b._id]">
+            <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', b._id]">
+              <div class= "img-size text-center">
                 <img class="card-img-top" src="{{b.pic}}" alt="imagen de {{b.name}}">
               </div>
                 <div class="card-body">

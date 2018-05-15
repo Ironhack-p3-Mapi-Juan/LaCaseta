@@ -1,0 +1,7 @@
+$header-height: 56px;
+.navbar {
+    height: $header-height;
+}
+main {
+    padding-top: $header-height;
+}

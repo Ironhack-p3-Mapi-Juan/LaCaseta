@@ -1,20 +1,48 @@
-<app-nav-bar></app-nav-bar>
- <div *ngIf="buddy">
-        <div class="container">
-                <div class="row">
-                  <div class="col md-6">
-                    <h1>{{buddy.name}} {{buddy.surname}}</h1>
-                    <div class="buddy-img">
-                      <img src="{{buddy.pic}}" alt="Foto de usuarios de {{buddy.name}}">
-                    </div>
-                  </div>
-                  <div class="buddy-info col md-6">
-                    <p>{{buddy.adress}}</p>
-                    <p>{{buddy.pc}}</p>
-                    <p>{{buddy.city}}, {{buddy.country}}</p>
-    
-                  </div>
-                </div>
+<div *ngIf="buddy">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 buddy">
+        <div class="buddy-img">
+          <img src="{{buddy.pic}}" alt="Foto de usuarios de {{buddy.name}}">
+        </div>
+      </div>
+      <div class="buddy-info col-md-3">
+        <h1>{{buddy.name}} {{buddy.surname}}</h1>
+        <p>{{buddy.adress}}</p>
+        <p>{{buddy.pc}}, {{buddy.city}}</p>
+        <p> {{buddy.country}}</p>
+        <h5>Precio por noche: {{buddy.rateBuddy}}€</h5>
+      </div>
+      <div class="col-md-3">
+          <div class="card border-secondary mb-3" style="max-width: 18rem;">
+              <div class="card-header">Reserva con {{buddy.name}}</div>
+              <div class="card-body text-secondary">
+                <h5 class="card-title">"Fechas"</h5>
+                <p class="card-text">Noche x precio.</p>
+                <p class="card-text line">Total</p>
+                <button type="button" class="btn btn-outline-secondary">Chatea con {{buddy.name}}</button>
+                <p>o</p>
+                <button type="button" class="btn btn-outline-success">Reserva con {{buddy.name}}</button>
               </div>
-            
-</div> 
+        </div>
+      </div>
+    </div>
+    <h4>Sobre {{buddy.name}}:</h4>
+    <p>{{infoBuddy}}</p>
+    <div class="row">
+      <div class="col-md-6">
+      <h5>Descripción del alojamiento:</h5>
+      <p>
+        <span class="more-info">Tipo de alojamiento:</span>{{buddy.houseBuddy}}</p>
+      <p>
+        <span class="more-info">Perros residentes:</span>{{buddy.petsBuddy}}</p>
+      <p>
+        <span class="more-info">Zonas exteriores:</span>{{buddy.zonesBuddy}}</p>
+    </div>
+    <div class="col-md-6">
+      <h5>Disponibilidad</h5>
+    </div>
+    
+  </div>
+
+</div>
