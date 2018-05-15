@@ -1,10 +1,11 @@
-const http = require('http');
-
-let app = require('../app');
+const http = require("http");
+const socketio = require("socket.io");
+let app = require("../app");
+let socket = require("../socket");
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
+  const err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
@@ -12,25 +13,29 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = process.env.ENV === 'development' ? err : {};
+  res.locals.error = process.env.ENV === "development" ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render("error");
 }); // Express middleware to handle errors
 
 let server = http.createServer(app);
+let io = socketio(server);
+socket(io);
 
-server.on('error', error => {
-  if (error.syscall !== 'listen') { throw error }
+server.on("error", error => {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case 'EACCES':
+    case "EACCES":
       console.error(`Port ${process.env.PORT} requires elevated privileges`);
       process.exit(1);
       break;
-    case 'EADDRINUSE':
+    case "EADDRINUSE":
       console.error(`Port ${process.env.PORT}is already in use`);
       process.exit(1);
       break;
