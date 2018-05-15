@@ -28,6 +28,8 @@ import { MyDogsComponent } from './Componentes/my-dogs/my-dogs.component';
 import { NewDogComponent } from './Componentes/new-dog/new-dog.component';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
+import { PublicBudyComponent } from './Componentes/public-budy/public-budy.component';
+import { EditDogComponent } from './Componentes/edit-dog/edit-dog.component';
 
 
 
@@ -45,9 +47,12 @@ import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
     FileSelectDirective,
     BuddyBookingsPipe,
     MyDogsComponent,
-    NewDogComponent
+    NewDogComponent,
+    PublicBudyComponent,
+    EditDogComponent
 
   ],
+  
   imports: [
     BrowserModule,
     HttpModule,

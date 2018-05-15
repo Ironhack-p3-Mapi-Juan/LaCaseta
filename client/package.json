@@ -26,6 +26,7 @@
     "@angular/router": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^2.0.0",
     "@types/jquery": "^3.3.1",
+    "angular-background-img": "^1.1.2",
     "boostrap": "^2.0.0",
     "bootstrap": "^4.1.1",
     "core-js": "^2.4.1",

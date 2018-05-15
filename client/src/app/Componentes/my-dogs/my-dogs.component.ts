@@ -26,6 +26,13 @@ export class MyDogsComponent implements OnInit {
   myDogs() {
     this.dogService.listDogs().subscribe(dogArray => {
       this.dogArray = dogArray;
+      console.log(dogArray)
     });
+    
+}
+deleteDog(idDog) {
+  this.dogService
+    .deleteDog(idDog)
+    .subscribe(() =>{ this.myDogs()});
 }
 }

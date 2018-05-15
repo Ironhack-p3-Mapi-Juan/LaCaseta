@@ -1,10 +1,9 @@
 <app-nav-bar></app-nav-bar>
 <div class="container">
   <button [routerLink]="['/newDogs']" type="button" class="btn btn-outline-success">Añadir perros</button>
-  <div *ngIf="dogArray">
-    <div class="colum">
-      <div *ngFor="let dog of dogArray">
-        <div class="col md-6">
+  <div *ngIf="dogArray && dogArray.length >=1">
+    <div class="row align-items-start">
+      <div *ngFor="let dog of dogArray" class="col-md-4">
           <div class="dog-img">
             <img src="{{dog.picDog}}" alt="Foto de usuarios de {{sessionService.user.name}}">
           </div>
@@ -17,11 +16,12 @@
             <h6>Mis tratamientos:</h6>
             <p>{{dog.treatment}}</p>
           </div>
+          <button [routerLink]="['/editDog', dog._id]" type="button" class="btn btn-outline-success">Editar mi el perfil de {{dog.name}}</button>
+          <button (click)="deleteDog(dog._id)" type="button" class="btn btn-outline-danger">Eliminar el perfil de {{dog.name}}</button>
         </div>
-      </div>
     </div>
   </div>
-  <div *ngIf="!dogArray">
+  <div *ngIf="dogArray && dogArray.length === 0">
     <h4>Todavía no has añadido ningún perro a tu lista!</h4>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div *ngIf="!buddies">
+<div *ngIf="!buddies" id="home">
   <h1>{{ title }}</h1>
   <form class="form-inline">
     <input class="form-control mr-sm-2" [(ngModel)]="pc" type="search" placeholder="Search" aria-label="Search" name="pc">
@@ -7,10 +7,33 @@
 </div>
 
 <div *ngIf="buddies">
-  <app-nav-bar></app-nav-bar>
-  <div class="mapa">
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-      <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng"></agm-marker>
-    </agm-map>
+  <div class="container">
+    <div class="row">
+      <div class="mapa col-md-6">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+          <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng"></agm-marker>
+        </agm-map>
+      </div>
+      <div class="card-buddies col-md-6">
+          <form class="form-inline with-buddies">
+              <input class="form-control mr-sm-2" [(ngModel)]="pc" type="search" placeholder="Search" aria-label="Search" name="pc">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchBuddy()">Buscar</button>
+            </form>
+        <div class="row card-group">
+        <div *ngFor="let b of buddies" class="col-md-6">
+            <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', b._id]">
+              <div class= "img-size text-center">
+                <img class="card-img-top" src="{{b.pic}}" alt="imagen de {{b.name}}">
+              </div>
+                <div class="card-body">
+                  <p class="card-text one">{{b.name}} {{b.surname}}</p>
+                  <p class="card-text two">{{b.rateBuddy}}€/noche</p>
+                </div>
+              </div>
+        
+        </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
