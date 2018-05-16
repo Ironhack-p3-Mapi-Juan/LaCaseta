@@ -1,14 +1,33 @@
 <div *ngIf="!buddies" id="home">
+    <form class="form-inline">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Tu perro como en casa</h5>
+          </div>
+        <div class="card-body">
 
-  <form class="form-inline">
+          <p class="card-text">
+            
+            <input class="form-control mr-sm-2" [(ngModel)]="pc" type="text" placeholder="Código Postal" aria-label="Search" name="pc" required>
+           
+            <input class="form-control mr-sm-2" [(ngModel)]="startDay" type="date" placeholder="Incio" aria-label="Search" name="startDay">
+            
+            <input class="form-control mr-sm-2" [(ngModel)]="endDay" type="date" placeholder="Fin" aria-label="Search" name="endDay">
+          </p>
+            <button class="btn btn-outline-buscar" type="submit" (click)="searchBuddy()">Buscar</button>
+        </div>
+      </div>
+    </form>
+    </div>
+
+<div *ngIf="buddies">
+  <form class="form-inline with-buddies">
+    <!-- buscador -->
     <input class="form-control mr-sm-2" [(ngModel)]="pc" type="text" placeholder="Search" aria-label="Search" name="pc" required>
     <input class="form-control mr-sm-2" [(ngModel)]="startDay" type="date" placeholder="Incio" aria-label="Search" name="startDay">
     <input class="form-control mr-sm-2" [(ngModel)]="endDay" type="date" placeholder="Fin" aria-label="Search" name="endDay">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchBuddy()">Buscar</button>
+    <button class="btn btn-outline-buddies" type="submit" (click)="searchBuddy()">Buscar</button>
   </form>
-</div>
-
-<div *ngIf="buddies">
   <div class="container">
     <div class="row">
       <div class="mapa col-md-6">
@@ -27,13 +46,6 @@
         </agm-map>
       </div>
       <div class="card-buddies col-md-6">
-        <form class="form-inline with-buddies">
-          <!-- buscador -->
-          <input class="form-control mr-sm-2" [(ngModel)]="pc" type="text" placeholder="Search" aria-label="Search" name="pc" required>
-          <input class="form-control mr-sm-2" [(ngModel)]="startDay" type="date" placeholder="Incio" aria-label="Search" name="startDay">
-          <input class="form-control mr-sm-2" [(ngModel)]="endDay" type="date" placeholder="Fin" aria-label="Search" name="endDay">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchBuddy()">Buscar</button>
-        </form>
         <div class="row card-group">
           <div *ngFor="let b of buddies" class="col-md-6">
             <!-- Canguros verdes -->
@@ -68,3 +80,4 @@
       <a [routerLink]="['/login/']">Acceder</a>
     </div>
   </ng-template>
+</div>

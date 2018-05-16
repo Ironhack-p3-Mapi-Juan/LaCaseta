@@ -1,13 +1,13 @@
 <div class="container">
   <div class="calendar">
     <div class="calendar-header text-center">
-      <button (click)="previousMonth()" class="btn btn-outline-info">
+      <button (click)="previousMonth()" class="btn btn-outline-arrow">
         <i class="fas fa-arrow-left"></i>
       </button>
 
       {{monthName}} {{year}}
 
-      <button (click)="nextMonth()" class="btn btn-outline-info">
+      <button (click)="nextMonth()" class="btn btn-outline-arrow">
         <i class="fas fa-arrow-right"></i>
       </button>
       <button (click)="setToday()" class="btn btn-outline-dark">
@@ -50,6 +50,7 @@
               <div class="modal-body">
                 <p>Nombre: {{day.book.user.name}} {{day.book.user.surname}}</p>
                 <p>Fechas: {{day.book.start | date:"dd/MM/yyyy"}} - {{day.book.end | date:"dd/MM/yyyy"}}</p>
+                <p>Estado: {{day.status}}</p>
                 <button *ngIf="day.status == 'Pending'" class="btn btn-success" (click)="accept(day.book._id); d('Cross click')">Aceptar</button>
                 <button *ngIf="day.status == 'Pending'" class="btn btn-danger" (click)="reject(day.book._id); d('Cross click')">Rechazar</button>
                 <button class="btn btn-dark" (click)="enableModal(chat); d('Cross click')">Chatear</button>

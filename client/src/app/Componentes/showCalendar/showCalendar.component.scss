@@ -4,26 +4,26 @@
 
 .week-day {
   display: inline-block;
-  width: 13.5%;
+  width: 12%;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 .day-names {
-  border-bottom: 1px solid #6c757d;
+  border-bottom: 1px solid #1A4484;
   font-weight: bold;
 }
 
 .accepted .btn-info {
-  background: #28a745;
+  background: #4DB31A;
 }
 
 .rejected .btn-info {
-  background: #dc3545;
+  background: #B01D0B;
 }
 
 .pending .btn-info {
-  background: #17a2b8;
+  background: #1A4484;
 }
 
 .closed .btn-outline-secondary{
@@ -38,4 +38,16 @@
 .rejected a,
 .pending a {
   color: white;
+}
+.btn-outline-arrow{
+  color:#1A4484;
+      
+      border: 1px solid #1A4484;
+     
+}
+.btn-outline-arrow:hover{
+  background-color: #1A4484;
+  
+  color:white;
+  
 }
