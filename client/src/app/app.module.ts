@@ -34,6 +34,7 @@ import { ChatService } from "./services/chat.service";
 import { ChatComponent } from "./Componentes/chat/chat.component";
 import { ReplysService } from "./services/replys.service";
 import { ReplyComponent } from "./Componentes/reply/reply.component";
+import { FavouritesComponent } from "./Componentes/Favourites/Favourites.component";
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ReplyComponent } from "./Componentes/reply/reply.component";
     PublicBudyComponent,
     EditDogComponent,
     ChatComponent,
-    ReplyComponent
+    ReplyComponent,
+    FavouritesComponent
   ],
 
   imports: [

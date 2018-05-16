@@ -11,6 +11,7 @@ import { NewDogComponent } from "./Componentes/new-dog/new-dog.component";
 import { PublicBudyComponent } from "./Componentes/public-budy/public-budy.component";
 import { EditDogComponent } from "./Componentes/edit-dog/edit-dog.component";
 import { ChatComponent } from "./Componentes/chat/chat.component";
+import { FavouritesComponent } from "./Componentes/Favourites/Favourites.component";
 
 
 export const routes: Routes = [
@@ -27,6 +28,7 @@ export const routes: Routes = [
   { path: 'publicBuddy/:id', component: PublicBudyComponent},
   { path: 'editDog/:id', component: EditDogComponent},
   { path: 'chat', component: ChatComponent},
+  { path: 'favorit', component: FavouritesComponent},
   { path: '**', redirectTo:'', pathMatch:'full'}
   
 ]

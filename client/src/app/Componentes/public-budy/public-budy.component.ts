@@ -19,6 +19,7 @@ export class PublicBudyComponent implements OnInit {
   endDay: Date;
   totalDays: number;
   totalPrice: number;
+  favorite: boolean;
 
   constructor(
     public router: Router,
@@ -29,7 +30,9 @@ export class PublicBudyComponent implements OnInit {
   ) {
     this.startDay = this.userService.startDay;
     this.endDay = this.userService.endDay;
-    this.totalDays = Math.abs(moment(this.startDay).diff(moment(this.endDay), "days"))
+    this.totalDays = Math.abs(
+      moment(this.startDay).diff(moment(this.endDay), "days")
+    );
   }
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -45,6 +48,9 @@ export class PublicBudyComponent implements OnInit {
       this.totalPrice = this.totalDays * this.buddy.rateBuddy;
       this.router.navigate(["/publicBuddy", idBuddy]);
     });
+    this.userService.getUser().subscribe(user => {
+      this.favorite = user.favoriteBuddy.indexOf(idBuddy) != -1;
+    });
   }
 
   saveBooking(idBuddy) {
@@ -52,7 +58,21 @@ export class PublicBudyComponent implements OnInit {
       from: this.startDay,
       to: this.endDay,
       totalPrice: this.totalPrice
-    }
-    this.bookingService.createBooking(info, idBuddy).subscribe( () => this.router.navigate(["/booking"]));
+    };
+    this.bookingService
+      .createBooking(info, idBuddy)
+      .subscribe(() => this.router.navigate(["/booking"]));
+  }
+
+  removeFavourite(idBuddy) {
+    this.userService
+      .removeFavourite(idBuddy)
+      .subscribe(() => this.publicProfile(idBuddy));
+  }
+
+  addFavourite(idBuddy) {
+    this.userService
+      .saveFavourite(idBuddy)
+      .subscribe(() => this.publicProfile(idBuddy));
   }
 }

@@ -1,0 +1,19 @@
+<div *ngIf="favourites">
+  <div *ngFor="let f of favourites">
+    <a [routerLink]="['/publicBuddy',f.id]">
+      <div class="row card-group">
+        <div class="img-size text-center">
+          <img class="card-img-top" src="{{f.pic}}" alt="imagen de {{f.name}}">
+        </div>
+        <div class="card-body">
+          <p class="card-text one">{{f.name}} {{f.surname}}</p>
+          <p class="card-text two">{{f.rateBuddy}}€/noche</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div *ngIf="!favourites">
+  <h2>Todavía no has guardado ningún favorito</h2>
+</div>

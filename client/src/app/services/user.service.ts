@@ -8,26 +8,25 @@ import { User } from "../Interfaces/user-interface";
 
 @Injectable()
 export class UserService {
-user: User;
-buddies: any;
-options: any = {withCredentials: true}
-startDay: Date;
-endDay: Date;
-constructor(private http: Http) { }
+  user: User;
+  buddies: any;
+  options: any = { withCredentials: true };
+  startDay: Date;
+  endDay: Date;
+  constructor(private http: Http) {}
 
+  //Obtener Usuario
 
-//Obtener Usuario
-
-getUser() {
-  return this.http
+  getUser() {
+    return this.http
       .get(`${environment.BASEURL}/api/user/get-user`, this.options)
       .map(res => res.json());
-}
+  }
 
-//Editar perfil Usuario
+  //Editar perfil Usuario
 
-editUser(user) {
-  console.log(user)
+  editUser(user) {
+    console.log(user);
     return this.http
       .put(`${environment.BASEURL}/api/user/edit`, user, this.options)
       .map(res => res.json());
@@ -47,7 +46,7 @@ editUser(user) {
     return this.http
       .get(`${environment.BASEURL}/api/user/buddy/${idBudy}`, this.options)
       .map(res => res.json())
-      .map(user => this.user = user);
+      .map(user => (this.user = user));
   }
   //Perfil privado del usuario
 
@@ -57,10 +56,35 @@ editUser(user) {
       .map(res => res.json())
       .map(user => (this.user = user));
   }
-  getBuddies(pc, startDay, endDay){
+  getBuddies(pc, startDay, endDay) {
     return this.http
-      .post(`${environment.BASEURL}/api`, { pc, startDay, endDay }, this.options)
+      .post(
+        `${environment.BASEURL}/api`,
+        { pc, startDay, endDay },
+        this.options
+      )
       .map(res => {
-        return res.json()})
+        return res.json();
+      });
   }
+
+  // Guardar favorito
+  saveFavourite(idBuddy) {
+    return this.http
+      .get(`${environment.BASEURL}/api/user/favourit/${idBuddy}`, this.options)
+      .map(res => res.json());
+  }
+
+  removeFavourite(idBuddy) {
+    return this.http.get(`${environment.BASEURL}/api/user/removeFavourit/${idBuddy}`, this.options)
+    .map(res => res.json());
+  }
+
+  // Obtener favoritos
+  getFavourites() {
+    return this.http
+      .get(`${environment.BASEURL}/api/user/favourit`, this.options)
+      .map(res => res.json());
+  }
+
 }

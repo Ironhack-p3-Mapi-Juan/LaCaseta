@@ -22,10 +22,34 @@ router.get("/profile", loggedin, (req, res, next) => {
     });
 });
 
+// Guardar favorito
+router.get("/favourit/:idBuddy", loggedin, (req, res, next) => {
+  User.findById(req.params.idBuddy).then(buddy => {
+    if (buddy.dogBuddy) {
+      User.findById(req.user._id).then(user => {
+        user.favoriteBuddy.push(buddy._id);
+        user.favoriteBuddy = _.uniq(user.favoriteBuddy);
+        user.save().then(user => res.status(200).json(user));
+      });
+    }
+  });
+});
+
+router.get("/removeFavourit/:idBuddy", loggedin, (req, res, next) => {
+  User.findById(req.user._id).then(user => {
+    let position = user.favoriteBuddy.indexOf(req.params.idBuddy);
+    if (position != -1) {
+      user.favoriteBuddy.splice(position, 1);
+      user.save().then(user => res.status(200).json(user));
+    }
+  });
+});
+
 //Mostrar favoritos User
 
-router.get("/favorit", loggedin, (req, res, next) => {
+router.get("/favourit", loggedin, (req, res, next) => {
   User.findById(req.user._id)
+    .populate("favoriteBuddy")
     .then(user => {
       return res.status(200).json(user.favoriteBuddy);
     })
