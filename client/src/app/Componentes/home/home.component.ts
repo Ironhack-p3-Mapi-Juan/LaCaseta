@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   greenBuddies: any;
   yellowBuddies: any;
   redBuddies: any;
+  totalDays: number;
   constructor(
     public sessionService: SessionService,
     public router: Router,
@@ -38,6 +39,9 @@ export class HomeComponent implements OnInit {
 
   searchBuddy() {
     let freeBuddies = [];
+    this.totalDays = Math.abs(
+      moment(this.startDay).diff(moment(this.endDay), "days")
+    );
     this.userService
       .getBuddies(this.pc, this.startDay, this.endDay)
       .subscribe(calendars => {
@@ -50,7 +54,11 @@ export class HomeComponent implements OnInit {
             tmp.push(range.contains(moment(e)));
           });
 
-          return tmp.length == 0;
+          tmp = _.uniq(tmp);
+
+          if (tmp.length == 0 || tmp[0] == false) {
+            return calendar;
+          }
         });
 
         let publicBuddies = freeBuddies.map(e => {
@@ -68,7 +76,6 @@ export class HomeComponent implements OnInit {
                 lng: e.location.coordinates[1]
               });
             });
-            console.log(data);
           })
           .catch(err => console.log(err));
 
