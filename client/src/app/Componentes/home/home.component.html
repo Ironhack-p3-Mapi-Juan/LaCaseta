@@ -14,7 +14,16 @@
       <div class="mapa col-md-6">
         <!-- Mapa -->
         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-          <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng"></agm-marker>
+          <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [iconUrl]="m.icon">
+            <agm-info-window>
+              <div>
+                <img [src]="m.pic" [alt]="m.name" class="pic-marker">
+                <p>
+                  <strong>{{m.name}} {{m.surname}}</strong>
+                </p>
+              </div>
+            </agm-info-window>
+          </agm-marker>
         </agm-map>
       </div>
       <div class="card-buddies col-md-6">
@@ -28,55 +37,34 @@
         <div class="row card-group">
           <div *ngFor="let b of buddies" class="col-md-6">
             <!-- Canguros verdes -->
-            <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', b._id]">
-              <div class="img-size text-center">
-                <img class="card-img-top" src="{{b.pic}}" alt="imagen de {{b.name}}">
-              </div>
-              <div class="card-body">
-                <p class="card-text one">{{b.name}} {{b.surname}}</p>
-                <p class="card-text two">{{b.rateBuddy}}€/noche</p>
-              </div>
+            <div class="card mb-3" style="width: 15rem;">
+              <a (click)="publicBuddy(b._id, loginModal)">
+                <div class="img-size text-center">
+                  <img class="card-img-top" src="{{b.pic}}" alt="imagen de {{b.name}}">
+                </div>
+                <div class="card-body">
+                  <p class="card-text one">{{b.name}} {{b.surname}}</p>
+                  <p class="card-text two">{{b.rateBuddy}}€/noche</p>
+                </div>
+              </a>
             </div>
           </div>
-          <div *ngFor="let gb of greenBuddies" class="col-md-6">
-            <!-- Canguros verdes -->
-            <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', gb._id]">
-              <div class="img-size text-center">
-                <img class="card-img-top" src="{{gb.pic}}" alt="imagen de {{gb.name}}">
-              </div>
-              <div class="card-body">
-                <p class="card-text one">{{gb.name}} {{gb.surname}}</p>
-                <p class="card-text two">{{gb.rateBuddy}}€/noche</p>
-              </div>
-            </div>
-          </div>
-          <div *ngFor="let yb of yellowBuddies" class="col-md-6">
-            <!-- Canguros amarillos -->
-            <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', yb._id]">
-              <div class="img-size text-center">
-                <img class="card-img-top" src="{{yb.pic}}" alt="imagen de {{yb.name}}">
-              </div>
-              <div class="card-body">
-                <p class="card-text one">{{yb.name}} {{yb.surname}}</p>
-                <p class="card-text two">{{yb.rateBuddy}}€/noche</p>
-              </div>
-            </div>
-          </div>
-          <div *ngFor="let rb of redBuddies" class="col-md-6">
-            <!-- Canguros rojos -->
-            <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', rb._id]">
-              <div class="img-size text-center">
-                <img class="card-img-top" src="{{rb.pic}}" alt="imagen de {{rb.name}}">
-              </div>
-              <div class="card-body">
-                <p class="card-text one">{{rb.name}} {{rb.surname}}</p>
-                <p class="card-text two">{{rb.rateBuddy}}€/noche</p>
-              </div>
-            </div>
-          </div>
-
-
         </div>
       </div>
     </div>
   </div>
+
+
+  <ng-template #loginModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h3>¡Tienes que registrarte para poder ver los detalles!</h3>
+      <a [routerLink]="['/signup/']">Registrarse</a>
+      <h3>¿Ya tienes una cuenta?</h3>
+      <a [routerLink]="['/login/']">Acceder</a>
+    </div>
+  </ng-template>

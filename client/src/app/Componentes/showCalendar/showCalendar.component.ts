@@ -163,11 +163,7 @@ export class ShowCalendarComponent implements OnInit {
     this.drawCalendar();
   }
 
-  showContentModal(modal) {
-    this.modalService.open(modal).result.then();
-  }
-
-  closeDayModal(modal) {
+  enableModal(modal) {
     this.modalService.open(modal).result.then();
   }
 

@@ -7,7 +7,7 @@
         <p>Canguro: {{b.buddy.name}}</p>
         <p>Fecha: {{b.start | date:"dd/MM/yyyy"}} - {{b.end | date:"dd/MM/yyyy"}}</p>
 
-        <button class="btn btn-outline-dark">Chatear</button>
+        <button class="btn btn-outline-dark" (click)="chatModal(chat)">Chatear</button>
         <button *ngIf="b.status!='Rejected'" (click)="cancel(b._id)" class="btn btn-outline-danger">Cancelar</button>
       </div>
     </div>

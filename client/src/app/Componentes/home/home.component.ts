@@ -5,6 +5,7 @@ import { UserService } from "../../services/user.service";
 import * as Moment from "moment";
 import { extendMoment } from "moment-range";
 import * as _ from "lodash";
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 const moment = extendMoment(Moment);
 
@@ -31,7 +32,8 @@ export class HomeComponent implements OnInit {
   constructor(
     public sessionService: SessionService,
     public router: Router,
-    public userService: UserService
+    public userService: UserService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {}
@@ -75,6 +77,10 @@ export class HomeComponent implements OnInit {
               this.lat = e.location.coordinates[0];
               this.lng = e.location.coordinates[1];
               this.markers.push({
+                name: e.name,
+                surname: e.surname,
+                pic: e.pic,
+                icon: "../../../assets/images/fa-paw.png",
                 lat: e.location.coordinates[0],
                 lng: e.location.coordinates[1]
               });
@@ -82,5 +88,13 @@ export class HomeComponent implements OnInit {
           })
           .catch(err => console.log(err));
       });
+  }
+
+  publicBuddy(idBuddy, modal) {
+    if (this.sessionService.user) {
+      this.router.navigate(["/publicBuddy", idBuddy]);
+    } else {
+      this.modalService.open(modal).result.then();
+    }
   }
 }
