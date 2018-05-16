@@ -12,7 +12,6 @@ const upload = require("../config/coludinary");
 //Mostar perfil user
 
 router.get("/profile", loggedin, (req, res, next) => {
-  console.log("Hola router");
   User.findById(req.user._id)
     .then(user => {
       return res.status(200).json(user);
@@ -61,10 +60,28 @@ router.get("/favourit", loggedin, (req, res, next) => {
 //Editar perfil usuario
 
 router.put("/edit", [loggedin, upload.single("file")], (req, res, next) => {
-  let update = req.body;
-  update = req.file.url;
-  console.log(req.file);
-  User.findByIdAndUpdate(req.user._id, { pic: update }, { new: true })
+  const fields = {
+    name,
+    surname,
+    adress,
+    city,
+    country,
+    pc,
+    email,
+    infoBuddy,
+    rateBuddy,
+    petsBuddy,
+    houseBuddy,
+    zonesBuddy
+  } = req.body;
+  
+  let update = _.pickBy(fields, _.identity);
+  
+  if(req.file) {
+    update.pic = req.file.url;
+  }
+
+  User.findByIdAndUpdate(req.user._id, update, { new: true })
     .then(userEdit => {
       res.status(200).json(userEdit);
     })

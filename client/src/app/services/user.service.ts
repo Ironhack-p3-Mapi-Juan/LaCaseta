@@ -26,9 +26,8 @@ export class UserService {
   //Editar perfil Usuario
 
   editUser(user) {
-    console.log(user);
     return this.http
-      .put(`${environment.BASEURL}/api/user/edit`, user, this.options)
+      .put(`${environment.BASEURL}/api/user/edit`, {user}, this.options)
       .map(res => res.json());
   }
 
