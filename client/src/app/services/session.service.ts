@@ -14,11 +14,6 @@ export class SessionService {
 
   constructor(private http: Http) {
     this.isLoggedIn().subscribe();
-    /*if(this.user){
-    console.log(this.user)
-    }else{
-      console.log(this.user)
-    }  */
   }
 
   handleError(e) {
