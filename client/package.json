@@ -26,6 +26,7 @@
     "@angular/router": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^2.0.0",
     "@types/jquery": "^3.3.1",
+    "@types/moment-range": "^3.1.0",
     "@types/socket.io-client": "^1.4.32",
     "angular-background-img": "^1.1.2",
     "boostrap": "^2.0.0",
