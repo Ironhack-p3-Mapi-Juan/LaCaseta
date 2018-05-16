@@ -11,6 +11,8 @@ export class UserService {
 user: User;
 buddies: any;
 options: any = {withCredentials: true}
+startDay: Date;
+endDay: Date;
 constructor(private http: Http) { }
 
 

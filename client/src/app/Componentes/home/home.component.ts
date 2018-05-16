@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   yellowBuddies: any;
   redBuddies: any;
   totalDays: number;
+
   constructor(
     public sessionService: SessionService,
     public router: Router,
@@ -45,6 +46,8 @@ export class HomeComponent implements OnInit {
     this.userService
       .getBuddies(this.pc, this.startDay, this.endDay)
       .subscribe(calendars => {
+        this.userService.startDay = this.startDay;
+        this.userService.endDay = this.endDay;
         const range = moment.range(this.startDay, this.endDay);
         let tmp = [];
 
@@ -78,32 +81,6 @@ export class HomeComponent implements OnInit {
             });
           })
           .catch(err => console.log(err));
-
-        /* this.buddies = buddies;
-        this.greenBuddies = buddies.green;
-        this.yellowBuddies = buddies.yellow;
-        this.redBuddies = buddies.red;
-        console.log(this.greenBuddies, this.redBuddies, this.yellowBuddies);
-        this.greenBuddies.forEach(e => {
-          this.lat = e.location.coordinates[0];
-          this.lng = e.location.coordinates[1];
-          //console.log(e)•
-          this.markers.push({
-            lat: e.location.coordinates[0],
-            lng: e.location.coordinates[1]
-          });
-        });
-        this.yellowBuddies.forEach(e => {
-          this.lat = e.location.coordinates[0];
-          this.lng = e.location.coordinates[1];
-          //console.log(e)
-        });
-        this.redBuddies.forEach(e => {
-          this.lat = e.location.coordinates[0];
-          this.lng = e.location.coordinates[1];
-          //console.log(e)
-        }); */
       });
-    
   }
 }

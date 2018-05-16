@@ -13,22 +13,22 @@
         <p> {{buddy.country}}</p>
         <h5>Precio por noche: {{buddy.rateBuddy}}€</h5>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3" *ngIf="startDay">
           <div class="card border-secondary mb-3" style="max-width: 18rem;">
               <div class="card-header">Reserva con {{buddy.name}}</div>
               <div class="card-body text-secondary">
-                <h5 class="card-title">"Fechas"</h5>
-                <p class="card-text">Noche x precio.</p>
-                <p class="card-text line">Total</p>
+                <h5 class="card-title">{{startDay | date:"dd/MM/yyyy"}} - {{endDay | date:"dd/MM/yyyy"}}</h5>
+                <p class="card-text">Precio por noche: {{buddy.rateBuddy}}€</p>
+                <p class="card-text line">Total: {{totalPrice}}€</p>
                 <button type="button" class="btn btn-outline-secondary">Chatea con {{buddy.name}}</button>
                 <p>o</p>
-                <button type="button" class="btn btn-outline-success">Reserva con {{buddy.name}}</button>
+                <button type="button" class="btn btn-outline-success" (click)="saveBooking(buddy._id)">Reserva con {{buddy.name}}</button>
               </div>
         </div>
       </div>
     </div>
     <h4>Sobre {{buddy.name}}:</h4>
-    <p>{{infoBuddy}}</p>
+    <p>{{buddy.infoBuddy}}</p>
     <div class="row">
       <div class="col-md-6">
       <h5>Descripción del alojamiento:</h5>

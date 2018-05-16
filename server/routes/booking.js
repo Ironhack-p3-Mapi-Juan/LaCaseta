@@ -15,7 +15,8 @@ router.post("/:idBuddy", loggedin, (req, res, next) => {
   buddy = req.params.idBuddy;
   from = req.body.from;
   to = req.body.to;
-  if (!user || !buddy || !from || !to) {
+  totalPrice = req.body.totalPrice;
+  if (!user || !buddy || !from || !to || !totalPrice) {
     return res.status(500).json({ message: "" });
   }
   const start = moment(from);
@@ -26,7 +27,8 @@ router.post("/:idBuddy", loggedin, (req, res, next) => {
     user,
     buddy,
     start: dates.start,
-    end: dates.end
+    end: dates.end,
+    totalPrice
   });
 
   newBooking

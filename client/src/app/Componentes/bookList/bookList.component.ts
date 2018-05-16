@@ -2,18 +2,19 @@ import { Component, OnInit } from "@angular/core";
 import { BookingService } from "../../services/booking.service";
 import { Router } from "@angular/router";
 import { SessionService } from "../../services/session.service";
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-bookList",
   templateUrl: "./bookList.component.html",
-  styleUrls: ["./bookList.component.css"]
+  styleUrls: ["./bookList.component.scss"]
 })
 export class BookListComponent implements OnInit {
   bookings: any;
   buddyBookings: any;
   search: any;
 
-  constructor(public bookingService: BookingService, public router: Router, public sessionService: SessionService) {
+  constructor(public bookingService: BookingService, public router: Router, private modalService: NgbModal, public sessionService: SessionService) {
     bookingService.getBookings().subscribe(data => this.bookings = data);
     bookingService.getBuddyBookings().subscribe(data => this.buddyBookings = data);
   }
@@ -41,5 +42,9 @@ export class BookListComponent implements OnInit {
 
   status(val) {
     this.search = val;
+  }
+
+  chatModal(modal) {
+    this.modalService.open(modal).result.then();
   }
 }
