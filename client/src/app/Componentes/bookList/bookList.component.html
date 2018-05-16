@@ -15,21 +15,43 @@
 
   <div *ngIf="sessionService.user.dogBuddy">
     <div *ngIf="buddyBookings">
-      <div class="buttons">
+    <div class="card text-center">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+              <button (click)="status(pending.value)" #pending value="Pending" class="nav-link active">Pendientes</button>
+          </li>
+          <li class="nav-item">
+              <button (click)="status(accepted.value)" #accepted value="Accepted" class="nav-link active">Aceptadas</button>
+          </li>
+          <li class="nav-item">
+              <button (click)="status(rejected.value)" #rejected value="Rejected" class="nav-link active">Rechazadas</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+      <!-- <div class="buttons">
         <button (click)="status(pending.value)" #pending value="Pending" class="btn btn-dark">Pendientes</button>
         <button (click)="status(accepted.value)" #accepted value="Accepted" class="btn btn-dark">Aceptadas</button>
         <button (click)="status(rejected.value)" #rejected value="Rejected" class="btn btn-dark">Rechazadas</button>
-      </div>
-      <div *ngFor="let b of buddyBookings | buddyBookings:'status':search;">
-        <h2>Reserva:</h2>
+      </div> -->
+      <div class="container">
+        <h2>Reservas:</h2>
+        <div class="row">
+          <div *ngFor="let b of buddyBookings | buddyBookings:'status':search;" class="col-md-4">
+            
         <img [src]="b.user.pic" [alt]="b.user.name">
-        <p>Usuario: {{b.user.name}}</p>
-        <p>Fecha: {{b.start | date:"dd/MM/yyyy"}} - {{b.end | date:"dd/MM/yyyy"}}</p>
-
-        <button class="btn btn-outline-dark" (click)="chatModal(chat)">Chatear</button>
-        <button *ngIf="b.status=='Pending'" (click)="accept(b._id)" class="btn btn-outline-success">Aceptar</button>
-        <button *ngIf="b.status=='Pending'" (click)="cancel(b._id)" class="btn btn-outline-danger">Rechazar</button>
-      </div>
+        <p><span class= "data">Usuario: </span>{{b.user.name}}</p>
+        <p><span class= "data">Fecha: </span>{{b.start | date:"dd/MM/yyyy"}} - {{b.end | date:"dd/MM/yyyy"}}</p>
+         <div class="bot-reservas">    
+        <button class="btn btn-outline-chat" (click)="chatModal(chat)">Chatear</button>
+        <button *ngIf="b.status=='Pending'" (click)="accept(b._id)" class="btn btn-outline-acept">Aceptar</button>
+        <button *ngIf="b.status=='Pending'" (click)="cancel(b._id)" class="btn btn-outline-no">Rechazar</button>
+      </div> 
+      
+    </div>
+    </div>
+    </div>
     </div>
   </div>
 </div>

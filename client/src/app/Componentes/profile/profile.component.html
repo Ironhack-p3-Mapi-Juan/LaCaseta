@@ -1,6 +1,6 @@
 <div *ngIf="user">
   <div *ngIf="user.dogBuddy">
-    <div class="options container">
+    <div class="options">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-start">
           <li class="page-item">
@@ -15,7 +15,7 @@
     </div>
   </div>
   <div *ngIf="!user.dogBuddy">
-    <div class="options container">
+    <div class="options">
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-start">
           <li class="page-item">
@@ -33,30 +33,38 @@
 
   <div class="container">
     <div class="row">
-      <div class="col md-6">
-        <h1>{{user.name}} {{user.surname}}</h1>
+      <div class="col-md-5">
         <div class="user-img">
           <img src="{{user.pic}}" alt="Foto de usuarios de {{user.name}}">
         </div>
       </div>
-      <div class="user-info col md-6">
+      <div class="user-info col-md-7">
+          <h1>{{user.name}} {{user.surname}}</h1>
         <p>{{user.adress}}</p>
         <p>{{user.pc}}</p>
         <p>{{user.city}}, {{user.country}}</p>
         <div class="user-buttos">
-          <button (click)="edit()" type="button" class="btn btn-outline-success">Editar mi perfil</button>
-          <button (click)="delete()" type="button" class="btn btn-outline-danger">Eliminar mi perfil</button>
+          <button (click)="edit()" type="button" class="btn btn-outline-edit">Editar mi perfil</button>
+          <button (click)="delete()" type="button" class="btn btn-outline-delete">Eliminar mi perfil</button>
         </div>
       </div>
     </div>
   </div>
 
   <div *ngIf="user.dogBuddy">
-    <p>Algo sobre mi:</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+    <p class = "me"><span class= "description">Algo sobre mi:</span></p>
     <p>{{user.infoBuddy}}</p>
-    <p>Mascotas residentes: {{user.petsBuddy}}</p>
-    <p>Precio por noche: {{user.rateBuddy}}€</p>
-    <p>Alojamiento: {{user.houseBuddy}}</p>
-    <p>Zonas exteriories: {{user.zonesBuddy}}</p>
   </div>
+  <div class="col-md-5 info-buddy">
+    <p><span class= "description"> Mascotas residentes:</span> {{user.petsBuddy}}</p>
+    <p><span class= "description"> Precio por noche:</span> {{user.rateBuddy}}€</p>
+    <p><span class= "description"> Alojamiento:</span> {{user.houseBuddy}}</p>
+    <p><span class= "description"> Zonas exteriories:</span> {{user.zonesBuddy}}</p>
+    </div>      
+  </div>
+</div>
+</div>
 </div>

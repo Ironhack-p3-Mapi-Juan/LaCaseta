@@ -1,7 +1,12 @@
-$header-height: 56px;
+@import url('https://fonts.googleapis.com/css?family=Dosis|Source+Sans+Pro');
+$header-height: 85px;
+$fontnavbar:'Dosis', sans-serif;
+$fontbody: 'Source Sans Pro', sans-serif;
 .navbar {
     height: $header-height;
+    font-family:$fontnavbar;
 }
 main {
     padding-top: $header-height;
+    font-family: $fontbody;
 }

@@ -1,14 +1,14 @@
 <nav class="navbar fixed-top navbar-light bg-light">
-  <a [routerLink]="['/home/']">
+  <a [routerLink]="['/home/']" class="nav-title">
     <i class="fas fa-paw"></i> La Caseta de Juanpi
   </a>
-  <div *ngIf="sessionService.user">
+  <div *ngIf="sessionService.user" class="nav-link">
     <a class="navbar-brand" [routerLink]="['/profile/']">
       <i class="fas fa-user"></i>Perfil</a>
     <a class="navbar-brand" [routerLink]="['/favorit/']">
       <i class="fas fa-heart"></i>Favoritos</a>
     <a class="navbar-brand" (click)="logout()">
-      <i class="far fa-sign-out"></i>Salir</a>
+      Salir</a>
   </div>
   <div *ngIf="!sessionService.user">
     <a class="navbar-brand" [routerLink]="['/signup/']">Registrarse</a>

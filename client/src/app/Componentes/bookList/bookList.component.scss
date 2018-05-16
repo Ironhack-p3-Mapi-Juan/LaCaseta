@@ -1,3 +1,60 @@
-img {
-  max-width: 200px;
+img{
+  width: 100%;
+  object-fit: contain;
+}
+h2{
+  font-size: 3em;
+  margin-bottom: 3%;
+  margin-top: 3%;
+}
+.data{
+  font-weight: bold;
+  color: #1A4484;
+  
+}
+p{
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+.btn-outline-chat{
+      color:#1A4484;
+      font-family: 'Dosis', sans-serif;
+      font-size: 1.2rem;
+      border: 1px solid #1A4484;
+      font-weight: bold;
+}
+.btn-outline-chat:hover{
+  background-color: #1A4484;
+  font-family: 'Dosis', sans-serif;
+  color:white;
+  font-weight: bold;
+
+}
+.btn-outline-acept{
+      color:#4DB31A;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1.2rem;
+      border: 1px solid #4DB31A;
+}
+.btn-outline-acept:hover{
+  background-color: #4DB31A;
+    font-family: 'Source Sans Pro', sans-serif;
+    color:white;
+}
+.btn-outline-no{
+  color:#B01D0B;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2rem;
+    border: 1px solid #B01D0B;
+}
+.btn-outline-no:hover{
+  background-color: #B01D0B;
+    font-family: 'Source Sans Pro', sans-serif;
+    color:white;
+}
+.col-md-4{
+  margin-bottom: 3%;
+}
+.bot-reservas{
+  margin-top: 2%;
 }

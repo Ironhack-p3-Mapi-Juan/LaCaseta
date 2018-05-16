@@ -1,14 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis|Source+Sans+Pro');
 
 h1{
-    display: inline-block;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 3em;
 }
  .user-img{
    
     img{
-        width: 59%;
+        width: 100%;
         object-fit: contain;
     }
 } 
 .user-info{
-    margin-top: 10%
+    margin-top: 0%;
+    padding-left: 6%;
 }
+.options{
+    margin: 1% auto 0 auto;
+}
+.container{
+    font-family: 'Source Sans Pro', sans-serif;
+    width: 98%;
+    p{
+        font-size: 1rem;
+        text-align: left;
+    }
+
+}
+.btn-outline-edit{
+    color:#4DB31A;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1.2rem;
+      border: 1px solid #4DB31A;
+      
+}
+.btn-outline-edit:hover{
+    background-color: #4DB31A;
+    font-family: 'Source Sans Pro', sans-serif;
+    color:white;
+    
+  
+  }
+  .btn-outline-delete{
+    color:#B01D0B;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2rem;
+    border: 1px solid #B01D0B;
+
+  }
+  .btn-outline-delete:hover{
+    background-color: #B01D0B;
+    font-family: 'Source Sans Pro', sans-serif;
+    color:white;
+  }
+  .description{
+      font-weight: bold;
+      font-size: 1.2rem;
+      font-style: italic;
+  }
+  .me{
+      margin-bottom: 2px;
+      margin-top: 3px;
+  }
+  .pagination{
+      padding-left: 73%;
+      
+
+  }
+  .info-buddy{
+    padding-left: 13%;
+    padding-top: 3%;
+  }
+  .page-link{
+     
+   color:  #1A4484;
+      
+  }

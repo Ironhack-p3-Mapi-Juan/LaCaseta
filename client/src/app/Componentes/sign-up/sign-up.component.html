@@ -39,7 +39,7 @@
       <input type="password" [(ngModel)]="formSignUp.password" class="form-control" id="formGroupExampleInput7" placeholder="Contraseña"
         name="password">
     </div>
-    <button (click)="buddyTrue()" type="button" class="btn btn-outline-info btn-lg btn-block">Picha aquí si eres canguro!</button>
+    <button (click)="buddyTrue()" type="button" class="btn btn-outline-signup btn-lg btn-block">Picha aquí si eres canguro!</button>
     <div *ngIf="formSignUp.dogBuddy">
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Cuéntanos algo sobre tí para que los demás usuarios puedan conocerte!</label>
@@ -67,7 +67,7 @@
       </div>
 
     </div>
-    <button (click)="signup()" type="button" class="btn btn-outline-info btn-lg btn-block">Listo!</button>
+    <button (click)="signup()" type="button" class="btn btn-outline-signup btn-lg btn-block">Listo!</button>
     * Campos obligatorios
     <p>Ya tienes una cuenta? Accede  <a [routerLink]="['/login/']"> aquí. </a></p>
   </form>

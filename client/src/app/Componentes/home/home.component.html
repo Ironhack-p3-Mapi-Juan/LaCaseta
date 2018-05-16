@@ -1,14 +1,33 @@
 <div *ngIf="!buddies" id="home">
+    <form class="form-inline">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Tu perro como en casa</h5>
+          </div>
+        <div class="card-body">
 
-  <form class="form-inline">
+          <p class="card-text">
+            
+            <input class="form-control mr-sm-2" [(ngModel)]="pc" type="text" placeholder="Código Postal" aria-label="Search" name="pc" required>
+           
+            <input class="form-control mr-sm-2" [(ngModel)]="startDay" type="date" placeholder="Incio" aria-label="Search" name="startDay">
+            
+            <input class="form-control mr-sm-2" [(ngModel)]="endDay" type="date" placeholder="Fin" aria-label="Search" name="endDay">
+          </p>
+            <button class="btn btn-outline-buscar" type="submit" (click)="searchBuddy()">Buscar</button>
+        </div>
+      </div>
+    </form>
+    </div>
+
+<div *ngIf="buddies">
+  <form class="form-inline with-buddies">
+    <!-- buscador -->
     <input class="form-control mr-sm-2" [(ngModel)]="pc" type="text" placeholder="Search" aria-label="Search" name="pc" required>
     <input class="form-control mr-sm-2" [(ngModel)]="startDay" type="date" placeholder="Incio" aria-label="Search" name="startDay">
     <input class="form-control mr-sm-2" [(ngModel)]="endDay" type="date" placeholder="Fin" aria-label="Search" name="endDay">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchBuddy()">Buscar</button>
+    <button class="btn btn-outline-buddies" type="submit" (click)="searchBuddy()">Buscar</button>
   </form>
-</div>
-
-<div *ngIf="buddies">
   <div class="container">
     <div class="row">
       <div class="mapa col-md-6">
@@ -18,19 +37,13 @@
         </agm-map>
       </div>
       <div class="card-buddies col-md-6">
-        <form class="form-inline with-buddies">
-          <!-- buscador -->
-          <input class="form-control mr-sm-2" [(ngModel)]="pc" type="text" placeholder="Search" aria-label="Search" name="pc" required>
-          <input class="form-control mr-sm-2" [(ngModel)]="startDay" type="date" placeholder="Incio" aria-label="Search" name="startDay">
-          <input class="form-control mr-sm-2" [(ngModel)]="endDay" type="date" placeholder="Fin" aria-label="Search" name="endDay">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchBuddy()">Buscar</button>
-        </form>
         <div class="row card-group">
           <div *ngFor="let b of buddies" class="col-md-6">
             <!-- Canguros verdes -->
-            <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', b._id]">
-              <div class="img-size text-center">
+            <div class="card mb-4" [routerLink]="['/publicBuddy', b._id]">
+              <div class="view overlay">
                 <img class="card-img-top" src="{{b.pic}}" alt="imagen de {{b.name}}">
+                <div class="mask rgba-white-slight"></div>
               </div>
               <div class="card-body">
                 <p class="card-text one">{{b.name}} {{b.surname}}</p>
@@ -38,9 +51,9 @@
               </div>
             </div>
           </div>
-          <div *ngFor="let gb of greenBuddies" class="col-md-6">
+          <!-- <div *ngFor="let gb of greenBuddies" class="col-md-6"> -->
             <!-- Canguros verdes -->
-            <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', gb._id]">
+            <!-- <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', gb._id]">
               <div class="img-size text-center">
                 <img class="card-img-top" src="{{gb.pic}}" alt="imagen de {{gb.name}}">
               </div>
@@ -49,10 +62,10 @@
                 <p class="card-text two">{{gb.rateBuddy}}€/noche</p>
               </div>
             </div>
-          </div>
-          <div *ngFor="let yb of yellowBuddies" class="col-md-6">
+          </div> -->
+          <!-- <div *ngFor="let yb of yellowBuddies" class="col-md-6"> -->
             <!-- Canguros amarillos -->
-            <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', yb._id]">
+            <!-- <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', yb._id]">
               <div class="img-size text-center">
                 <img class="card-img-top" src="{{yb.pic}}" alt="imagen de {{yb.name}}">
               </div>
@@ -61,10 +74,10 @@
                 <p class="card-text two">{{yb.rateBuddy}}€/noche</p>
               </div>
             </div>
-          </div>
-          <div *ngFor="let rb of redBuddies" class="col-md-6">
+          </div> -->
+          <!-- <div *ngFor="let rb of redBuddies" class="col-md-6"> -->
             <!-- Canguros rojos -->
-            <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', rb._id]">
+           <!--  <div class="card mb-3" style="width: 15rem;" [routerLink]="['/publicBuddy', rb._id]">
               <div class="img-size text-center">
                 <img class="card-img-top" src="{{rb.pic}}" alt="imagen de {{rb.name}}">
               </div>
@@ -73,10 +86,11 @@
                 <p class="card-text two">{{rb.rateBuddy}}€/noche</p>
               </div>
             </div>
-          </div>
+          </div> -->
 
 
         </div>
       </div>
     </div>
+  </div>
   </div>
