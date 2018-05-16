@@ -27,10 +27,12 @@ router.post('/new/:id', loggedin, (req, res, next) => {
 //Mostar comentarios
 
 router.get("/buddy/:id", loggedin, (req, res, next) => {
-    User.findOne({_id: req.params.id, dogBuddy: true })
+    User.findById(req.params.id, {dogBuddy: true })
     .then(userBuddy => {
         Reply.find({userTo: userBuddy._id})
-        .then(reply => res.status(200).json(reply))
+        .populate("userFrom")
+        .then(reply => {
+            res.status(200).json(reply)})
         .catch(err => res.status(500).json(err));
     })
 });

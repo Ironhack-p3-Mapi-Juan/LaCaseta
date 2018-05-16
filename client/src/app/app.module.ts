@@ -32,6 +32,8 @@ import { PublicBudyComponent } from "./Componentes/public-budy/public-budy.compo
 import { EditDogComponent } from "./Componentes/edit-dog/edit-dog.component";
 import { ChatService } from "./services/chat.service";
 import { ChatComponent } from "./Componentes/chat/chat.component";
+import { ReplysService } from "./services/replys.service";
+import { ReplyComponent } from "./Componentes/reply/reply.component";
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { ChatComponent } from "./Componentes/chat/chat.component";
     NewDogComponent,
     PublicBudyComponent,
     EditDogComponent,
-    ChatComponent
+    ChatComponent,
+    ReplyComponent
   ],
 
   imports: [
@@ -72,7 +75,8 @@ import { ChatComponent } from "./Componentes/chat/chat.component";
     DogService,
     NgbModal,
     NgbModalStack,
-    ChatService
+    ChatService,
+    ReplysService
   ],
   bootstrap: [AppComponent]
 })

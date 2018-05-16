@@ -44,7 +44,7 @@ export class SignUpComponent implements OnInit {
     
     this.sessionService
       .signup(this.formSignUp)
-      .subscribe(() => this.router.navigate(["/profile"]));
+      .subscribe(() => this.router.navigate(["/home"]));
   }
 
 
