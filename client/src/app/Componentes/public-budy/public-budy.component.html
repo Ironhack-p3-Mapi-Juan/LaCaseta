@@ -27,7 +27,7 @@
             <h5 class="card-title">{{startDay | date:"dd/MM/yyyy"}} - {{endDay | date:"dd/MM/yyyy"}}</h5>
             <p class="card-text">Precio por noche: {{buddy.rateBuddy}}€</p>
             <p class="card-text line">Total: {{totalPrice}}€</p>
-            <button type="button" class="btn btn-outline-chat">Chatea con {{buddy.name}}</button>
+            <button type="button" class="btn btn-outline-chat" [routerLink]="['/chat']">Chatea con {{buddy.name}}</button>
             <p class="or">o</p>
             <button type="button" class="btn btn-outline-book" (click)="saveBooking(buddy._id)">Reserva con {{buddy.name}}</button>
           </div>

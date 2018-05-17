@@ -56,8 +56,8 @@ export class BookListComponent implements OnInit {
     this.search = val;
   }
 
-  openChat(idBuddy) {
+  /* openChat(idBuddy) {
     let customId = idBuddy + "" + this.sessionService.user._id;
     this.chatService.setCustomId(customId);
-  }
+  } */
 }

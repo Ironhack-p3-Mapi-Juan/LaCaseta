@@ -1,0 +1,61 @@
+.container {
+  h1 {
+    text-align: center;
+    font-size: 4.5rem;
+  }
+  .table {
+    width: 43%;
+    height: 600px;
+    border: 3px solid #1a4484;
+    text-align: center;
+    margin: 0 auto;
+    .messages {
+      list-style-type: none;
+      padding-left: 6px;
+    }
+    .enviar {
+      margin-bottom: 3%;
+      input{
+        padding: 0 60px;
+        border:1px solid #1A4484;
+      }
+      .btn-outline-send{
+        color:#1A4484;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 1.2rem;
+        border: 1px solid #1A4484;
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+      .btn-outline-send:hover{
+        background-color: #1A4484;
+        font-family: 'Source Sans Pro', sans-serif;
+        color:white;
+        font-weight: bold;
+      }
+    }
+    .emitted {
+      text-align: left;
+
+      font-size: 1.2em;
+      border: 1px solid #fbe9ce;
+      border-radius: 35px;
+      display: inline-block;
+      width: 51%;
+      padding-left: 10px;
+      margin-top: 10px;
+    }
+    .received {
+      text-align: right;
+      font-size: 1.2em;
+      border-width: 1px;
+      border-style: solid;
+       border-color: rgba(70, 117, 185, 0.3);  
+      border-radius: 35px;
+      display: inline-block;
+      width: 51%;
+      padding-right: 10px;
+      margin-top: 10px;
+    }
+  }
+}

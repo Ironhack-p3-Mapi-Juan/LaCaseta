@@ -15,10 +15,9 @@ export class ChatService {
   messages:Array<ChatMessage> = new Array();
   constructor(){
     this.socket = io(environment.BASEURL);
-    this.socket.on("connect", () => {
-      this.socket.on('chatmessage', this.receiveMessageFromServer.bind(this));
-    })
-  }
+   this.socket.on('chatmessage', this.receiveMessageFromServer.bind(this));
+    }
+  
 
   private receiveMessageFromServer(msg){
     console.log("MESSAGE RECEIVED");
@@ -26,14 +25,9 @@ export class ChatService {
   }
 
   sendMessage(msg){
-    console.log(this.socketId);
     //console.log(`Sending message: ${msg}`)
-    this.socket.emit('chatmessage',{message:msg, id:this.socketId});
+    this.socket.emit('chatmessage',{message:msg});
     this.messages.push({text:msg, type:'emitted'}); 
   }
 
-  setCustomId(id) {
-    this.socketId = id;
-    console.log(this.socketId);
-  }
 }

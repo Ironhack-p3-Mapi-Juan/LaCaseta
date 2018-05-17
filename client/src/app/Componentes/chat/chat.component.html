@@ -1,10 +1,14 @@
 <div class="container">
   <h1>Chat</h1>
+  <div class="table">
   <ul class="messages">
     <li *ngFor="let m of chatService.messages">
       <div class="message {{m.type}}">{{m.text}}</div>
     </li>
   </ul>
+  <div class="enviar fixed-bottom">
   <input type="text" [(ngModel)]="textbox" />
-  <button type="submit" (click)="clickSend('prueba')" class="btn btn-outline-buddies">ENVIAR</button>
+  <button type="submit" (click)="clickSend('prueba')" class="btn btn-outline-send">ENVIAR</button>
+</div>
+</div>
 </div>
