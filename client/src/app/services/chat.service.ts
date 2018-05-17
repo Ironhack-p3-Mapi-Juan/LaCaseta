@@ -11,21 +11,29 @@ interface ChatMessage{
 @Injectable()
 export class ChatService {
   socket:any;
+  socketId: string;
   messages:Array<ChatMessage> = new Array();
   constructor(){
     this.socket = io(environment.BASEURL);
-    this.socket.on('chatmessage', this.receiveMessageFromServer.bind(this));
+    this.socket.on("connect", () => {
+      this.socket.on('chatmessage', this.receiveMessageFromServer.bind(this));
+    })
   }
 
   private receiveMessageFromServer(msg){
     console.log("MESSAGE RECEIVED");
-    console.log(msg);
     this.messages.push({text:msg.message, type:'received'});
   }
 
   sendMessage(msg){
+    console.log(this.socketId);
     //console.log(`Sending message: ${msg}`)
-    this.socket.emit('chatmessage',{message:msg});
+    this.socket.emit('chatmessage',{message:msg, id:this.socketId});
     this.messages.push({text:msg, type:'emitted'}); 
+  }
+
+  setCustomId(id) {
+    this.socketId = id;
+    console.log(this.socketId);
   }
 }

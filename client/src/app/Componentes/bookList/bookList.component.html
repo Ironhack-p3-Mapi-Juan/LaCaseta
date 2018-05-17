@@ -9,8 +9,13 @@
         <p><span class= "data">Canguro:</span> <a [routerLink]="['/publicBuddy',b.buddy._id]" class="b-name"> {{b.buddy.name}} </a></p>
         <p><span class= "data">Fecha:</span> {{b.start | date:"dd/MM/yyyy"}} - {{b.end | date:"dd/MM/yyyy"}}</p>
 
+<<<<<<< HEAD
         <button class="btn btn-outline-chat" (click)="chatModal(chat)">Chatear</button>
         <button *ngIf="b.status!='Rejected'" (click)="cancel(b._id)" class="btn btn-outline-no">Cancelar</button>
+=======
+        <button class="btn btn-outline-dark" (click)="openChat(b._id)">Chatear</button>
+        <button *ngIf="b.status!='Rejected'" (click)="cancel(b._id)" class="btn btn-outline-danger">Cancelar</button>
+>>>>>>> juan
       </div>
     </div>
   </div>
@@ -48,7 +53,7 @@
         <p><span class= "data">Usuario: </span>{{b.user.name}}</p>
         <p><span class= "data">Fecha: </span>{{b.start | date:"dd/MM/yyyy"}} - {{b.end | date:"dd/MM/yyyy"}}</p>
          <div class="bot-reservas">    
-        <button class="btn btn-outline-chat" [routerLink]="['/chat']">Chatear</button>
+        <button class="btn btn-outline-chat" (click)="openChat(b._id)">Chatear</button>
         <button *ngIf="b.status=='Pending'" (click)="accept(b._id)" class="btn btn-outline-acept">Aceptar</button>
         <button *ngIf="b.status=='Pending'" (click)="cancel(b._id)" class="btn btn-outline-no">Rechazar</button>
       </div> 
