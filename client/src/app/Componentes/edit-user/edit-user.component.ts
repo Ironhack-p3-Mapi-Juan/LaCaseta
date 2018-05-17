@@ -9,7 +9,7 @@ import { FileUploader } from "ng2-file-upload";
 @Component({
   selector: "app-edit-user",
   templateUrl: "./edit-user.component.html",
-  styleUrls: ["./edit-user.component.css"]
+  styleUrls: ["./edit-user.component.scss"]
 })
 export class EditUserComponent implements OnInit {
   uploader: FileUploader = new FileUploader({

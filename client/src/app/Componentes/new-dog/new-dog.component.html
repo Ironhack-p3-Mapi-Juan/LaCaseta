@@ -1,8 +1,8 @@
 <div class="container">
   <h1>Añadir Perro: </h1>
   <form>
-    <p>Añade una foto de tu perro:</p>
     <fieldset>
+        <p>Añade una foto de tu perro:</p>
       <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
     </fieldset>
     <div class="form-group">
@@ -31,7 +31,7 @@
       <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="formDog.treatment" name="treatment" rows="3"></textarea>
     </div>
 
-    <button (click)="newDog()" type="button" class="btn btn-outline-success btn-lg btn-block">Listo!</button>
-    * Campos obligatorios
+    <button (click)="newDog()" type="button" class="btn btn-outline-new btn-lg btn-block">Listo!</button>
+    <p>* Campos obligatorios</p>
   </form>
 </div>

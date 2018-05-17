@@ -1,19 +1,26 @@
 <div *ngIf="favourites">
-  <div *ngFor="let f of favourites">
-    <a [routerLink]="['/publicBuddy',f.id]">
-      <div class="row card-group">
-        <div class="img-size text-center">
-          <img class="card-img-top" src="{{f.pic}}" alt="imagen de {{f.name}}">
-        </div>
-        <div class="card-body">
-          <p class="card-text one">{{f.name}} {{f.surname}}</p>
-          <p class="card-text two">{{f.rateBuddy}}€/noche</p>
-        </div>
-      </div>
-    </a>
+  <div class="container">
+    <h1>Mis Canguros Favoritos:</h1>
+    <div class="favos">
+  <div *ngFor="let f of favourites" class="row">
+    <div class="col-md-3 favo-img"> 
+    <img src="{{f.pic}}" alt="imagen de {{f.name}}">
+    </div>
+<div class="col-md-6 favo-data">
+        <p>{{f.name}} {{f.surname}}</p>
+        <p>{{f.rateBuddy}}€/noche</p>
+        <a [routerLink]="['/publicBuddy',f._id]">
+          Reservar con {{f.name}}
+        </a>
+       </div> 
+    </div>
+  </div>
   </div>
 </div>
 
+
 <div *ngIf="!favourites">
+  <div class="container">
   <h2>Todavía no has guardado ningún favorito</h2>
+</div>
 </div>

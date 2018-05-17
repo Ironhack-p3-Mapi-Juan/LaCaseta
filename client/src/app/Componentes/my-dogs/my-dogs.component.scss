@@ -1,11 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis|Source+Sans+Pro');
+.container{
 .dog-img{
     img{
-    height: 250px;
+    height: 350px;
     width: 100%;
     border-radius: 2%;
     object-fit: cover;
     }
 }
+.dog-info{
+    h2{
+        border-bottom: 2px solid #1a4484;
+        font-family: 'Dosis', sans-serif;
+    }
+    .dog-data{
+        font-weight: bold;
+    }
+    h5{
+        text-decoration: underline;
+        text-decoration-color: #1a4484;
+    }
+}
 .btn{
     margin-bottom: 15px;
+}
+    margin-top: 1.5%;
+    .btn-outline-more{
+        color: #1a4484;
+        font-family: "Dosis", sans-serif;
+        font-size: 1rem;
+        border: 1px solid #1a4484;
+        font-weight: bold;
+    }
+    .btn-outline-more:hover{
+        background-color: #1a4484;
+        font-family: "Dosis", sans-serif;
+        color: white;
+        font-weight: bold;
+    }
+    .btn-outline-edit{
+        color:#4DB31A;
+        font-family: 'Source Sans Pro', sans-serif;
+        border: 1px solid #4DB31A;
+    }
+    .btn-outline-edit:hover{
+        background-color: #4DB31A;
+        font-family: 'Source Sans Pro', sans-serif;
+        color:white;
+    }
+    .btn-outline-delete{
+        color:#B01D0B;
+        font-family: 'Source Sans Pro', sans-serif;
+        border: 1px solid #B01D0B;
+    }
+    .btn-outline-delete:hover{
+        background-color: #B01D0B;
+        font-family: 'Source Sans Pro', sans-serif;
+        color:white;
+    }
 }

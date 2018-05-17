@@ -1,43 +1,43 @@
 <div *ngIf="buddy">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 buddy">
+      <div class="col-md-4 buddy">
         <div class="buddy-img">
           <img src="{{buddy.pic}}" alt="Foto de usuarios de {{buddy.name}}">
         </div>
       </div>
-      <div class="buddy-info col-md-3">
+      <div class="buddy-info col-md-4">
         <h1>{{buddy.name}} {{buddy.surname}}
-          <span *ngIf="favorite">
-            <i class="fas fa-heart" (click)="removeFavourite(buddy._id)"></i>
-          </span>
-          <span *ngIf="!favorite">
-            <i class="far fa-heart" (click)="addFavourite(buddy._id)"></i>
-          </span>
         </h1>
+          <div *ngIf="favorite">
+            <i class="fas fa-heart" (click)="removeFavourite(buddy._id)"></i>
+          </div>
+          <div *ngIf="!favorite">
+            <i class="far fa-heart" (click)="addFavourite(buddy._id)"></i>
+          </div>
         <p>{{buddy.adress}}</p>
         <p>{{buddy.pc}}, {{buddy.city}}</p>
         <p> {{buddy.country}}</p>
         <h5>Precio por noche: {{buddy.rateBuddy}}€</h5>
       </div>
-      <div class="col-md-3" *ngIf="startDay">
+      <div class="col-md-4" *ngIf="startDay">
         <div class="card border-secondary mb-3" style="max-width: 18rem;">
           <div class="card-header">Reserva con {{buddy.name}}</div>
           <div class="card-body text-secondary">
             <h5 class="card-title">{{startDay | date:"dd/MM/yyyy"}} - {{endDay | date:"dd/MM/yyyy"}}</h5>
             <p class="card-text">Precio por noche: {{buddy.rateBuddy}}€</p>
             <p class="card-text line">Total: {{totalPrice}}€</p>
-            <button type="button" class="btn btn-outline-secondary">Chatea con {{buddy.name}}</button>
-            <p>o</p>
-            <button type="button" class="btn btn-outline-success" (click)="saveBooking(buddy._id)">Reserva con {{buddy.name}}</button>
+            <button type="button" class="btn btn-outline-chat">Chatea con {{buddy.name}}</button>
+            <p class="or">o</p>
+            <button type="button" class="btn btn-outline-book" (click)="saveBooking(buddy._id)">Reserva con {{buddy.name}}</button>
           </div>
         </div>
       </div>
     </div>
-    <h4>Sobre {{buddy.name}}:</h4>
+    <h4 class = "buddy-tips">Sobre {{buddy.name}}:</h4>
     <p>{{buddy.infoBuddy}}</p>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12 buddy-data">
         <h5>Descripción del alojamiento:</h5>
         <p>
           <span class="more-info">Tipo de alojamiento:</span>{{buddy.houseBuddy}}</p>
@@ -46,9 +46,7 @@
         <p>
           <span class="more-info">Zonas exteriores:</span>{{buddy.zonesBuddy}}</p>
       </div>
-      <div class="col-md-6">
-        <h5>Disponibilidad</h5>
-      </div>
+      
 
     </div>
     <app-reply [buddy]="buddy">
