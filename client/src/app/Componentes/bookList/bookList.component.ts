@@ -43,8 +43,4 @@ export class BookListComponent implements OnInit {
   status(val) {
     this.search = val;
   }
-
-  chatModal(modal) {
-    this.modalService.open(modal).result.then();
-  }
 }

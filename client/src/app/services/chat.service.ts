@@ -24,8 +24,8 @@ export class ChatService {
   }
 
   sendMessage(msg){
-    console.log(`Sending message: ${msg}`)
+    //console.log(`Sending message: ${msg}`)
     this.socket.emit('chatmessage',{message:msg});
-    this.messages.push({text:msg, type:'emitted'});
+    this.messages.push({text:msg, type:'emitted'}); 
   }
 }
