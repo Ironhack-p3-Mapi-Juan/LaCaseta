@@ -77,6 +77,7 @@ export class HomeComponent implements OnInit {
               this.lat = e.location.coordinates[0];
               this.lng = e.location.coordinates[1];
               this.markers.push({
+                id: e._id,
                 name: e.name,
                 surname: e.surname,
                 pic: e.pic,
@@ -84,6 +85,7 @@ export class HomeComponent implements OnInit {
                 lat: e.location.coordinates[0],
                 lng: e.location.coordinates[1]
               });
+              console.log(this.markers)
             });
           })
           .catch(err => console.log(err));
@@ -91,6 +93,7 @@ export class HomeComponent implements OnInit {
   }
 
   publicBuddy(idBuddy, modal) {
+    console.log(idBuddy)
     if (this.sessionService.user) {
       this.router.navigate(["/publicBuddy", idBuddy]);
     } else {

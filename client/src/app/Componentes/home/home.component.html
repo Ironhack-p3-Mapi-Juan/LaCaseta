@@ -36,10 +36,12 @@
           <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [iconUrl]="m.icon">
             <agm-info-window>
               <div>
+                <a (click)="publicBuddy(m.id, loginModal)">
                 <img [src]="m.pic" [alt]="m.name" class="pic-marker">
                 <p>
                   <strong>{{m.name}} {{m.surname}}</strong>
                 </p>
+              </a>
               </div>
             </agm-info-window>
           </agm-marker>
@@ -48,7 +50,7 @@
       <div class="card-buddies col-md-6">
         <div class="row card-group">
           <div *ngFor="let b of buddies" class="col-md-6">
-            <!-- Canguros verdes -->
+
             <div class="card mb-3" style="width: 15rem;">
               <a (click)="publicBuddy(b._id, loginModal)">
                 <div class="img-size text-center">
