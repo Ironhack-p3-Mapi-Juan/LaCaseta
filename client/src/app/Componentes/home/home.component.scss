@@ -40,11 +40,16 @@
 }
 }
 
-.mapa {
+
+  
   agm-map {
-    height: 675px;
-    width: 100%;
-  }
+    position: fixed;
+    height: 650px;
+    width: 60%;
+    
+
+  
+
   
 }
 
@@ -88,3 +93,25 @@
 .pic-marker {
   width: 50px;
 }
+
+.m-titel{
+  font-size: 2em;
+  font-weight: bold;
+}
+.m-link{
+  color: white;
+  font-size: 1em;
+  color: #B2EBF2;
+}
+.r{
+  display: block;
+  font-size: 1.4em;
+  margin-bottom: 10%;
+  text-align: center;
+  margin-top: 5%;
+}
+.m-subtitle{
+  display: inline;
+  font-size: 1.3rem;
+}
+
