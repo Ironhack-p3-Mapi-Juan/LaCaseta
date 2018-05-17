@@ -39,6 +39,7 @@ export class PublicBudyComponent implements OnInit {
       this.idBuddy = String(params["id"]);
       this.publicProfile(this.idBuddy);
     });
+    
   }
 
   publicProfile(idBuddy) {

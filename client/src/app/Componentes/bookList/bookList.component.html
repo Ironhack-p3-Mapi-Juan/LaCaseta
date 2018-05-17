@@ -1,16 +1,20 @@
 <div *ngIf="sessionService.user">
+  <div class="container">
   <div *ngIf="!sessionService.user.dogBuddy">
     <div *ngIf="bookings">
-      <div *ngFor="let b of bookings">
-        <h2>Reserva:</h2>
+      <h2>Reserva:</h2>
+      <div class="row">
+      <div *ngFor="let b of bookings" class="col-md-4">
         <img [src]="b.buddy.pic" [alt]="b.buddy.name">
-        <p>Canguro: {{b.buddy.name}}</p>
-        <p>Fecha: {{b.start | date:"dd/MM/yyyy"}} - {{b.end | date:"dd/MM/yyyy"}}</p>
+        <p><span class= "data">Canguro:</span> <a [routerLink]="['/publicBuddy',b.buddy._id]" class="b-name"> {{b.buddy.name}} </a></p>
+        <p><span class= "data">Fecha:</span> {{b.start | date:"dd/MM/yyyy"}} - {{b.end | date:"dd/MM/yyyy"}}</p>
 
-        <button class="btn btn-outline-dark" (click)="chatModal(chat)">Chatear</button>
-        <button *ngIf="b.status!='Rejected'" (click)="cancel(b._id)" class="btn btn-outline-danger">Cancelar</button>
+        <button class="btn btn-outline-chat" (click)="chatModal(chat)">Chatear</button>
+        <button *ngIf="b.status!='Rejected'" (click)="cancel(b._id)" class="btn btn-outline-no">Cancelar</button>
       </div>
     </div>
+  </div>
+  </div>
   </div>
 
   <div *ngIf="sessionService.user.dogBuddy">

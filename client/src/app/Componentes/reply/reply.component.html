@@ -1,12 +1,19 @@
 <div class="container">
-<h3>Comentarios de otros usuarios:</h3>
+<h3 class= "tit-comment">Comentarios de otros usuarios:</h3>
 <div class="form-group">
   <label for="exampleFormControlTextarea1">Deja tu comentario:</label>
   <textarea class="form-control" [(ngModel)]="formReply.content" id="exampleFormControlTextarea1" rows="3" name ="content"></textarea>
-  <button (click)="newReply(buddy._id)" type="button" class="btn btn-primary btn-sm">Comentar!</button>
+  <button (click)="newReply(buddy._id)" type="button" class="btn btn-comment btn-sm">Comentar!</button>
 </div>
-<div *ngFor="let r of replyArray">
+<div *ngFor="let r of replyArray" class="row">
+  
+  <div class ="col-md-2 user">
+    <img src = "{{r.userFrom.pic}}" alt ="foto de perfil de {{r.userFrom.name}}">
   <h6>{{r.userFrom.name}}</h6>
+</div>
+  <div class="col-md-9 comment">
   <p>{{r.content}}</p>
+</div>
+
 </div>
 </div>

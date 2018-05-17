@@ -1,0 +1,28 @@
+.container {
+    margin-top: 2%;
+    h1{
+        text-align: center;
+        border-bottom: 2px solid #1a4484;
+    }
+    .favos{
+        margin-top: 2%;
+    }
+    .favo-img{
+        img{
+            width: 100%;
+        }
+        margin-bottom: 15px;
+    }
+    .favo-data{
+        margin-top: 5%;
+        p{
+            margin-bottom: 0;
+            font-size: 1.5em;
+        }
+        a{
+            color: #1a4484;
+            font-size: 1.6em;
+        }
+    }
+
+}

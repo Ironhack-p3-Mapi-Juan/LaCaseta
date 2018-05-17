@@ -14,29 +14,30 @@
   margin-top: 8%;
   .card-header{
     background-color: #EFF1F3;
-  h5{
-    text-align: center;
+    h5{
+      text-align: center;
+      font-family: 'Dosis', sans-serif;
+      font-size: 1.8rem;
+      color:#1A4484;
+    }
+  }
+  
+  button:hover{
+    background-color: #1A4484;
     font-family: 'Dosis', sans-serif;
-    font-size: 1.8rem;
+    color:white;
+    
+  }
+  .btn-outline-buscar{
+    padding: 2% 5%;
+    display: block;
+    margin: 5px auto;
     color:#1A4484;
+    font-family: 'Dosis', sans-serif;
+    font-size: 1.2rem;
+    border: 1px solid #1A4484;
   }
 }
-button:hover{
-  background-color: #1A4484;
-  font-family: 'Dosis', sans-serif;
-  color:white;
-
-}
-.btn-outline-buscar{
-  padding: 2% 5%;
-  display: block;
-  margin: 5px auto;
-  color:#1A4484;
-  font-family: 'Dosis', sans-serif;
-  font-size: 1.2rem;
-  border: 1px solid #1A4484;
-}
-  }
 }
 
 .mapa {
@@ -52,10 +53,10 @@ button:hover{
   display: block;
   margin: 10px auto;
   .btn-outline-buddies{
-  color:#1A4484;
-  font-family: 'Dosis', sans-serif;
-  font-size: 1.2rem;
-  border: 1px solid #1A4484;
+    color:#1A4484;
+    font-family: 'Dosis', sans-serif;
+    font-size: 1.2rem;
+    border: 1px solid #1A4484;
   }
   button:hover{
     background-color: #1A4484;
@@ -68,10 +69,14 @@ button:hover{
   .img-size {
     height: 200px;
   }
+      .card{
+        
+        border: 1px solid #1A4484;
+      }
 }
 .card-body {
   .one {
-    border-top: 2px solid rgb(191, 185, 185);
+    border-top: 2px solid #1A4484;
     text-align: left;
     margin-bottom: 2px;
   }

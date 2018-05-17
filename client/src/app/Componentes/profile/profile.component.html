@@ -40,9 +40,9 @@
       </div>
       <div class="user-info col-md-7">
           <h1>{{user.name}} {{user.surname}}</h1>
-        <p>{{user.adress}}</p>
-        <p>{{user.pc}}</p>
-        <p>{{user.city}}, {{user.country}}</p>
+        <p class="user-data">{{user.adress}}</p>
+        <p class="user-data">{{user.pc}}</p>
+        <p class="user-data">{{user.city}}, {{user.country}}</p>
         <div class="user-buttos">
           <button (click)="edit()" type="button" class="btn btn-outline-edit">Editar mi perfil</button>
           <button (click)="delete()" type="button" class="btn btn-outline-delete">Eliminar mi perfil</button>

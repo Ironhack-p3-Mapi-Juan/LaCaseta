@@ -14,6 +14,9 @@ h1{
 .user-info{
     margin-top: 0%;
     padding-left: 6%;
+    p{
+        font-size: 2em;
+    }
 }
 .options{
     margin: 1% auto 0 auto;
@@ -25,34 +28,43 @@ h1{
         font-size: 1rem;
         text-align: left;
     }
+    .user-data{
+        font-size: 1.3rem;
+    text-align: left;
+    margin-bottom: 1px;
+    }
 
 }
-.btn-outline-edit{
-    color:#4DB31A;
-      font-family: 'Source Sans Pro', sans-serif;
-      font-size: 1.2rem;
-      border: 1px solid #4DB31A;
-      
-}
-.btn-outline-edit:hover{
-    background-color: #4DB31A;
-    font-family: 'Source Sans Pro', sans-serif;
-    color:white;
-    
-  
-  }
-  .btn-outline-delete{
-    color:#B01D0B;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 1.2rem;
-    border: 1px solid #B01D0B;
+.user-buttos{
+    margin-top: 10%;
 
-  }
-  .btn-outline-delete:hover{
-    background-color: #B01D0B;
-    font-family: 'Source Sans Pro', sans-serif;
-    color:white;
-  }
+    .btn-outline-edit{
+        color:#4DB31A;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 1.2rem;
+        border: 1px solid #4DB31A;
+        
+    }
+    .btn-outline-edit:hover{
+        background-color: #4DB31A;
+        font-family: 'Source Sans Pro', sans-serif;
+        color:white;
+        
+        
+    }
+    .btn-outline-delete{
+        color:#B01D0B;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 1.2rem;
+        border: 1px solid #B01D0B;
+        
+    }
+    .btn-outline-delete:hover{
+        background-color: #B01D0B;
+        font-family: 'Source Sans Pro', sans-serif;
+        color:white;
+    }
+}
   .description{
       font-weight: bold;
       font-size: 1.2rem;
