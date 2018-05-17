@@ -13,8 +13,7 @@ import { FileUploader } from "ng2-file-upload";
 })
 export class EditUserComponent implements OnInit {
   uploader: FileUploader = new FileUploader({
-    url: `${environment.BASEURL}/api/user/edit`,
-    method: "PUT"
+    url: `${environment.BASEURL}/api/user/edit`
   });
 
   user: User;
@@ -24,6 +23,7 @@ export class EditUserComponent implements OnInit {
   city: any;
   country: any;
   pc: any;
+  pic: any;
   email: any;
   infoBuddy: any;
   rateBuddy: any;
@@ -72,5 +72,22 @@ export class EditUserComponent implements OnInit {
     this.uploader.uploadAll();
     this.uploader.onSuccessItem = (item, response, status, headers) =>
       this.router.navigate(["/profile"]);
+
+    /* let info = {
+      name: this.name ? this.name : this.user.name,
+      surname: this.surname ? this.surname : this.user.surname,
+      adress: this.adress ? this.adress : this.user.adress,
+      city: this.city ? this.city : this.user.city,
+      country: this.country ? this.country : this.user.country,
+      pc: this.pc ? this.pc : this.user.pc,
+      email: this.email ? this.email : this.user.email,
+      infoBuddy: this.infoBuddy ? this.infoBuddy : this.user.infoBuddy,
+      rateBuddy: this.rateBuddy ? this.rateBuddy : this.user.rateBuddy,
+      petsBuddy: this.petsBuddy ? this.petsBuddy : this.user.petsBuddy,
+      houseBuddy: this.houseBuddy ? this.houseBuddy : this.user.houseBuddy,
+      zonesBuddy: this.zonesBuddy ? this.zonesBuddy : this.user.zonesBuddy,
+    }
+
+    this.userService.editUser(info).subscribe(() => this.router.navigate(["/profile"])); */
   }
 }

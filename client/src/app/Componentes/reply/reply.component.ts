@@ -7,35 +7,38 @@ import { Reply } from "../../Interfaces/reply-interface";
 import { ReplysService } from "../../services/replys.service";
 
 @Component({
-  selector: 'app-reply',
-  templateUrl: './reply.component.html',
-  styleUrls: ['./reply.component.scss']
+  selector: "app-reply",
+  templateUrl: "./reply.component.html",
+  styleUrls: ["./reply.component.scss"]
 })
 export class ReplyComponent implements OnInit {
-  reply : Reply;
-  @Input()buddy
-  replyArray= []
-formReply ={
-  content: ""
-} 
+  reply: Reply;
+  @Input() buddy;
+  replyArray = [];
+  formReply = {
+    content: ""
+  };
   constructor(
     public router: Router,
     public userService: UserService,
     public replyService: ReplysService,
     public sessionService: SessionService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.getReply(this.buddy)
+    this.getReply(this.buddy);
   }
-  newReply(userTo, comment){
+  newReply(userTo, comment) {
     this.replyService
-    .newReply(userTo, this.formReply)
-    .subscribe(() => this.router.navigate(["/publicBuddy", userTo]))
+      .newReply(userTo, this.formReply)
+      .subscribe(replies => {
+        this.formReply.content = "";
+        this.replyArray = replies;
+      });
   }
-  getReply(userTo){
-    this.replyService
-    .getReply(userTo._id)
-    .subscribe((replys) => {this.replyArray = replys})
+  getReply(userTo) {
+    this.replyService.getReply(userTo._id).subscribe(replys => {
+      this.replyArray = replys;
+    });
   }
 }

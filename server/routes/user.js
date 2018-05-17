@@ -59,7 +59,7 @@ router.get("/favourit", loggedin, (req, res, next) => {
 
 //Editar perfil usuario
 
-router.put("/edit", [loggedin, upload.single("file")], (req, res, next) => {
+router.post("/edit", [loggedin, upload.single("file")], (req, res, next) => {
   const fields = {
     name,
     surname,
@@ -81,7 +81,7 @@ router.put("/edit", [loggedin, upload.single("file")], (req, res, next) => {
     update.pic = req.file.url;
   }
 
-  User.findByIdAndUpdate(req.user._id, update, { new: true })
+  User.findByIdAndUpdate(req.user._id, {update}, {new: true})
     .then(userEdit => {
       res.status(200).json(userEdit);
     })

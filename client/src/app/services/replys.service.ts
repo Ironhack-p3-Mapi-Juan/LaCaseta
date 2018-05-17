@@ -19,7 +19,6 @@ export class ReplysService {
   newReply(userTo, comment) {
       return this.http.post(`${environment.BASEURL}/api/reply/new/${userTo}`, comment, this.options)
       .map(res => res.json())
-      .map(reply => this.reply = reply)
     }
 
     //Mostar comentarios
@@ -27,6 +26,6 @@ export class ReplysService {
     getReply(userTo) {
         
         return this.http.get(`${environment.BASEURL}/api/reply/buddy/${userTo}`, this.options)
-        .map(res => {return res.json()})
+        .map(res => res.json())
       }
 }

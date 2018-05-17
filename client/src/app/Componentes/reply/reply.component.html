@@ -1,12 +1,12 @@
 <div class="container">
-<h3>Comentarios de otros usuarios:</h3>
-<div class="form-group">
-  <label for="exampleFormControlTextarea1">Deja tu comentario:</label>
-  <textarea class="form-control" [(ngModel)]="formReply.content" id="exampleFormControlTextarea1" rows="3" name ="content"></textarea>
-  <button (click)="newReply(buddy._id)" type="button" class="btn btn-primary btn-sm">Comentar!</button>
-</div>
-<div *ngFor="let r of replyArray">
-  <h6>{{r.userFrom.name}}</h6>
-  <p>{{r.content}}</p>
-</div>
+  <h3>Comentarios de otros usuarios:</h3>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Deja tu comentario:</label>
+    <textarea class="form-control" [(ngModel)]="formReply.content" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+    <button (click)="newReply(buddy._id)" type="button" class="btn btn-primary btn-sm">Comentar!</button>
+  </div>
+  <div *ngFor="let r of replyArray">
+    <h6>{{r.userFrom.name}}</h6>
+    <p>{{r.content}}</p>
+  </div>
 </div>

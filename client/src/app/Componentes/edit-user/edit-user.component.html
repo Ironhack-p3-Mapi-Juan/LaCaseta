@@ -1,68 +1,72 @@
- <div class="container">
-    <h1>Modifica tu perfil: </h1>
-    <div *ngIf="userService.user">
+<div class="container">
+  <h1>Modifica tu perfil: </h1>
+  <div *ngIf="userService.user">
     <form>
       <fieldset>
-          <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
       </fieldset>
       <div class="form-group">
         <label for="formGroupExampleInput">Nombre</label>
-        <input type="text" [(ngModel)]="name" class="form-control" id="formGroupExampleInput" placeholder= "{{userService.user.name}}" name="name">
+        <input type="text" [(ngModel)]="name" class="form-control" id="formGroupExampleInput" placeholder="{{userService.user.name}}"
+          name="name">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput">Apellidos</label>
-        <input type="text" [(ngModel)]="surname" class="form-control" id="formGroupExampleInput" placeholder= "{{userService.user.surname}}"
+        <input type="text" [(ngModel)]="surname" class="form-control" id="formGroupExampleInput" placeholder="{{userService.user.surname}}"
           name="surname">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput">Dirección</label>
-        <input type="text" [(ngModel)]="adress" class="form-control" id="formGroupExampleInput" placeholder= "{{userService.user.adress}}"
+        <input type="text" [(ngModel)]="adress" class="form-control" id="formGroupExampleInput" placeholder="{{userService.user.adress}}"
           name="adress">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput">Código Postal</label>
-        <input type="number" [(ngModel)]="pc" class="form-control" id="formGroupExampleInput" placeholder= "{{userService.user.pc}}"
+        <input type="number" [(ngModel)]="pc" class="form-control" id="formGroupExampleInput" placeholder="{{userService.user.pc}}"
           name="pc">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput">Ciudad</label>
-        <input type="text" [(ngModel)]="city" class="form-control" id="formGroupExampleInput" placeholder= "{{userService.user.city}}" name="city">
+        <input type="text" [(ngModel)]="city" class="form-control" id="formGroupExampleInput" placeholder="{{userService.user.city}}"
+          name="city">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput">Pais</label>
-        <input type="text" [(ngModel)]="country" class="form-control" id="formGroupExampleInput" placeholder= "{{userService.user.country}}" name="country">
+        <input type="text" [(ngModel)]="country" class="form-control" id="formGroupExampleInput" placeholder="{{userService.user.country}}"
+          name="country">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Email</label>
-        <input type="email" [(ngModel)]="email" class="form-control" id="formGroupExampleInput2" placeholder= "{{userService.user.email}}" name="Email">
+        <input type="email" [(ngModel)]="email" class="form-control" id="formGroupExampleInput2" placeholder="{{userService.user.email}}"
+          name="Email">
       </div>
       <div *ngIf="userService.user.dogBuddy">
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Cuéntanos algo sobre tí para que los demás usuarios puedan conocerte!</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="infoBuddy" name="infoBuddy" rows="3" placeholder= "{{userService.user.infoBuddy}}"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="infoBuddy" name="infoBuddy" rows="3" placeholder="{{userService.user.infoBuddy}}"></textarea>
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput">Precio por noche:</label>
-          <input type="number" [(ngModel)]="rateBuddy" class="form-control" id="formGroupExampleInput" placeholder= "{{userService.user.rateBuddy}}€"
+          <input type="number" [(ngModel)]="rateBuddy" class="form-control" id="formGroupExampleInput" placeholder="{{userService.user.rateBuddy}}€"
             name="rateBuddy">
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput">Indica si tienes mascotas:</label>
-          <input type="text" [(ngModel)]="petsBuddy" class="form-control" id="formGroupExampleInput" placeholder= "{{userService.user.petsBuddy}}"
+          <input type="text" [(ngModel)]="petsBuddy" class="form-control" id="formGroupExampleInput" placeholder="{{userService.user.petsBuddy}}"
             name="petsBuddy">
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput">Indica que tipo de casa vas a ofrecer:</label>
-          <input type="text" [(ngModel)]="houseBuddy" class="form-control" id="formGroupExampleInput" placeholder= "{{userService.user.houseBuddy}}"
+          <input type="text" [(ngModel)]="houseBuddy" class="form-control" id="formGroupExampleInput" placeholder="{{userService.user.houseBuddy}}"
             name="houseBuddy">
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput">Indica si tienes zonas exteriores:</label>
-          <input type="text" [(ngModel)]="zonesBuddy" class="form-control" id="formGroupExampleInput" placeholder= "{{userService.user.zonesBuddy}}"
+          <input type="text" [(ngModel)]="zonesBuddy" class="form-control" id="formGroupExampleInput" placeholder="{{userService.user.zonesBuddy}}"
             name="zonesBuddy">
         </div>
       </div>
       <button (click)="editPage()" type="button" class="btn btn-outline-info btn-lg btn-block">Guardar</button>
- </form>
- </div>
- </div>
+    </form>
+  </div>
+</div>

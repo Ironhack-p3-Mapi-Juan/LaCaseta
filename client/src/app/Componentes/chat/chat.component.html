@@ -1,7 +1,10 @@
-<ul class="messages">
-  <li *ngFor="let m of chatService.messages">
-    <div class="message {{m.type}}">{{m.text}}</div>
-  </li>
-</ul>
-<input type="text" [(ngModel)]="textbox" />
-<button type="submit" (click)="clickSend()">SEND</button>
+<div class="container">
+  <h1>Chat</h1>
+  <ul class="messages">
+    <li *ngFor="let m of chatService.messages">
+      <div class="message {{m.type}}">{{m.text}}</div>
+    </li>
+  </ul>
+  <input type="text" [(ngModel)]="textbox" />
+  <button type="submit" (click)="clickSend()" class="btn btn-outline-buddies">ENVIAR</button>
+</div>

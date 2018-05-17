@@ -27,7 +27,7 @@ export class UserService {
 
   editUser(user) {
     return this.http
-      .put(`${environment.BASEURL}/api/user/edit`, {user}, this.options)
+      .post(`${environment.BASEURL}/api/user/edit`, user, this.options)
       .map(res => res.json());
   }
 

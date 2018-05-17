@@ -53,7 +53,7 @@
                 <p>Estado: {{day.status}}</p>
                 <button *ngIf="day.status == 'Pending'" class="btn btn-success" (click)="accept(day.book._id); d('Cross click')">Aceptar</button>
                 <button *ngIf="day.status == 'Pending'" class="btn btn-danger" (click)="reject(day.book._id); d('Cross click')">Rechazar</button>
-                <button class="btn btn-dark" (click)="enableModal(chat); d('Cross click')">Chatear</button>
+                <button class="btn btn-dark" (click)="d('Cross click')" [routerLink]="['/chat']">Chatear</button>
               </div>
             </ng-template>
             <button type="button" class="btn btn-info" (click)="enableModal(showBook)">
